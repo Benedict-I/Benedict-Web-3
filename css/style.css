@@ -523,3 +523,14 @@ section:nth-child(odd) { background-color: #f9f9f9; }
     .contact-form button[type="submit"] { width: 100%; }
     .service-item, .pricing-box { flex-basis: 95%; }
 }
+.hero, .banner, .home, section {
+  position: relative;
+}
+.hero h1, 
+.hero p {
+  position: relative;
+  z-index: 2;
+}
+.hero::before {
+  z-index: 1;
+}
