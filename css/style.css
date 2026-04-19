@@ -192,6 +192,11 @@ a:hover { color: #2980b9; text-decoration: underline; }
     background-size: inherit;
     animation: inherit; 
     z-index: 0;
+    pointer-events: none;
+}
+.hero-text-content {
+    position: relative;
+    z-index: 10;
 }
 .hero-content-wrapper {
     position: relative;
