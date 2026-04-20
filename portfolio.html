@@ -6,12 +6,15 @@
     <title>Portfolio - Benedict</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
     <header class="site-header">
         <div class="container header-container">
-            <div class="logo animate-fade-in-down">Benedict</div>
-            <nav class="main-nav">
+            <div class="logo" data-aos="fade-down" data-aos-duration="1000">
+                Benedict
+            </div>
+            <nav class="main-nav" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100">
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="portfolio.html">Portfolio</a></li>
@@ -20,7 +23,6 @@
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
-            <div id="google_translate_element"></div>
             <button class="menu-toggle" aria-label="Toggle navigation menu">
                 <span></span><span></span><span></span>
             </button>
@@ -29,13 +31,14 @@
     <main>
         <section class="portfolio-section">
             <div class="container">
-                <h2 class="animate-fade-in-down">My Published Works: A Testament to Author Success</h2>
-                <p class="animate-fade-in-up delay-1">
-                    Discover the diverse range of books I've had the honor of helping bring into the world. 
-                    Each project is a unique journey, and this portfolio highlights the power of collaboration and expert guidance.
+                <h2 data-aos="fade-up" data-aos-duration="1200">
+                    My Published Works: A Testament to Author Success
+                </h2>
+                <p data-aos="fade-up" data-aos-duration="1200" data-aos-delay="150">
+                    Discover the diverse range of books I've had the honor of helping bring into the world. Each project is a unique journey, and this portfolio highlights the power of collaboration and expert guidance.
                 </p>
                 <div class="portfolio-grid">
-                    <div class="portfolio-item animate-fade-in-up delay-2">
+                    <div class="portfolio-item" data-aos="zoom-in-up" data-aos-duration="1200">
                         <div class="portfolio-image-wrapper">
                             <img src="images/book_cover_1.jpg" alt="Book Cover: The Silent Echo">
                             <div class="portfolio-overlay">
@@ -45,7 +48,33 @@
                         <div class="portfolio-item-content">
                             <h4>The Silent Echo</h4>
                             <p><strong>Author:</strong> Anya Sharma<br><strong>Genre:</strong> Psychological Thriller</p>
-                            <p>Anya had a gripping plot and unforgettable characters, but needed a ghostwriter to weave them into a page-turning thriller.</p>
+                            <p>Anya had a gripping plot and unforgettable characters, but needed a ghostwriter to weave them into a page-turning thriller. We collaborated closely to capture her distinct voice, building suspense with every chapter. The result? A bestseller that captivated readers.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item" data-aos="zoom-in-up" data-aos-duration="1200" data-aos-delay="150">
+                        <div class="portfolio-image-wrapper">
+                            <img src="images/book_cover_2.jpg" alt="Book Cover: Seeds of Tomorrow">
+                            <div class="portfolio-overlay">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </div>
+                        <div class="portfolio-item-content">
+                            <h4>Seeds of Tomorrow</h4>
+                            <p><strong>Author:</strong> Dr. Elias Vance<br><strong>Genre:</strong> Non-Fiction / Self-Help</p>
+                            <p>Dr. Vance's groundbreaking research on sustainable living deserved a clear, accessible voice. I ghostwrote Seeds of Tomorrow to translate complex ideas into actionable advice, empowering readers to make a difference.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item" data-aos="zoom-in-up" data-aos-duration="1200" data-aos-delay="300">
+                        <div class="portfolio-image-wrapper">
+                            <img src="images/book_cover_3.jpg" alt="Book Cover: The Baker's Secret">
+                            <div class="portfolio-overlay">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </div>
+                        <div class="portfolio-item-content">
+                            <h4>The Baker's Secret</h4>
+                            <p><strong>Author:</strong> Clara Bell<br><strong>Genre:</strong> Cozy Mystery</p>
+                            <p>Clara’s passion for baking and small-town charm were the heart of her story. I helped her craft a delightful cozy mystery, infusing it with warmth and intrigue.</p>
                         </div>
                     </div>
                 </div>
@@ -57,18 +86,13 @@
             <p>&copy; 2026 Benedict. All rights reserved.</p>
         </div>
     </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement(
-            {
-                pageLanguage: 'en',
-                autoDisplay: true
-            },
-            'google_translate_element'
-        );
-    }
+        AOS.init({
+            once: true,
+            duration: 1000
+        });
     </script>
-    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
