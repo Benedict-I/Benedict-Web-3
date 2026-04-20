@@ -20,16 +20,7 @@
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
-            <script>
-            function googleTranslateElementInit() {
-            new google.translate.TranslateElement(
-    {
-      pageLanguage: 'en',
-      autoDisplay: true
-    },
-    'google_translate_element'
-  );}
-</script>
+            <div id="google_translate_element"></div>
             <button class="menu-toggle" aria-label="Toggle navigation menu">
                 <span></span><span></span><span></span>
             </button>
@@ -39,9 +30,11 @@
         <section class="portfolio-section">
             <div class="container">
                 <h2 class="animate-fade-in-down">My Published Works: A Testament to Author Success</h2>
-                <p class="animate-fade-in-up delay-1">Discover the diverse range of books I've had the honor of helping bring into the world. Each project is a unique journey, and this portfolio highlights the power of collaboration and expert guidance.</p>
+                <p class="animate-fade-in-up delay-1">
+                    Discover the diverse range of books I've had the honor of helping bring into the world. 
+                    Each project is a unique journey, and this portfolio highlights the power of collaboration and expert guidance.
+                </p>
                 <div class="portfolio-grid">
-                    <!-- Portfolio Item 1 -->
                     <div class="portfolio-item animate-fade-in-up delay-2">
                         <div class="portfolio-image-wrapper">
                             <img src="images/book_cover_1.jpg" alt="Book Cover: The Silent Echo">
@@ -52,33 +45,7 @@
                         <div class="portfolio-item-content">
                             <h4>The Silent Echo</h4>
                             <p><strong>Author:</strong> Anya Sharma<br><strong>Genre:</strong> Psychological Thriller</p>
-                            <p>Anya had a gripping plot and unforgettable characters, but needed a ghostwriter to weave them into a page-turning thriller. We collaborated closely to capture her distinct voice, building suspense with every chapter. The result? A bestseller that captivated readers.</p>
-                        </div>
-                    </div>
-                    <div class="portfolio-item animate-fade-in-up delay-3">
-                        <div class="portfolio-image-wrapper">
-                            <img src="images/book_cover_2.jpg" alt="Book Cover: Seeds of Tomorrow">
-                            <div class="portfolio-overlay">
-                                <i class="fas fa-search"></i>
-                            </div>
-                        </div>
-                        <div class="portfolio-item-content">
-                            <h4>Seeds of Tomorrow</h4>
-                            <p><strong>Author:</strong> Dr. Elias Vance<br><strong>Genre:</strong> Non-Fiction / Self-Help</p>
-                            <p>Dr. Vance's groundbreaking research on sustainable living deserved a clear, accessible voice. I ghostwrote *Seeds of Tomorrow* to translate complex ideas into actionable advice, empowering readers to make a difference. This book is now a key resource for eco-conscious communities.</p>
-                        </div>
-                    </div>
-                    <div class="portfolio-item animate-fade-in-up delay-4">
-                        <div class="portfolio-image-wrapper">
-                            <img src="images/book_cover_3.jpg" alt="Book Cover: The Baker's Secret">
-                            <div class="portfolio-overlay">
-                                <i class="fas fa-search"></i>
-                            </div>
-                        </div>
-                        <div class="portfolio-item-content">
-                            <h4>The Baker's Secret</h4>
-                            <p><strong>Author:</strong> Clara Bell<br><strong>Genre:</strong> Cozy Mystery</p>
-                            <p>Clara’s passion for baking and small-town charm were the heart of her story. I helped her craft a delightful cozy mystery, infusing it with warmth and intrigue. *The Baker's Secret* has charmed readers and launched Clara's promising writing career.</p>
+                            <p>Anya had a gripping plot and unforgettable characters, but needed a ghostwriter to weave them into a page-turning thriller.</p>
                         </div>
                     </div>
                 </div>
@@ -90,6 +57,18 @@
             <p>&copy; 2026 Benedict. All rights reserved.</p>
         </div>
     </footer>
+    <script>
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+            {
+                pageLanguage: 'en',
+                autoDisplay: true
+            },
+            'google_translate_element'
+        );
+    }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
