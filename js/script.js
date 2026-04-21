@@ -131,3 +131,16 @@ window.addEventListener("scroll", () => {
 });
 
 setTimeout(typeEffect, 40);
+
+#cursor {
+    display: inline-block;
+    margin-left: 5px;
+    animation: blink 0.7s infinite;
+    font-weight: bold;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
