@@ -192,3 +192,4 @@ function typeEffect() {
 typeEffect();
 
 console.log("JS WORKING");        
+<script src="js/script.js"></script>
