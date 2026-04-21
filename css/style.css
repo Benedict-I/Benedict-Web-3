@@ -618,3 +618,11 @@ body::before {
     background: linear-gradient(90deg, #0ea5e9, #22c55e);
     z-index: 2000;
 }
+
+.service-item,
+.portfolio-item,
+.pricing-box {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
