@@ -224,7 +224,7 @@ section {
 section:nth-child(even) { background-color: #ffffff; }
 section:nth-child(odd) { background-color: #f9f9f9; }
 .services-overview-section {
-    background-color: #ffffff;
+    background-color: #ff8b8b;
 }
 .service-items-grid {
     display: grid;
@@ -336,7 +336,7 @@ section:nth-child(odd) { background-color: #f9f9f9; }
 }
 .portfolio-item-content p:last-child { margin-bottom: 0; }
 .about-section {
-    background-color: #ffffff;
+    background-color: #ff8b8b;
 }
 .about-content-container {
     display: flex;
