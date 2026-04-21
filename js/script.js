@@ -1,14 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     const heroTextContent = document.querySelector('.hero-text-content');
-    if (heroTextContent) {
-       
-    }
+    if (heroTextContent) {}
     const animatedElements = document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-down, .animate-fade-in-left, .animate-fade-in-right, .animate-fade-in');
-    const observerOptions = {
-        root: null,
+    const observerOptions = {root: null,
         rootMargin: '0px',
-        threshold: 0.1 
-    };
+        threshold: 0.1 };
     const observerCallback = (entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -85,4 +81,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
    
+});
+document.addEventListener("mousemove", (e) => {
+  document.body.style.setProperty("--x", e.clientX + "px");
+  document.body.style.setProperty("--y", e.clientY + "px");
 });
