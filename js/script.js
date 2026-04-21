@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 el.style.transform = 'translate(0)'; 
                 observer.unobserve(el);
             }
+            typeEffect();   //
         });
     };
     const observer = new IntersectionObserver(observerCallback, observerOptions);
@@ -106,7 +107,7 @@ function typeEffect() {
     let currentText = texts[textIndex];
 
     if (!isDeleting) {
-        el.innerHTML = currentText.substring(0, charIndex++);
+       el.textContent = currentText.substring(0, charIndex++)
         
         if (charIndex > currentText.length) {
             isDeleting = true;
@@ -115,7 +116,7 @@ function typeEffect() {
         }
 
     } else {
-        el.innerHTML = currentText.substring(0, charIndex--);
+       el.textContent = currentText.substring(0, charIndex--);
 
         if (charIndex === 0) {
             isDeleting = false;
@@ -130,66 +131,11 @@ function typeEffect() {
     setTimeout(typeEffect, isDeleting ? 40 : 70);
 }
 
-document.addEventListener("DOMContentLoaded", typeEffect);
 window.addEventListener("scroll", () => {
+  const bar = document.getElementById("progress-bar");
+  if (!bar) return;
+
   const scroll = window.scrollY;
   const height = document.body.scrollHeight - window.innerHeight;
-  document.getElementById("progress-bar").style.width = (scroll / height) * 100 + "%";
+  bar.style.width = (scroll / height) * 100 + "%";
 });
-
-    const text = "Bring Your Story to Life.";
-let index = 0;
-let isDeleting = false;
-
-function typeEffect() {
-    const el = document.getElementById("typed-text");
-    if (!el) return;
-
-    if (!isDeleting) {
-        el.textContent = text.substring(0, index++);
-        if (index > text.length) {
-            isDeleting = true;
-            setTimeout(typeEffect, 1500); // pause before deleting
-            return;
-        }
-    } else {
-        el.textContent = text.substring(0, index--);
-        if (index === 0) {
-            isDeleting = false;
-        }
-    }
-
-    setTimeout(typeEffect, isDeleting ? 40 : 70);
-}
-
-document.addEventListener("DOMContentLoaded", typeEffect);
-    
-let index = 0;
-let isDeleting = false;
-
-function typeEffect() {
-    const el = document.getElementById("typed-text");
-
-    if (!el) return;
-
-    if (!isDeleting) {
-        el.textContent = text.substring(0, index++);
-        if (index > text.length) {
-            isDeleting = true;
-            setTimeout(typeEffect, 1500);
-            return;
-        }
-    } else {
-        el.textContent = text.substring(0, index--);
-        if (index === 0) {
-            isDeleting = false;
-        }
-    }
-
-    setTimeout(typeEffect, isDeleting ? 40 : 70);
-}
-
-typeEffect();
-
-console.log("JS WORKING");        
-<script src="js/script.js"></script>
