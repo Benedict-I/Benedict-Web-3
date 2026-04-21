@@ -94,21 +94,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
   el.dataset.loaded = "true";
 
-  const text = "Bring Your Story to Life.";
-  let i = 0;
+ const text = "Bring Your Story to Life.";
+let index = 0;
+let isDeleting = false;
 
-  el.innerHTML = "";
+function typeEffect() {
+    const el = document.getElementById("typed-text");
 
-  function typeEffect() {
-    if (i < text.length) {
-      el.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(typeEffect, 50);
+    if (!isDeleting) {
+        el.innerHTML = text.substring(0, index++);
+        if (index > text.length) {
+            isDeleting = true;
+            setTimeout(typeEffect, 1200);
+            return;
+        }
+    } else {
+        el.innerHTML = text.substring(0, index--);
+        if (index === 0) {
+            isDeleting = false;
+        }
     }
-  }
 
-  typeEffect();
-});
+    setTimeout(typeEffect, isDeleting ? 40 : 80);
+}
+
+typeEffect();
 
 window.addEventListener("scroll", () => {
   const scroll = window.scrollY;
