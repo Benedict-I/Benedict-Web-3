@@ -21,9 +21,17 @@
                 </ul>
             </nav>
              <div class="language-selector animate-fade-in-down">
-                <p>Language:</p><br>
-                <a href="#">English</a> | <a href="#">Français</a> | <a href="#">Deutsch</a>
-            </div>
+                <div id="google_translate_element"></div> <br>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement(
+    {
+      pageLanguage: 'en',
+      autoDisplay: true
+    },
+    'google_translate_element'
+  );}
+</script>
             <button class="menu-toggle" aria-label="Toggle navigation menu">
                 <span></span><span></span><span></span>
             </button>
