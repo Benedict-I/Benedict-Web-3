@@ -86,3 +86,14 @@ document.addEventListener("mousemove", (e) => {
   document.body.style.setProperty("--x", e.clientX + "px");
   document.body.style.setProperty("--y", e.clientY + "px");
 });
+
+const text = "Bring Your Story to Life.";
+let i = 0;
+function typeEffect() {
+  if (i < text.length) {
+    document.getElementById("typing-text").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeEffect, 50);
+  }
+}
+typeEffect();
