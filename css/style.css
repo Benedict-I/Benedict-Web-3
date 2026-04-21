@@ -655,3 +655,13 @@ body {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
 }
+.typing-text {
+    font-size: 3.8em;
+    font-weight: bold;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    min-height: 1.2em;
+}
