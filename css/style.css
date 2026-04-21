@@ -640,18 +640,18 @@ body {
     font-size: 3.8em;
     font-weight: bold;
     color: white;
-    display: inline-block;
-    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .cursor {
-    display: inline-block;
     margin-left: 5px;
-    animation: blink 1s infinite;
+    animation: blink 0.8s infinite;
+    font-weight: bold;
 }
 
 @keyframes blink {
-    0% { opacity: 1; }
+    0%, 100% { opacity: 1; }
     50% { opacity: 0; }
-    100% { opacity: 1; }
 }
