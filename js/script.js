@@ -87,16 +87,21 @@ document.addEventListener("mousemove", (e) => {
   document.body.style.setProperty("--y", e.clientY + "px");
 });
 
-const text = "Bring Your Story to Life.";
-let i = 0
-function typeEffect() {
-  if (i < text.length) {
-    document.getElementById("typing-text").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typeEffect, 50);
+document.addEventListener("DOMContentLoaded", function () {
+  const el = document.getElementById("typing-text");
+  if (!el) return; // prevents breaking other pages
+  const text = "Bring Your Story to Life.";
+  let i = 0;
+  el.innerHTML = "";
+  function typeEffect() {
+    if (i < text.length) {
+      el.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeEffect, 50);
+    }
   }
-}
-typeEffect();
+  typeEffect();
+});
 const el = document.getElementById("typing-text");
 if (el) {
   const text = "Bring Your Story to Life.";
