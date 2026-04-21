@@ -107,15 +107,17 @@ function typeEffect() {
     let currentText = texts[textIndex];
 
     if (!isDeleting) {
+        el.style.opacity = "1";
+el.style.transform = "translateY(0px)";
        el.textContent = currentText.substring(0, charIndex++)
         
         if (charIndex > currentText.length) {
             isDeleting = true;
-            setTimeout(typeEffect, 1500); // pause before deleting
+            setTimeout(typeEffect, 2000 + Math.random() * 1500); // pause before deleting
             return;
         }
 
-    } else {
+    } else {el.style.opacity = "0.85";
        el.textContent = currentText.substring(0, charIndex--);
 
         if (charIndex === 0) {
@@ -128,7 +130,7 @@ function typeEffect() {
         }
     }
 
-    setTimeout(typeEffect, isDeleting ? 40 : 70);
+    setTimeout(typeEffect, isDeleting 60 + Math.random() * 40 : 90 + Math.random() * 80);
 }
 
 window.addEventListener("scroll", () => {
