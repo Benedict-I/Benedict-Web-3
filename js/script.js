@@ -130,8 +130,13 @@ el.style.transform = "translateY(0px)";
         }
     }
 
-    setTimeout(typeEffect, isDeleting 60 + Math.random() * 40 : 90 + Math.random() * 80);
+    setTimeout(typeEffect, isDeleting 80 : 120);
 }
+
+// START IT PROPERLY
+document.addEventListener("DOMContentLoaded", function () {
+    typeEffect();
+});
 
 window.addEventListener("scroll", () => {
   const bar = document.getElementById("progress-bar");
