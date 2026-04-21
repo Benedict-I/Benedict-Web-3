@@ -97,9 +97,7 @@ function typeEffect() {
   }
 }
 typeEffect();
-
 const el = document.getElementById("typing-text");
-
 if (el) {
   const text = "Bring Your Story to Life.";
   let i = 0;
@@ -111,6 +109,11 @@ if (el) {
       setTimeout(typeEffect, 50);
     }
   }
-
   typeEffect();
 }
+
+window.addEventListener("scroll", () => {
+  const scroll = window.scrollY;
+  const height = document.body.scrollHeight - window.innerHeight;
+  document.getElementById("progress-bar").style.width = (scroll / height) * 100 + "%";
+});
