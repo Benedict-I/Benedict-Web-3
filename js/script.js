@@ -125,3 +125,59 @@ window.addEventListener("scroll", () => {
   const height = document.body.scrollHeight - window.innerHeight;
   document.getElementById("progress-bar").style.width = (scroll / height) * 100 + "%";
 });
+
+    const text = "Bring Your Story to Life.";
+let index = 0;
+let isDeleting = false;
+
+function typeEffect() {
+    const el = document.getElementById("typed-text");
+    if (!el) return;
+
+    if (!isDeleting) {
+        el.textContent = text.substring(0, index++);
+        if (index > text.length) {
+            isDeleting = true;
+            setTimeout(typeEffect, 1500); // pause before deleting
+            return;
+        }
+    } else {
+        el.textContent = text.substring(0, index--);
+        if (index === 0) {
+            isDeleting = false;
+        }
+    }
+
+    setTimeout(typeEffect, isDeleting ? 40 : 70);
+}
+
+document.addEventListener("DOMContentLoaded", typeEffect);
+    
+let index = 0;
+let isDeleting = false;
+
+function typeEffect() {
+    const el = document.getElementById("typed-text");
+
+    if (!el) return;
+
+    if (!isDeleting) {
+        el.textContent = text.substring(0, index++);
+        if (index > text.length) {
+            isDeleting = true;
+            setTimeout(typeEffect, 1500);
+            return;
+        }
+    } else {
+        el.textContent = text.substring(0, index--);
+        if (index === 0) {
+            isDeleting = false;
+        }
+    }
+
+    setTimeout(typeEffect, isDeleting ? 40 : 70);
+}
+
+typeEffect();
+
+        
