@@ -113,7 +113,7 @@ el.style.transform = "translateY(0px)";
         
         if (charIndex > currentText.length) {
             isDeleting = true;
-            setTimeout(typeEffect, 2000 + Math.random() * 1500); // pause before deleting
+            setTimeout(typeEffect, 2800); // pause before deleting
             return;
         }
 
@@ -132,10 +132,6 @@ el.style.transform = "translateY(0px)";
 
     setTimeout(typeEffect, isDeleting 80 : 120);
 }
-
-// START IT PROPERLY
-document.addEventListener("DOMContentLoaded", function () {
-    typeEffect();
 });
 
 window.addEventListener("scroll", () => {
