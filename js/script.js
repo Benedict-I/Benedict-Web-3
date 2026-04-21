@@ -87,39 +87,50 @@ document.addEventListener("mousemove", (e) => {
   document.body.style.setProperty("--y", e.clientY + "px");
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  const el = document.getElementById("typing-text");
 
-  if (!el || el.dataset.loaded) return; // 👈 prevents running twice
+const texts = [
+    "Bring Your Story to Life.",
+    "Publish with Confidence.",
+    "Turn Your Ideas into a Book.",
+    "Become a Published Author."
+];
 
-  el.dataset.loaded = "true";
-
- const text = "Bring Your Story to Life.";
-let index = 0;
+let textIndex = 0;
+let charIndex = 0;
 let isDeleting = false;
 
 function typeEffect() {
     const el = document.getElementById("typed-text");
+    if (!el) return;
+
+    let currentText = texts[textIndex];
 
     if (!isDeleting) {
-        el.innerHTML = text.substring(0, index++);
-        if (index > text.length) {
+        el.innerHTML = currentText.substring(0, charIndex++);
+        
+        if (charIndex > currentText.length) {
             isDeleting = true;
-            setTimeout(typeEffect, 1200);
+            setTimeout(typeEffect, 1500); // pause before deleting
             return;
         }
+
     } else {
-        el.innerHTML = text.substring(0, index--);
-        if (index === 0) {
+        el.innerHTML = currentText.substring(0, charIndex--);
+
+        if (charIndex === 0) {
             isDeleting = false;
+            textIndex++;
+
+            if (textIndex >= texts.length) {
+                textIndex = 0;
+            }
         }
     }
 
-    setTimeout(typeEffect, isDeleting ? 40 : 80);
+    setTimeout(typeEffect, isDeleting ? 40 : 70);
 }
 
-typeEffect();
-
+document.addEventListener("DOMContentLoaded", typeEffect);
 window.addEventListener("scroll", () => {
   const scroll = window.scrollY;
   const height = document.body.scrollHeight - window.innerHeight;
