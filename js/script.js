@@ -97,3 +97,20 @@ function typeEffect() {
   }
 }
 typeEffect();
+
+const el = document.getElementById("typing-text");
+
+if (el) {
+  const text = "Bring Your Story to Life.";
+  let i = 0;
+
+  function typeEffect() {
+    if (i < text.length) {
+      el.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeEffect, 50);
+    }
+  }
+
+  typeEffect();
+}
