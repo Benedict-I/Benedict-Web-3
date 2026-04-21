@@ -88,7 +88,7 @@ document.addEventListener("mousemove", (e) => {
 });
 
 const text = "Bring Your Story to Life.";
-let i = 0;
+let i = 0
 function typeEffect() {
   if (i < text.length) {
     document.getElementById("typing-text").innerHTML += text.charAt(i);
