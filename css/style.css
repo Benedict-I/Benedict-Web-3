@@ -636,11 +636,18 @@ body {
     animation: fadeIn 0.6s ease-in;
 }
 
-#cursor {
+.typing-text {
+    font-size: 3.8em;
+    font-weight: bold;
+    color: white;
+    display: inline-block;
+    position: relative;
+}
+
+.cursor {
     display: inline-block;
     margin-left: 5px;
-    animation: blink 0.7s infinite;
-    font-weight: bold;
+    animation: blink 1s infinite;
 }
 
 @keyframes blink {
