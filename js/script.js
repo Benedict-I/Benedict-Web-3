@@ -180,4 +180,4 @@ function typeEffect() {
 
 typeEffect();
 
-        
+console.log("JS WORKING");        
