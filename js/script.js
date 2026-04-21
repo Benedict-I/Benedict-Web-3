@@ -89,10 +89,16 @@ document.addEventListener("mousemove", (e) => {
 
 document.addEventListener("DOMContentLoaded", function () {
   const el = document.getElementById("typing-text");
-  if (!el) return; // prevents breaking other pages
+
+  if (!el || el.dataset.loaded) return; // 👈 prevents running twice
+
+  el.dataset.loaded = "true";
+
   const text = "Bring Your Story to Life.";
   let i = 0;
+
   el.innerHTML = "";
+
   function typeEffect() {
     if (i < text.length) {
       el.innerHTML += text.charAt(i);
@@ -100,6 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(typeEffect, 50);
     }
   }
+
   typeEffect();
 });
 const el = document.getElementById("typing-text");
@@ -122,3 +129,5 @@ window.addEventListener("scroll", () => {
   const height = document.body.scrollHeight - window.innerHeight;
   document.getElementById("progress-bar").style.width = (scroll / height) * 100 + "%";
 });
+
+setTimeout(typeEffect, 40);
