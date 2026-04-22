@@ -127,7 +127,7 @@ function typeEffect() {
         }
     }
 
-    setTimeout(typeEffect, isDeleting ? 120 : 160);
+    setTimeout(typeEffect, isDeleting ? 140 : 200);
 }
 
 // START IT
