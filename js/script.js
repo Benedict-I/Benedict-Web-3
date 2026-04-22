@@ -108,32 +108,32 @@ function typeEffect() {
 
     if (!isDeleting) {
         el.style.opacity = "1";
-el.style.transform = "translateY(0px)";
-       el.textContent = currentText.substring(0, charIndex++)
-        
+        el.style.transform = "translateY(0px)";
+        el.textContent = currentText.substring(0, charIndex++);
+
         if (charIndex > currentText.length) {
             isDeleting = true;
-            setTimeout(typeEffect, 2800); // pause before deleting
+            setTimeout(typeEffect, 2800);
             return;
         }
 
-    } else {el.style.opacity = "0.85";
-       el.textContent = currentText.substring(0, charIndex--);
+    } else {
+        el.style.opacity = "0.85";
+        el.textContent = currentText.substring(0, charIndex--);
 
         if (charIndex === 0) {
             isDeleting = false;
-            textIndex++;
-
-            if (textIndex >= texts.length) {
-                textIndex = 0;
-            }
+            textIndex = (textIndex + 1) % texts.length;
         }
     }
 
-    setTimeout(typeEffect, isDeleting 80 : 120);
+    setTimeout(typeEffect, isDeleting ? 80 : 120);
 }
-});
 
+// START IT
+document.addEventListener("DOMContentLoaded", function () {
+    typeEffect();
+});
 window.addEventListener("scroll", () => {
   const bar = document.getElementById("progress-bar");
   if (!bar) return;
