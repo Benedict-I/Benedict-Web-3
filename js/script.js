@@ -89,8 +89,7 @@ document.addEventListener("mousemove", (e) => {
 });
 
 const texts = [
-    "Bring Your Story to Life.",
-    "Publish with Confidence.",
+    "Bring Your Story To Life.",
     "Turn Your Ideas into a Book.",
     "Become a Published Author."
 ];
@@ -125,7 +124,7 @@ function typeEffect() {
         }
     }
 
-    setTimeout(typeEffect, isDeleting ? 350 : 700);
+    setTimeout(typeEffect, isDeleting ? 250 : 500);
 }
 
 // START IT
