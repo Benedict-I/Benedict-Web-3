@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 el.style.transform = 'translate(0)'; 
                 observer.unobserve(el);
             }
-            typeEffect();   //
+          document.addEventListener("DOMContentLoaded", typeEffect);     //
         });
     };
     const observer = new IntersectionObserver(observerCallback, observerOptions);
@@ -88,7 +88,6 @@ document.addEventListener("mousemove", (e) => {
   document.body.style.setProperty("--y", e.clientY + "px");
 });
 
-
 const texts = [
     "Bring Your Story to Life.",
     "Publish with Confidence.",
@@ -107,9 +106,8 @@ function typeEffect() {
     let currentText = texts[textIndex];
 
     if (!isDeleting) {
-        el.style.opacity = "1";
-        el.style.transform = "translateY(0px)";
-        el.textContent = currentText.substring(0, charIndex++);
+        el.textContent = currentText.substring(0, charIndex);
+        charIndex++;
 
         if (charIndex > currentText.length) {
             isDeleting = true;
@@ -118,8 +116,8 @@ function typeEffect() {
         }
 
     } else {
-        el.style.opacity = "0.85";
-        el.textContent = currentText.substring(0, charIndex--);
+        el.textContent = currentText.substring(0, charIndex);
+        charIndex--;
 
         if (charIndex === 0) {
             isDeleting = false;
