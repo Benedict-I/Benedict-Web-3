@@ -108,13 +108,13 @@ function typeEffect() {
         el.textContent = currentText.substring(0, charIndex);
         charIndex++;
     if (currentText[charIndex] === " ") {
-    typingSpeed += 80; // tiny pause at spaces
+    typingSpeed += 40; // tiny pause at spaces
 }
         if (charIndex > currentText.length) {
     setTimeout(() => {
         isDeleting = true;
         typeEffect();
-    }, 1500); // short human pause
+    }, 1000); // short human pause
     return;
 }
     } else {
@@ -130,9 +130,9 @@ function typeEffect() {
     let typingSpeed;
 
 if (isDeleting) {
-    typingSpeed = Math.random() * 60 + 40; // 40–100ms (fast delete)
+    typingSpeed = Math.random() * 60 + 20; // 40–80ms (fast delete)
 } else {
-    typingSpeed = Math.random() * 80 + 60; // 60–140ms (human typing)
+    typingSpeed = Math.random() * 80 + 30; // 60–110ms (human typing)
 }
 
 setTimeout(typeEffect, typingSpeed);
