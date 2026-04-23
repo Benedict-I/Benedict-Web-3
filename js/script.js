@@ -103,23 +103,26 @@ function typeEffect() {
     if (!el) return;
 
     let currentText = texts[textIndex];
+    let typingSpeed;
 
     if (!isDeleting) {
         el.textContent = currentText.substring(0, charIndex);
         charIndex++;
-    if (currentText[charIndex] === " ") {
-    typingSpeed += 40; // tiny pause at spaces
-}
+
+        // slow slightly at spaces (natural feel)
+        typingSpeed = currentText[charIndex] === " " ? 120 : 90;
+
         if (charIndex > currentText.length) {
-    setTimeout(() => {
-        isDeleting = true;
-        typeEffect();
-    }, 1000); // short human pause
-    return;
-}
+            isDeleting = true;
+            setTimeout(typeEffect, 1000); // pause before deleting
+            return;
+        }
+
     } else {
         el.textContent = currentText.substring(0, charIndex);
         charIndex--;
+
+        typingSpeed = 50; // faster delete
 
         if (charIndex === 0) {
             isDeleting = false;
@@ -127,15 +130,7 @@ function typeEffect() {
         }
     }
 
-    let typingSpeed;
-
-if (isDeleting) {
-    typingSpeed = Math.random() * 60 + 20; // 40–80ms (fast delete)
-} else {
-    typingSpeed = Math.random() * 80 + 30; // 60–110ms (human typing)
-}
-
-setTimeout(typeEffect, typingSpeed);
+    setTimeout(typeEffect, typingSpeed);
 }
 
 // START IT
