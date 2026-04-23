@@ -110,7 +110,7 @@ function typeEffect() {
         charIndex++;
 
         // slow slightly at spaces (natural feel)
-        typingSpeed = currentText[charIndex] === " " ? 120 : 90;
+        typingSpeed = currentText[charIndex - 1] === " " ? 120 : 90;
 
         if (charIndex > currentText.length) {
             isDeleting = true;
