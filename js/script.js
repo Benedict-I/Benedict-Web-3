@@ -107,13 +107,16 @@ function typeEffect() {
     if (!isDeleting) {
         el.textContent = currentText.substring(0, charIndex);
         charIndex++;
-
+    if (currentText[charIndex] === " ") {
+    typingSpeed += 80; // tiny pause at spaces
+}
         if (charIndex > currentText.length) {
-            isDeleting = true;
-            setTimeout(typeEffect, 2);
-            return;
-        }
-
+    setTimeout(() => {
+        isDeleting = true;
+        typeEffect();
+    }, 1500); // short human pause
+    return;
+}
     } else {
         el.textContent = currentText.substring(0, charIndex);
         charIndex--;
@@ -124,7 +127,15 @@ function typeEffect() {
         }
     }
 
-    setTimeout(typeEffect, isDeleting ? 0 : 150);
+    let typingSpeed;
+
+if (isDeleting) {
+    typingSpeed = Math.random() * 60 + 40; // 40–100ms (fast delete)
+} else {
+    typingSpeed = Math.random() * 80 + 60; // 60–140ms (human typing)
+}
+
+setTimeout(typeEffect, typingSpeed);
 }
 
 // START IT
