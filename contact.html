@@ -40,7 +40,7 @@ function googleTranslateElementInit() {
                 <h2 class="animate-fade-in-down">Ready to Write Your Next Chapter?</h2>
                 <p class="animate-fade-in-up delay-1" style="text-align: center; margin-bottom: 30px;">Have questions? Looking for a personalized quote? I'd love to hear from you.</p>
                 <div class="contact-form-container animate-fade-in-up delay-2">
-                    <form action="#" method="post" class="contact-form">
+                    <form class="contact-form">
                         <div>
                             <label for="name">Name:</label>
                             <input type="text" id="name" name="name" required>
@@ -74,6 +74,50 @@ function googleTranslateElementInit() {
             <p>&copy; 2026 Benedict. All rights reserved.</p>
         </div>
     </footer>
+    <!-- 🔥 FIREBASE CODE GOES HERE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBEFnIcRJ4HqW62ma3U3H-QEKfuc8iLKFY",
+  authDomain: "benedict-contacts.firebaseapp.com",
+  projectId: "benedict-contacts",
+  storageBucket: "benedict-contacts.firebasestorage.app",
+  messagingSenderId: "184194579113",
+  appId: "1:184194579113:web:f162502f5df4629727c7b8"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const form = document.querySelector(".contact-form");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const message = document.getElementById("message").value;
+
+  try {
+    await addDoc(collection(db, "messages"), {
+      name,
+      email,
+      message,
+      createdAt: new Date()
+    });
+
+    alert("Message sent successfully!");
+    form.reset();
+  } catch (error) {
+    alert("Error sending message");
+    console.error(error);
+  }
+});
+</script>
+
+<!-- your normal JS -->
     <script src="js/script.js"></script>
 </body>
 </html>
