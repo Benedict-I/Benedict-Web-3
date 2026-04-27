@@ -27,22 +27,13 @@ form.addEventListener("submit", async (e) => {
 });
 
 function showSuccess(msg) {
-  alert(msg);
+  const el = document.getElementById("status-message");
+  el.innerText = msg;
+  el.style.color = "green";
 }
 
 function showError(msg) {
-  alert(msg);
-}
-
-
-
-
-function showSuccess(msg) {
-  document.getElementById("status-message").innerText = msg;
-  document.getElementById("status-message").style.color = "green";
-}
-
-function showError(msg) {
-  document.getElementById("status-message").innerText = msg;
-  document.getElementById("status-message").style.color = "red";
+  const el = document.getElementById("status-message");
+  el.innerText = msg;
+  el.style.color = "red";
 }
