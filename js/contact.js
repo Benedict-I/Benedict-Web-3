@@ -37,3 +37,12 @@ function showError(msg) {
 
 
 
+function showSuccess(msg) {
+  document.getElementById("status-message").innerText = msg;
+  document.getElementById("status-message").style.color = "green";
+}
+
+function showError(msg) {
+  document.getElementById("status-message").innerText = msg;
+  document.getElementById("status-message").style.color = "red";
+}
