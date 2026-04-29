@@ -114,7 +114,7 @@ function typeEffect() {
 
         if (charIndex > currentText.length) {
             isDeleting = true;
-            setTimeout(typeEffect, 1000); // pause before deleting
+            setTimeout(typeEffect, 2500); // pause before deleting
             return;
         }
 
