@@ -75,35 +75,5 @@ function googleTranslateElementInit() {
             <p>&copy; 2026 Benedict. All rights reserved.</p>
         </div>
     </footer>
-
-
-// 👇 THIS IS THE IMPORTANT PART
-const form = document.querySelector(".contact-form");
-
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const message = document.getElementById("message").value;
-
-  try {
-    await addDoc(collection(db, "messages"), {
-      name: name,
-      email: email,
-      message: message,
-      createdAt: serverTimestamp()
-    });
-
-    alert("Message sent successfully!");
-
-    form.reset(); // clears form
-  } catch (error) {
-    console.error("Error:", error);
-    alert("Failed to send message.");
-  }
-});
-</script>
-    <script type="module" src="js/contact.js"></script>
 </body>
 </html>
