@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 el.style.transform = 'translate(0)'; 
                 observer.unobserve(el);
             }
-          document.addEventListener("DOMContentLoaded", typeEffect);     //
         });
     };
     const observer = new IntersectionObserver(observerCallback, observerOptions);
@@ -145,3 +144,5 @@ window.addEventListener("scroll", () => {
   const height = document.body.scrollHeight - window.innerHeight;
   bar.style.width = (scroll / height) * 100 + "%";
 });
+
+
