@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/fireba
 import { getFirestore } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "...",
+  apiKey: "AIzaSyBEFnIcRJ4HqW62ma3U3H-QEKfuc8iLKFY",
   authDomain: "benedict-contacts.firebaseapp.com",
   projectId: "benedict-contacts",
   storageBucket: "benedict-contacts.firebasestorage.app",
