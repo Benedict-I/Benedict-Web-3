@@ -40,7 +40,7 @@ function googleTranslateElementInit() {
                 <h2 class="animate-fade-in-down">Ready to Write Your Next Chapter?</h2>
                 <p class="animate-fade-in-up delay-1" style="text-align: center; margin-bottom: 30px;">Have questions? Looking for a personalized quote? I'd love to hear from you.</p>
                 <div class="contact-form-container animate-fade-in-up delay-2">
-                    <form class="contact-form">
+                    <form class="contact-form" action="https://formspree.io/f/xwvaaebo" method="POST">
                         <div>
                             <label for="name">Name:</label>
                             <input type="text" id="name" name="name" required>
@@ -53,6 +53,7 @@ function googleTranslateElementInit() {
                             <label for="message">Message:</label>
                             <textarea id="message" name="message" required></textarea>
                         </div>
+                        <input type="hidden" name="_subject" value="New message from your website">
                         <div style="text-align: center;">
                             <button type="submit" class="cta-button">Send Message</button>
                         </div>
