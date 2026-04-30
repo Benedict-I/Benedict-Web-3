@@ -56,7 +56,10 @@ function googleTranslateElementInit() {
                         </div>
                         <input type="hidden" name="_subject" value="New message from your website">
                         <div style="text-align: center;">
-                            <button type="submit" class="cta-button">Send Message</button>
+                            <button type="submit" class="cta-button" id="submit-btn">
+    <span id="btn-text">Send Message</span>
+    <span id="spinner" style="display:none;">⏳</span>
+</button>
                         </div>
                     </form>
                 </div>
