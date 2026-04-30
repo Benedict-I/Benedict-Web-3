@@ -146,3 +146,51 @@ window.addEventListener("scroll", () => {
 });
 
 
+
+// CONTACT FORM (Formspree + Spinner)
+const form = document.getElementById("contact-form");
+
+if (form) {
+  const status = document.getElementById("status-message");
+  const btn = document.getElementById("submit-btn");
+  const btnText = document.getElementById("btn-text");
+  const spinner = document.getElementById("spinner");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // show spinner + disable button
+    btn.disabled = true;
+    btnText.textContent = "Sending...";
+    spinner.style.display = "inline-block";
+
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        status.className = "success";
+        status.innerHTML = "Message sent successfully!";
+        form.reset();
+      } else {
+        status.className = "error";
+        status.innerHTML = "Oops! Something went wrong.";
+      }
+    } catch (error) {
+      status.className = "error";
+      status.innerHTML = "Network error. Try again.";
+    }
+
+    // restore button
+    btn.disabled = false;
+    btnText.textContent = "Send Message";
+    spinner.style.display = "none";
+  });
+}
