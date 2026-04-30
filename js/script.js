@@ -158,6 +158,8 @@ if (form) {
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+btnText.style.display = "none";
+spinner.style.display = "inline";
 
     // show spinner + disable button
     btn.disabled = true;
@@ -194,3 +196,6 @@ if (form) {
     spinner.style.display = "none";
   });
 }
+
+btnText.style.display = "inline";
+spinner.style.display = "none";
