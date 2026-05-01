@@ -1,6 +1,3 @@
-/* =========================
-   MAIN ENTRY (CLEAN + SAFE)
-========================= */
 document.addEventListener("DOMContentLoaded", () => {
   initAnimations();
   initMobileNav();
@@ -10,9 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initMouseTracker();
 });
 
-
 /* =========================
-   1. SCROLL ANIMATIONS (YOUR STYLE + OPTIMIZED)
+   1. SCROLL ANIMATIONS (YOUR STYLE PRESERVED)
 ========================= */
 function initAnimations() {
   const elements = document.querySelectorAll(
@@ -25,16 +21,9 @@ function initAnimations() {
 
       const el = entry.target;
 
-      let animation =
-        el.classList.contains("animate-fade-in-up") ? "fadeInUp" :
-        el.classList.contains("animate-fade-in-down") ? "fadeInDown" :
-        el.classList.contains("animate-fade-in-left") ? "fadeInLeft" :
-        el.classList.contains("animate-fade-in-right") ? "fadeInRight" :
-        "fadeIn";
-
-      el.style.animation = `${animation} 0.8s ease-out forwards`;
       el.style.opacity = "1";
       el.style.transform = "translate(0)";
+      el.style.animationPlayState = "running";
 
       obs.unobserve(el);
     });
@@ -52,42 +41,30 @@ function initAnimations() {
   });
 }
 
-
 /* =========================
-   2. MOBILE NAV (FIXED + CLEAN)
+   2. MOBILE NAV (FIXED CLEAN)
 ========================= */
 function initMobileNav() {
   const nav = document.querySelector(".main-nav ul");
-  const header = document.querySelector(".site-header .container");
-  const btn = document.querySelector(".menu-toggle");
+  const menuBtn = document.querySelector(".menu-toggle");
 
-  if (!nav || !header || !btn) return;
+  if (!nav || !menuBtn) return;
 
-  btn.addEventListener("click", () => {
+  menuBtn.addEventListener("click", () => {
     nav.classList.toggle("active");
-    btn.classList.toggle("active");
+    menuBtn.classList.toggle("active");
   });
 
   nav.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", () => {
       nav.classList.remove("active");
-      btn.classList.remove("active");
+      menuBtn.classList.remove("active");
     });
   });
-
-  function handleResize() {
-    if (window.innerWidth > 768) {
-      nav.classList.remove("active");
-      btn.classList.remove("active");
-    }
-  }
-
-  window.addEventListener("resize", handleResize);
 }
 
-
 /* =========================
-   3. TYPING EFFECT (YOUR PERFECT VERSION)
+   3. TYPED TEXT (SMOOTH)
 ========================= */
 function initTypedText() {
   const el = document.getElementById("typed-text");
@@ -100,45 +77,47 @@ function initTypedText() {
   ];
 
   let textIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
+let charIndex = 0;
+let isDeleting = false;
 
-  function typeEffect() {
-    const currentText = texts[textIndex];
-    let speed;
+function typeEffect() {
+    const el = document.getElementById("typed-text");
+    if (!el) return;
+
+    let currentText = texts[textIndex];
+    let typingSpeed;
 
     if (!isDeleting) {
-      el.textContent = currentText.substring(0, charIndex);
-      charIndex++;
+        el.textContent = currentText.substring(0, charIndex);
+        charIndex++;
 
-      speed = currentText[charIndex - 1] === " " ? 120 : 90;
+        // slow slightly at spaces (natural feel)
+        typingSpeed = currentText[charIndex - 1] === " " ? 120 : 90;
 
-      if (charIndex > currentText.length) {
-        isDeleting = true;
-        setTimeout(typeEffect, 6000);
-        return;
-      }
+        if (charIndex > currentText.length) {
+            isDeleting = true;
+            setTimeout(typeEffect, 6000); // pause before deleting
+            return;
+        }
+
     } else {
-      el.textContent = currentText.substring(0, charIndex);
-      charIndex--;
+        el.textContent = currentText.substring(0, charIndex);
+        charIndex--;
 
-      speed = 50;
+        typingSpeed = 50; // faster delete
 
-      if (charIndex === 0) {
-        isDeleting = false;
-        textIndex = (textIndex + 1) % texts.length;
-      }
+        if (charIndex === 0) {
+            isDeleting = false;
+            textIndex = (textIndex + 1) % texts.length;
+        }
     }
 
-    setTimeout(typeEffect, speed);
-  }
-
-  typeEffect();
+    setTimeout(typeEffect, typingSpeed);
 }
 
 
 /* =========================
-   4. SMOOTH PROGRESS BAR
+   4. PROGRESS BAR (SMOOTH)
 ========================= */
 function initProgressBar() {
   const bar = document.getElementById("progress-bar");
@@ -147,28 +126,27 @@ function initProgressBar() {
   let target = 0;
   let current = 0;
 
-  function calc() {
+  const update = () => {
     const scroll = window.scrollY;
     const height = document.body.scrollHeight - window.innerHeight;
-    target = height <= 0 ? 100 : (scroll / height) * 100;
-  }
+    target = height > 0 ? (scroll / height) * 100 : 100;
+  };
 
-  function animate() {
+  const animate = () => {
     current += (target - current) * 0.08;
     bar.style.width = current + "%";
     requestAnimationFrame(animate);
-  }
+  };
 
-  window.addEventListener("scroll", calc, { passive: true });
-  window.addEventListener("resize", calc);
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
 
-  calc();
+  update();
   animate();
 }
 
-
 /* =========================
-   5. CONTACT FORM (BEST VERSION - NO CONFLICT)
+   5. CONTACT FORM (PERFECT + SPINNER FIXED)
 ========================= */
 function initContactForm() {
   const form = document.getElementById("contact-form");
@@ -182,12 +160,10 @@ function initContactForm() {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    if (status) {
-      status.textContent = "";
-      status.className = "";
-    }
+    // RESET UI
+    status.textContent = "";
+    status.className = "";
 
-    // START LOADING
     btn.disabled = true;
     if (btnText) btnText.style.display = "none";
     if (spinner) spinner.style.display = "inline-block";
@@ -200,34 +176,28 @@ function initContactForm() {
       });
 
       if (res.ok) {
-        if (status) {
-          status.className = "success";
-          status.textContent = "✅ Message sent successfully!";
-        }
+        status.className = "success";
+        status.textContent = "✅ Message sent successfully!";
         form.reset();
       } else {
-        if (status) {
-          status.className = "error";
-          status.textContent = "❌ Something went wrong.";
-        }
-      }
-    } catch {
-      if (status) {
         status.className = "error";
-        status.textContent = "❌ Network error.";
+        status.textContent = "❌ Something went wrong.";
       }
+
+    } catch {
+      status.className = "error";
+      status.textContent = "❌ Network error.";
     }
 
-    // STOP LOADING
+    // RESTORE BUTTON
     btn.disabled = false;
     if (btnText) btnText.style.display = "inline";
     if (spinner) spinner.style.display = "none";
   });
 }
 
-
 /* =========================
-   6. MOUSE TRACKER (SMOOTH)
+   6. MOUSE TRACKER (LIGHT EFFECT)
 ========================= */
 function initMouseTracker() {
   document.addEventListener("mousemove", (e) => {
