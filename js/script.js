@@ -265,3 +265,139 @@ ctx.fillRect(0, 0, w, h);) {
 
 // run it
 document.addEventListener("DOMContentLoaded", initGalaxy);
+
+
+function initGalaxy() {
+  const canvas = document.getElementById("galaxy");
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+
+  let w, h;
+  let stars = [];
+  let shootingStars = [];
+  let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+
+  window.addEventListener("resize", resize);
+  resize();
+
+  document.addEventListener("mousemove", e => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+
+  // ⭐ STARS
+  for (let i = 0; i < 300; i++) {
+    stars.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      radius: Math.random() * 1.5,
+      speed: Math.random() * 0.4,
+      alpha: Math.random()
+    });
+  }
+
+  // 🌠 SHOOTING STAR SPAWN
+  function createShootingStar() {
+    shootingStars.push({
+      x: Math.random() * w,
+      y: 0,
+      len: Math.random() * 80 + 20,
+      speed: Math.random() * 8 + 4,
+      opacity: 1
+    });
+  }
+
+  setInterval(createShootingStar, 3000);
+
+  function getSectionColor() {
+    const sections = document.querySelectorAll("section");
+    let currentColor = "rgba(0,150,255,0.1)";
+
+    sections.forEach(sec => {
+      const rect = sec.getBoundingClientRect();
+      if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+        const style = getComputedStyle(sec);
+        const val = style.getPropertyValue("--galaxy-color");
+        if (val) currentColor = val;
+      }
+    });
+
+    return currentColor;
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+
+    // 🌌 DYNAMIC GALAXY GLOW
+    const gradient = ctx.createRadialGradient(
+      mouse.x,
+      mouse.y,
+      0,
+      mouse.x,
+      mouse.y,
+      400
+    );
+
+    gradient.addColorStop(0, getSectionColor());
+    gradient.addColorStop(1, "transparent");
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, w, h);
+
+    // ⭐ DRAW STARS
+    stars.forEach(star => {
+      // mouse interaction
+      const dx = mouse.x - star.x;
+      const dy = mouse.y - star.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < 120) {
+        star.x -= dx * 0.002;
+        star.y -= dy * 0.002;
+      }
+
+      star.y += star.speed;
+
+      if (star.y > h) {
+        star.y = 0;
+        star.x = Math.random() * w;
+      }
+
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${star.alpha})`;
+      ctx.fill();
+    });
+
+    // 🌠 DRAW SHOOTING STARS
+    shootingStars.forEach((s, i) => {
+      ctx.beginPath();
+      ctx.moveTo(s.x, s.y);
+      ctx.lineTo(s.x - s.len, s.y + s.len);
+      ctx.strokeStyle = `rgba(255,255,255,${s.opacity})`;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      s.x += s.speed;
+      s.y += s.speed;
+      s.opacity -= 0.01;
+
+      if (s.opacity <= 0) {
+        shootingStars.splice(i, 1);
+      }
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+}
+
+// RUN IT
+document.addEventListener("DOMContentLoaded", initGalaxy);
