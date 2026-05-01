@@ -116,34 +116,45 @@ function initTypedText() {
     "Bring Your Story To Life.",
     "Turn Your Ideas into a Book.",
     "Become a Published Author."
-  ];
+];
 
-  let index = 0;
-  let char = 0;
-  let deleting = false;
+let textIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
 
-  function loop() {
-    const current = texts[index];
+function typeEffect() {
+    const el = document.getElementById("typed-text");
+    if (!el) return;
 
-    if (!deleting) {
-      el.textContent = current.slice(0, char++);
-      if (char > current.length) {
-        deleting = true;
-        setTimeout(loop, 2000);
-        return;
-      }
+    let currentText = texts[textIndex];
+    let typingSpeed;
+
+    if (!isDeleting) {
+        el.textContent = currentText.substring(0, charIndex);
+        charIndex++;
+
+        // slow slightly at spaces (natural feel)
+        typingSpeed = currentText[charIndex - 1] === " " ? 120 : 90;
+
+        if (charIndex > currentText.length) {
+            isDeleting = true;
+            setTimeout(typeEffect, 6000); // pause before deleting
+            return;
+        }
+
     } else {
-      el.textContent = current.slice(0, char--);
-     if (char < 0) {
-  deleting = false;
-  index = (index + 1) % texts.length;
-  char = 0;
-}
+        el.textContent = currentText.substring(0, charIndex);
+        charIndex--;
 
-    setTimeout(loop, deleting ? 50 : 90);
-  }
+        typingSpeed = 30; // faster delete
 
-  loop();
+        if (charIndex === 0) {
+            isDeleting = false;
+            textIndex = (textIndex + 1) % texts.length;
+        }
+    }
+
+    setTimeout(typeEffect, typingSpeed);
 }
 
 /* =========================
