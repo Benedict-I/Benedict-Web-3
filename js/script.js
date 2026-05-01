@@ -274,9 +274,10 @@ function initGalaxy() {
   const ctx = canvas.getContext("2d");
 
   let w, h;
-  let stars = [];
+  let layers = [];
   let shootingStars = [];
   let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+  let scrollProgress = 0;
 
   function resize() {
     w = canvas.width = window.innerWidth;
@@ -286,93 +287,130 @@ function initGalaxy() {
   window.addEventListener("resize", resize);
   resize();
 
+  // 🖱️ Mouse tracking
   document.addEventListener("mousemove", e => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
   });
 
-  // ⭐ STARS
-  for (let i = 0; i < 300; i++) {
-    stars.push({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      radius: Math.random() * 1.5,
-      speed: Math.random() * 0.4,
-      alpha: Math.random()
-    });
+  // 📜 Scroll tracking
+  window.addEventListener("scroll", () => {
+    const max = document.body.scrollHeight - window.innerHeight;
+    scrollProgress = max > 0 ? window.scrollY / max : 0;
+  });
+
+  // ⭐ CREATE 3D LAYERS
+  const layerCount = 3;
+
+  for (let l = 0; l < layerCount; l++) {
+    const stars = [];
+
+    for (let i = 0; i < 120; i++) {
+      stars.push({
+        x: Math.random() * w - w / 2,
+        y: Math.random() * h - h / 2,
+        z: Math.random() * 1000,
+        size: Math.random() * (l + 1),
+        speed: (l + 1) * 0.2
+      });
+    }
+
+    layers.push(stars);
   }
 
-  // 🌠 SHOOTING STAR SPAWN
+  // 🌠 Shooting stars
   function createShootingStar() {
     shootingStars.push({
       x: Math.random() * w,
       y: 0,
-      len: Math.random() * 80 + 20,
-      speed: Math.random() * 8 + 4,
+      len: Math.random() * 100 + 50,
+      speed: Math.random() * 10 + 5,
       opacity: 1
     });
   }
 
-  setInterval(createShootingStar, 3000);
+  setInterval(createShootingStar, 2500);
 
   function getSectionColor() {
     const sections = document.querySelectorAll("section");
-    let currentColor = "rgba(0,150,255,0.1)";
+    let color = "rgba(0,150,255,0.15)";
 
     sections.forEach(sec => {
       const rect = sec.getBoundingClientRect();
       if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-        const style = getComputedStyle(sec);
-        const val = style.getPropertyValue("--galaxy-color");
-        if (val) currentColor = val;
+        const val = getComputedStyle(sec).getPropertyValue("--galaxy-color");
+        if (val) color = val;
       }
     });
 
-    return currentColor;
+    return color;
   }
 
   function draw() {
     ctx.clearRect(0, 0, w, h);
 
-    // 🌌 DYNAMIC GALAXY GLOW
+    // 🌌 SWIRL ROTATION CENTER
+    const cx = w / 2;
+    const cy = h / 2;
+    const time = Date.now() * 0.00005;
+
+    // 🌈 SCROLL COLOR SHIFT
+    const glowColor = getSectionColor();
+
     const gradient = ctx.createRadialGradient(
       mouse.x,
       mouse.y,
       0,
       mouse.x,
       mouse.y,
-      400
+      500
     );
-
-    gradient.addColorStop(0, getSectionColor());
+    gradient.addColorStop(0, glowColor);
     gradient.addColorStop(1, "transparent");
 
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, w, h);
 
-    // ⭐ DRAW STARS
-    stars.forEach(star => {
-      // mouse interaction
-      const dx = mouse.x - star.x;
-      const dy = mouse.y - star.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
+    // ⭐ DRAW PARALLAX STARS
+    layers.forEach((stars, layerIndex) => {
+      stars.forEach(star => {
+        // perspective
+        star.z -= star.speed;
 
-      if (dist < 120) {
-        star.x -= dx * 0.002;
-        star.y -= dy * 0.002;
-      }
+        if (star.z <= 0) {
+          star.z = 1000;
+          star.x = Math.random() * w - w / 2;
+          star.y = Math.random() * h - h / 2;
+        }
 
-      star.y += star.speed;
+        let k = 128 / star.z;
+        let px = star.x * k + cx;
+        let py = star.y * k + cy;
 
-      if (star.y > h) {
-        star.y = 0;
-        star.x = Math.random() * w;
-      }
+        // 🌀 SWIRL ROTATION
+        const angle = Math.atan2(py - cy, px - cx) + time * (0.2 + layerIndex * 0.1);
+        const radius = Math.sqrt((px - cx) ** 2 + (py - cy) ** 2);
 
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,255,255,${star.alpha})`;
-      ctx.fill();
+        px = cx + Math.cos(angle) * radius;
+        py = cy + Math.sin(angle) * radius;
+
+        // 🖱️ CURSOR GRAVITY
+        const dx = mouse.x - px;
+        const dy = mouse.y - py;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < 150) {
+          px -= dx * 0.01;
+          py -= dy * 0.01;
+        }
+
+        const size = star.size * (1 - star.z / 1000);
+
+        ctx.beginPath();
+        ctx.arc(px, py, size, 0, Math.PI * 2);
+        ctx.fillStyle = "white";
+        ctx.fill();
+      });
     });
 
     // 🌠 DRAW SHOOTING STARS
@@ -386,11 +424,9 @@ function initGalaxy() {
 
       s.x += s.speed;
       s.y += s.speed;
-      s.opacity -= 0.01;
+      s.opacity -= 0.015;
 
-      if (s.opacity <= 0) {
-        shootingStars.splice(i, 1);
-      }
+      if (s.opacity <= 0) shootingStars.splice(i, 1);
     });
 
     requestAnimationFrame(draw);
@@ -399,5 +435,5 @@ function initGalaxy() {
   draw();
 }
 
-// RUN IT
+// RUN
 document.addEventListener("DOMContentLoaded", initGalaxy);
