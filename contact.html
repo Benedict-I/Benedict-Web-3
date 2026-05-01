@@ -79,36 +79,6 @@ function googleTranslateElementInit() {
             <p>&copy; 2026 Benedict. All rights reserved.</p>
         </div>
     </footer>
-    <script>
-const form = document.getElementById("contact-form");
-const status = document.getElementById("status-message");
-const btnText = document.getElementById("btn-text");
-const spinner = document.getElementById("spinner");
-
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const data = new FormData(form);
-
-  try {
-    const response = await fetch(form.action, {
-      method: form.method,
-      body: data,
-      headers: {
-        'Accept': 'application/json'
-      }
-    });
-
-    if (response.ok) {
-      status.innerHTML = "✅ Message sent successfully!";
-      form.reset();
-    } else {
-      status.innerHTML = "❌ Oops! Something went wrong.";
-    }
-  } catch (error) {
-    status.innerHTML = "❌ Network error. Try again.";
-  }
-});
-</script>
+    <script src="js/script.js"></script>
 </body>
 </html>
