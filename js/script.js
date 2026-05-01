@@ -202,3 +202,66 @@ function initMouseTracker() {
     document.body.style.setProperty("--y", e.clientY + "px");
   }, { passive: true });
 }
+function initGalaxy() {
+  const canvas = document.getElementById("galaxy");
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+
+  let stars = [];
+  let w, h;
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+
+  window.addEventListener("resize", resize);
+  resize();
+
+  // create stars
+  for (let i = 0; i < 250; i++) {
+    stars.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      radius: Math.random() * 1.5,
+      speed: Math.random() * 0.3,
+      alpha: Math.random()
+    });
+  }
+
+  function draw(// soft nebula glow
+const gradient = ctx.createRadialGradient(
+  w * 0.7, h * 0.3, 0,
+  w * 0.7, h * 0.3, 400
+);
+gradient.addColorStop(0, "rgba(0,150,255,0.15)");
+gradient.addColorStop(1, "transparent");
+
+ctx.fillStyle = gradient;
+ctx.fillRect(0, 0, w, h);) {
+    ctx.clearRect(0, 0, w, h);
+
+    // draw stars
+    stars.forEach(star => {
+      star.y += star.speed;
+
+      if (star.y > h) {
+        star.y = 0;
+        star.x = Math.random() * w;
+      }
+
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${star.alpha})`;
+      ctx.fill();
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+}
+
+// run it
+document.addEventListener("DOMContentLoaded", initGalaxy);
