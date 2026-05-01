@@ -77,42 +77,39 @@ function initTypedText() {
   ];
 
   let textIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
+  let charIndex = 0;
+  let isDeleting = false;
 
-function typeEffect() {
-    const el = document.getElementById("typed-text");
-    if (!el) return;
+  function typeEffect() {
+    const currentText = texts[textIndex];
 
-    let currentText = texts[textIndex];
-    let typingSpeed;
-
-    if (!isDeleting) {
-        el.textContent = currentText.substring(0, charIndex);
-        charIndex++;
-
-        // slow slightly at spaces (natural feel)
-        typingSpeed = currentText[charIndex - 1] === " " ? 120 : 90;
-
-        if (charIndex > currentText.length) {
-            isDeleting = true;
-            setTimeout(typeEffect, 6000); // pause before deleting
-            return;
-        }
-
+    if (isDeleting) {
+      charIndex--;
     } else {
-        el.textContent = currentText.substring(0, charIndex);
-        charIndex--;
-
-        typingSpeed = 50; // faster delete
-
-        if (charIndex === 0) {
-            isDeleting = false;
-            textIndex = (textIndex + 1) % texts.length;
-        }
+      charIndex++;
     }
 
-    setTimeout(typeEffect, typingSpeed);
+    el.textContent = currentText.substring(0, charIndex);
+
+    let speed = isDeleting ? 40 : 80;
+
+    // when finished typing
+    if (!isDeleting && charIndex === currentText.length) {
+      speed = 5000; // pause before deleting
+      isDeleting = true;
+    }
+
+    // when finished deleting
+    else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      textIndex = (textIndex + 1) % texts.length;
+      speed = 500;
+    }
+
+    setTimeout(typeEffect, speed);
+  }
+
+  typeEffect();
 }
 
 
