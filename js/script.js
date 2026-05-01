@@ -91,7 +91,7 @@ function initTypedText() {
 
     el.textContent = currentText.substring(0, charIndex);
 
-    let speed = isDeleting ? 40 : 80;
+    let speed = isDeleting ? 120 : 90;
 
     // when finished typing
     if (!isDeleting && charIndex === currentText.length) {
