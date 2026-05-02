@@ -1,3 +1,6 @@
+/* =========================
+   DOM READY ENTRY POINT
+========================= */
 document.addEventListener("DOMContentLoaded", () => {
   initAnimations();
   initMobileNav();
@@ -5,10 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
   initProgressBar();
   initContactForm();
   initMouseTracker();
+  initGalaxy();
 });
 
 /* =========================
-   1. SCROLL ANIMATIONS (YOUR STYLE PRESERVED)
+   1. SCROLL ANIMATIONS
 ========================= */
 function initAnimations() {
   const elements = document.querySelectorAll(
@@ -20,7 +24,6 @@ function initAnimations() {
       if (!entry.isIntersecting) return;
 
       const el = entry.target;
-
       el.style.opacity = "1";
       el.style.transform = "translate(0)";
       el.style.animationPlayState = "running";
@@ -42,7 +45,7 @@ function initAnimations() {
 }
 
 /* =========================
-   2. MOBILE NAV (FIXED CLEAN)
+   2. MOBILE NAV
 ========================= */
 function initMobileNav() {
   const nav = document.querySelector(".main-nav ul");
@@ -64,7 +67,7 @@ function initMobileNav() {
 }
 
 /* =========================
-   3. TYPED TEXT (SMOOTH)
+   3. TYPED TEXT
 ========================= */
 function initTypedText() {
   const el = document.getElementById("typed-text");
@@ -81,26 +84,17 @@ function initTypedText() {
   let isDeleting = false;
 
   function typeEffect() {
-    const currentText = texts[textIndex];
+    const current = texts[textIndex];
 
-    if (isDeleting) {
-      charIndex--;
-    } else {
-      charIndex++;
-    }
+    charIndex += isDeleting ? -1 : 1;
+    el.textContent = current.substring(0, charIndex);
 
-    el.textContent = currentText.substring(0, charIndex);
+    let speed = isDeleting ? 60 : 90;
 
-    let speed = isDeleting ? 120 : 90;
-
-    // when finished typing
-    if (!isDeleting && charIndex === currentText.length) {
-      speed = 5000; // pause before deleting
+    if (!isDeleting && charIndex === current.length) {
+      speed = 2500;
       isDeleting = true;
-    }
-
-    // when finished deleting
-    else if (isDeleting && charIndex === 0) {
+    } else if (isDeleting && charIndex === 0) {
       isDeleting = false;
       textIndex = (textIndex + 1) % texts.length;
       speed = 500;
@@ -112,9 +106,8 @@ function initTypedText() {
   typeEffect();
 }
 
-
 /* =========================
-   4. PROGRESS BAR (SMOOTH)
+   4. SMOOTH PROGRESS BAR
 ========================= */
 function initProgressBar() {
   const bar = document.getElementById("progress-bar");
@@ -143,7 +136,7 @@ function initProgressBar() {
 }
 
 /* =========================
-   5. CONTACT FORM (PERFECT + SPINNER FIXED)
+   5. CONTACT FORM
 ========================= */
 function initContactForm() {
   const form = document.getElementById("contact-form");
@@ -157,7 +150,6 @@ function initContactForm() {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // RESET UI
     status.textContent = "";
     status.className = "";
 
@@ -174,19 +166,17 @@ function initContactForm() {
 
       if (res.ok) {
         status.className = "success";
-        status.textContent = "✅ Message sent successfully!";
+        status.textContent = "Message sent successfully!";
         form.reset();
       } else {
         status.className = "error";
-        status.textContent = "❌ Something went wrong.";
+        status.textContent = "Something went wrong.";
       }
-
     } catch {
       status.className = "error";
-      status.textContent = "❌ Network error.";
+      status.textContent = "Network error.";
     }
 
-    // RESTORE BUTTON
     btn.disabled = false;
     if (btnText) btnText.style.display = "inline";
     if (spinner) spinner.style.display = "none";
@@ -194,7 +184,7 @@ function initContactForm() {
 }
 
 /* =========================
-   6. MOUSE TRACKER (LIGHT EFFECT)
+   6. MOUSE TRACKER
 ========================= */
 function initMouseTracker() {
   document.addEventListener("mousemove", (e) => {
@@ -202,14 +192,19 @@ function initMouseTracker() {
     document.body.style.setProperty("--y", e.clientY + "px");
   }, { passive: true });
 }
+
+/* =========================
+   7. GALAXY BACKGROUND
+========================= */
 function initGalaxy() {
   const canvas = document.getElementById("galaxy");
   if (!canvas) return;
 
   const ctx = canvas.getContext("2d");
 
-  let stars = [];
   let w, h;
+  let stars = [];
+  let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
 
   function resize() {
     w = canvas.width = window.innerWidth;
@@ -219,41 +214,54 @@ function initGalaxy() {
   window.addEventListener("resize", resize);
   resize();
 
-  // create stars
-  for (let i = 0; i < 250; i++) {
+  for (let i = 0; i < 220; i++) {
     stars.push({
       x: Math.random() * w,
       y: Math.random() * h,
-      radius: Math.random() * 1.5,
-      speed: Math.random() * 0.3,
-      alpha: Math.random()
+      z: Math.random() * 1000
     });
   }
 
-  function draw(// soft nebula glow
-const gradient = ctx.createRadialGradient(
-  w * 0.7, h * 0.3, 0,
-  w * 0.7, h * 0.3, 400
-);
-gradient.addColorStop(0, "rgba(0,150,255,0.15)");
-gradient.addColorStop(1, "transparent");
+  document.addEventListener("mousemove", (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
 
-ctx.fillStyle = gradient;
-ctx.fillRect(0, 0, w, h);) {
+  function draw() {
     ctx.clearRect(0, 0, w, h);
 
-    // draw stars
-    stars.forEach(star => {
-      star.y += star.speed;
+    const gradient = ctx.createRadialGradient(
+      mouse.x,
+      mouse.y,
+      0,
+      mouse.x,
+      mouse.y,
+      400
+    );
+    gradient.addColorStop(0, "rgba(0,150,255,0.15)");
+    gradient.addColorStop(1, "transparent");
 
-      if (star.y > h) {
-        star.y = 0;
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, w, h);
+
+    stars.forEach(star => {
+      star.z -= 2;
+
+      if (star.z <= 0) {
         star.x = Math.random() * w;
+        star.y = Math.random() * h;
+        star.z = 1000;
       }
 
+      const k = 128 / star.z;
+      const x = (star.x - w / 2) * k + w / 2;
+      const y = (star.y - h / 2) * k + h / 2;
+
+      const size = (1 - star.z / 1000) * 2;
+
       ctx.beginPath();
-      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,255,255,${star.alpha})`;
+      ctx.arc(x, y, size, 0, Math.PI * 2);
+      ctx.fillStyle = "white";
       ctx.fill();
     });
 
@@ -262,178 +270,3 @@ ctx.fillRect(0, 0, w, h);) {
 
   draw();
 }
-
-// run it
-document.addEventListener("DOMContentLoaded", initGalaxy);
-
-
-function initGalaxy() {
-  const canvas = document.getElementById("galaxy");
-  if (!canvas) return;
-
-  const ctx = canvas.getContext("2d");
-
-  let w, h;
-  let layers = [];
-  let shootingStars = [];
-  let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-  let scrollProgress = 0;
-
-  function resize() {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-  }
-
-  window.addEventListener("resize", resize);
-  resize();
-
-  // 🖱️ Mouse tracking
-  document.addEventListener("mousemove", e => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-  });
-
-  // 📜 Scroll tracking
-  window.addEventListener("scroll", () => {
-    const max = document.body.scrollHeight - window.innerHeight;
-    scrollProgress = max > 0 ? window.scrollY / max : 0;
-  });
-
-  // ⭐ CREATE 3D LAYERS
-  const layerCount = 3;
-
-  for (let l = 0; l < layerCount; l++) {
-    const stars = [];
-
-    for (let i = 0; i < 120; i++) {
-      stars.push({
-        x: Math.random() * w - w / 2,
-        y: Math.random() * h - h / 2,
-        z: Math.random() * 1000,
-        size: Math.random() * (l + 1),
-        speed: (l + 1) * 0.2
-      });
-    }
-
-    layers.push(stars);
-  }
-
-  // 🌠 Shooting stars
-  function createShootingStar() {
-    shootingStars.push({
-      x: Math.random() * w,
-      y: 0,
-      len: Math.random() * 100 + 50,
-      speed: Math.random() * 10 + 5,
-      opacity: 1
-    });
-  }
-
-  setInterval(createShootingStar, 2500);
-
-  function getSectionColor() {
-    const sections = document.querySelectorAll("section");
-    let color = "rgba(0,150,255,0.15)";
-
-    sections.forEach(sec => {
-      const rect = sec.getBoundingClientRect();
-      if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-        const val = getComputedStyle(sec).getPropertyValue("--galaxy-color");
-        if (val) color = val;
-      }
-    });
-
-    return color;
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, w, h);
-
-    // 🌌 SWIRL ROTATION CENTER
-    const cx = w / 2;
-    const cy = h / 2;
-    const time = Date.now() * 0.00005;
-
-    // 🌈 SCROLL COLOR SHIFT
-    const glowColor = getSectionColor();
-
-    const gradient = ctx.createRadialGradient(
-      mouse.x,
-      mouse.y,
-      0,
-      mouse.x,
-      mouse.y,
-      500
-    );
-    gradient.addColorStop(0, glowColor);
-    gradient.addColorStop(1, "transparent");
-
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, w, h);
-
-    // ⭐ DRAW PARALLAX STARS
-    layers.forEach((stars, layerIndex) => {
-      stars.forEach(star => {
-        // perspective
-        star.z -= star.speed;
-
-        if (star.z <= 0) {
-          star.z = 1000;
-          star.x = Math.random() * w - w / 2;
-          star.y = Math.random() * h - h / 2;
-        }
-
-        let k = 128 / star.z;
-        let px = star.x * k + cx;
-        let py = star.y * k + cy;
-
-        // 🌀 SWIRL ROTATION
-        const angle = Math.atan2(py - cy, px - cx) + time * (0.2 + layerIndex * 0.1);
-        const radius = Math.sqrt((px - cx) ** 2 + (py - cy) ** 2);
-
-        px = cx + Math.cos(angle) * radius;
-        py = cy + Math.sin(angle) * radius;
-
-        // 🖱️ CURSOR GRAVITY
-        const dx = mouse.x - px;
-        const dy = mouse.y - py;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < 150) {
-          px -= dx * 0.01;
-          py -= dy * 0.01;
-        }
-
-        const size = star.size * (1 - star.z / 1000);
-
-        ctx.beginPath();
-        ctx.arc(px, py, size, 0, Math.PI * 2);
-        ctx.fillStyle = "white";
-        ctx.fill();
-      });
-    });
-
-    // 🌠 DRAW SHOOTING STARS
-    shootingStars.forEach((s, i) => {
-      ctx.beginPath();
-      ctx.moveTo(s.x, s.y);
-      ctx.lineTo(s.x - s.len, s.y + s.len);
-      ctx.strokeStyle = `rgba(255,255,255,${s.opacity})`;
-      ctx.lineWidth = 2;
-      ctx.stroke();
-
-      s.x += s.speed;
-      s.y += s.speed;
-      s.opacity -= 0.015;
-
-      if (s.opacity <= 0) shootingStars.splice(i, 1);
-    });
-
-    requestAnimationFrame(draw);
-  }
-
-  draw();
-}
-
-// RUN
-document.addEventListener("DOMContentLoaded", initGalaxy);
