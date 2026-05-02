@@ -714,40 +714,59 @@ body {
   }
 }
 
+/* =========================
+   GALAXY BACKGROUND FIX
+========================= */
+
+/* Let galaxy be visible */
+body {
+    background-color: #000; /* dark base for space */
+}
+
+/* Galaxy canvas */
 #galaxy {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -10; /* push it further back */
-}
-/* Let galaxy show through sections */
-section {
-  position: relative;
-  z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* behind content, not too deep */
+    pointer-events: none;
 }
 
+/* Hero should NOT block galaxy */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    background: transparent !important;
+}
+
+/* Soft overlay for readability */
+.hero-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25); /* lighter so galaxy shows */
+}
+
+/* Reduce heavy overlays across sections */
 section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.4); /* overlay instead of removing background */
-  z-index: -1;
+    background: rgba(0, 0, 0, 0.2) !important;
 }
 
-/* Glass readability */
+/* Glass effect but lighter */
 .container,
 .contact-form-container,
 .service-item,
 .portfolio-item {
-  background: rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.2) !important;
+    backdrop-filter: blur(8px);
 }
 
-/* Section galaxy moods */
-.hero-section { --galaxy-color: rgba(0,150,255,0.15); }
-.services-overview-section { --galaxy-color: rgba(255,0,150,0.15); }
-.portfolio-section { --galaxy-color: rgba(0,255,150,0.15); }
-.about-section { --galaxy-color: rgba(255,200,0,0.15); }
-.contact-section { --galaxy-color: rgba(150,0,255,0.15); }
+/* Keep text above everything */
+.hero-text-content,
+.site-header,
+section {
+    position: relative;
+    z-index: 2;
+}
