@@ -204,7 +204,12 @@ function initGalaxy() {
 
   let w, h;
   let stars = [];
-  let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+  let angle = 0;
+
+  let mouse = {
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2
+  };
 
   function resize() {
     w = canvas.width = window.innerWidth;
@@ -214,10 +219,13 @@ function initGalaxy() {
   window.addEventListener("resize", resize);
   resize();
 
-  for (let i = 0; i < 220; i++) {
+  // Create stars
+  for (let i = 0; i < 260; i++) {
     stars.push({
       x: Math.random() * w,
       y: Math.random() * h,
+      baseX: 0,
+      baseY: 0,
       z: Math.random() * 1000
     });
   }
@@ -230,33 +238,43 @@ function initGalaxy() {
   function draw() {
     ctx.clearRect(0, 0, w, h);
 
-    const gradient = ctx.createRadialGradient(
-      mouse.x,
-      mouse.y,
-      0,
-      mouse.x,
-      mouse.y,
-      400
-    );
-    gradient.addColorStop(0, "rgba(0,150,255,0.15)");
-    gradient.addColorStop(1, "transparent");
-
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, w, h);
+    angle += 0.0008; // slow swirl speed
 
     stars.forEach(star => {
-      star.z -= 2;
-
+      // depth movement
+      star.z -= 1.5;
       if (star.z <= 0) {
         star.x = Math.random() * w;
         star.y = Math.random() * h;
         star.z = 1000;
       }
 
+      // base projection
       const k = 128 / star.z;
-      const x = (star.x - w / 2) * k + w / 2;
-      const y = (star.y - h / 2) * k + h / 2;
+      let x = (star.x - w / 2) * k + w / 2;
+      let y = (star.y - h / 2) * k + h / 2;
 
+      // ===== SWIRL ROTATION =====
+      const dx = x - w / 2;
+      const dy = y - h / 2;
+
+      const rotatedX = dx * Math.cos(angle) - dy * Math.sin(angle);
+      const rotatedY = dx * Math.sin(angle) + dy * Math.cos(angle);
+
+      x = rotatedX + w / 2;
+      y = rotatedY + h / 2;
+
+      // ===== CURSOR GRAVITY =====
+      const distX = mouse.x - x;
+      const distY = mouse.y - y;
+      const distance = Math.sqrt(distX * distX + distY * distY);
+
+      const force = Math.min(120 / distance, 2); // clamp force
+
+      x += distX * force * 0.05;
+      y += distY * force * 0.05;
+
+      // star size
       const size = (1 - star.z / 1000) * 2;
 
       ctx.beginPath();
