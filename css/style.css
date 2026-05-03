@@ -770,3 +770,65 @@ section {
     position: relative;
     z-index: 2;
 }
+
+
+
+
+
+
+
+/* ===== FINAL GALAXY VISIBILITY FIX ===== */
+
+/* Force body to be dark and not cover canvas */
+body {
+    background: #000 !important;
+}
+
+/* Galaxy canvas stays behind everything */
+#galaxy {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* REMOVE ALL hero background blocking */
+.hero-section {
+    background: transparent !important;
+}
+
+/* Remove dark overlay that hides stars */
+.hero-section::after {
+    display: none !important;
+}
+
+/* Remove any section overlays */
+section::before {
+    display: none !important;
+}
+
+/* Make sections transparent so galaxy shows through */
+section {
+    background: transparent !important;
+}
+
+/* Keep only slight glass effect (not blocking) */
+.container,
+.contact-form-container,
+.service-item,
+.portfolio-item,
+.pricing-box {
+    background: rgba(0, 0, 0, 0.25) !important;
+    backdrop-filter: blur(6px);
+}
+
+/* Ensure text is above galaxy */
+.hero-text-content,
+.site-header,
+section {
+    position: relative;
+    z-index: 2;
+}
