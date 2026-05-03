@@ -903,3 +903,29 @@ section {
 .hero-text-content {
     background: rgba(0, 0, 0, 0.15);  /* very faint */
     border-radius: 10px;
+
+    /* REMOVE ANY GHOST BORDER COMPLETELY */
+.hero-text-content,
+.hero-content-wrapper,
+.container {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Kill hidden overlay borders */
+.hero-text-content::before,
+.hero-text-content::after,
+.hero-content-wrapper::before,
+.hero-content-wrapper::after,
+.container::before,
+.container::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Prevent blur edge glow */
+.hero-text-content {
+    backdrop-filter: none !important;
+    background: transparent !important;
+}
