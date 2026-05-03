@@ -790,10 +790,10 @@ section::after {
 .portfolio-item,
 .pricing-box,
 .contact-form-container {
-    background: rgba(0, 0, 0, 0.08);
-    backdrop-filter: blur(4px);
+    background: rgba(20, 20, 30, 0.35);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.08);
 }
-
 /* Keep content above galaxy */
 .hero-text-content,
 .site-header,
