@@ -261,11 +261,12 @@ body::before {
     pointer-events: none;
 }
 
-.site-header {
-    position: sticky;
-    backdrop-filter: blur(15px);
-    background: rgba(10, 10, 20, 0.75);
-}
-.site-header {
-    z-index: 1000;
+.site-footer {
+    text-align: center;
+    padding: 30px 0;
+    background: rgba(10, 10, 20, 0.8);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.9em;
+    color: #ccc;
 }
