@@ -270,3 +270,25 @@ body::before {
     font-size: 0.9em;
     color: #ccc;
 }
+
+
+
+
+
+
+
+.main-nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.main-nav a {
+    position: relative;
+    transition: 0.3s;
+}
+
+.main-nav a:hover {
+    color: #00bcd4;
+}
