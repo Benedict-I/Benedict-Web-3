@@ -203,86 +203,143 @@ function initGalaxy() {
   const ctx = canvas.getContext("2d");
 
   let w, h;
-  let stars = [];
+
+  const mouse = { x: innerWidth / 2, y: innerHeight / 2 };
+
+  let scrollY = 0;
   let angle = 0;
 
-  let mouse = {
-    x: window.innerWidth / 2,
-    y: window.innerHeight / 2
-  };
+  const layers = [
+    { stars: [], speed: 0.2, count: 80, size: 0.6 },
+    { stars: [], speed: 0.5, count: 120, size: 1.0 },
+    { stars: [], speed: 1.0, count: 160, size: 1.6 }
+  ];
+
+  const shootingStars = [];
 
   function resize() {
     w = canvas.width = window.innerWidth;
     h = canvas.height = window.innerHeight;
   }
 
-window.addEventListener("scroll", updateGalaxyZoom, { passive: true });
-updateGalaxyZoom();
-  window.addEventListener("resize", resize);
   resize();
+  window.addEventListener("resize", resize);
 
-  // Create stars
-  for (let i = 0; i < 260; i++) {
-    stars.push({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      baseX: 0,
-      baseY: 0,
-      z: Math.random() * 1000
-    });
-  }
-
-  document.addEventListener("mousemove", (e) => {
+  window.addEventListener("mousemove", (e) => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
   });
 
+  window.addEventListener("scroll", () => {
+    scrollY = window.scrollY;
+  }, { passive: true });
+
+  // create star layers
+  layers.forEach(layer => {
+    for (let i = 0; i < layer.count; i++) {
+      layer.stars.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        z: Math.random() * 1000
+      });
+    }
+  });
+
+  function spawnShootingStar() {
+    shootingStars.push({
+      x: Math.random() * w,
+      y: Math.random() * h * 0.3,
+      vx: 6 + Math.random() * 4,
+      vy: 2 + Math.random() * 2,
+      life: 60
+    });
+  }
+
+  setInterval(spawnShootingStar, 2500);
+
+  function drawNebula() {
+    const gradient = ctx.createRadialGradient(
+      w / 2,
+      h / 2,
+      0,
+      w / 2,
+      h / 2,
+      Math.max(w, h)
+    );
+
+    const pulse = 0.15 + Math.sin(scrollY * 0.002) * 0.05;
+
+    gradient.addColorStop(0, `rgba(120, 180, 255, ${pulse})`);
+    gradient.addColorStop(0.5, `rgba(180, 80, 255, ${pulse * 0.6})`);
+    gradient.addColorStop(1, "transparent");
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, w, h);
+  }
+
   function draw() {
     ctx.clearRect(0, 0, w, h);
 
-    angle += 0.0008; // slow swirl speed
+    angle += 0.001;
 
-    stars.forEach(star => {
-      // depth movement
-      star.z -= 1.5;
-      if (star.z <= 0) {
-        star.x = Math.random() * w;
-        star.y = Math.random() * h;
-        star.z = 1000;
-      }
+    drawNebula();
 
-      // base projection
-      const k = 128 / star.z;
-      let x = (star.x - w / 2) * k + w / 2;
-      let y = (star.y - h / 2) * k + h / 2;
+    // draw stars
+    layers.forEach(layer => {
+      layer.stars.forEach(star => {
+        star.z -= layer.speed * 2;
+        if (star.z <= 0) {
+          star.x = Math.random() * w;
+          star.y = Math.random() * h;
+          star.z = 1000;
+        }
 
-      // ===== SWIRL ROTATION =====
-      const dx = x - w / 2;
-      const dy = y - h / 2;
+        const k = 200 / star.z;
+        let x = (star.x - w / 2) * k + w / 2;
+        let y = (star.y - h / 2) * k + h / 2;
 
-      const rotatedX = dx * Math.cos(angle) - dy * Math.sin(angle);
-      const rotatedY = dx * Math.sin(angle) + dy * Math.cos(angle);
+        // swirl
+        const dx = x - w / 2;
+        const dy = y - h / 2;
 
-      x = rotatedX + w / 2;
-      y = rotatedY + h / 2;
+        const rx = dx * Math.cos(angle) - dy * Math.sin(angle);
+        const ry = dx * Math.sin(angle) + dy * Math.cos(angle);
 
-      // ===== CURSOR GRAVITY =====
-      const distX = mouse.x - x;
-      const distY = mouse.y - y;
-      const distance = Math.sqrt(distX * distX + distY * distY);
+        x = rx + w / 2;
+        y = ry + h / 2;
 
-      const force = Math.min(120 / distance, 2); // clamp force
+        // cursor gravity
+        const distX = mouse.x - x;
+        const distY = mouse.y - y;
+        const dist = Math.sqrt(distX * distX + distY * distY);
 
-      x += distX * force * 0.05;
-      y += distY * force * 0.05;
+        const force = Math.min(120 / dist, 1.5);
 
-      // star size
-      const size = (1 - star.z / 1000) * 2;
+        x += distX * force * 0.02;
+        y += distY * force * 0.02;
+
+        const size = layer.size * (1 - star.z / 1000);
+
+        ctx.beginPath();
+        ctx.arc(x, y, size, 0, Math.PI * 2);
+        ctx.fillStyle = "white";
+        ctx.fill();
+      });
+    });
+
+    // shooting stars
+    shootingStars.forEach((s, i) => {
+      s.x += s.vx;
+      s.y += s.vy;
+      s.life--;
 
       ctx.beginPath();
-      ctx.arc(x, y, size, 0, Math.PI * 2);
-      ctx.fillStyle = "white";
-      ctx.fill();
+      ctx.moveTo(s.x, s.y);
+      ctx.lineTo(s.x - 10, s.y - 5);
+      ctx.strokeStyle = "rgba(255,255,255,0.8)";
+      ctx.stroke();
+
+      if (s.life <= 0) shootingStars.splice(i, 1);
     });
 
     requestAnimationFrame(draw);
