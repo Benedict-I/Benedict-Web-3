@@ -213,12 +213,12 @@ function initGalaxy() {
     { stars: [], speed: 1.2, size: 1.8, count: 160 }
   ];
 
-  let mouse = { x: innerWidth / 2, y: innerHeight / 2 };
+  let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
   let scrollBoost = 0;
 
-  /* -------------------------
+  /* =========================
      RESIZE
-  ------------------------- */
+  ========================= */
   function resize() {
     w = canvas.width = window.innerWidth;
     h = canvas.height = window.innerHeight;
@@ -238,17 +238,17 @@ function initGalaxy() {
   window.addEventListener("resize", resize);
   resize();
 
-  /* -------------------------
-     MOUSE TRACKING
-  ------------------------- */
+  /* =========================
+     MOUSE
+  ========================= */
   document.addEventListener("mousemove", (e) => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
   });
 
-  /* -------------------------
-     SCROLL NEBULA BOOST
-  ------------------------- */
+  /* =========================
+     SCROLL BOOST (NEBULA)
+  ========================= */
   window.addEventListener("scroll", () => {
     scrollBoost = Math.min(window.scrollY * 0.002, 1.5);
 
@@ -258,9 +258,9 @@ function initGalaxy() {
     }
   });
 
-  /* -------------------------
+  /* =========================
      SHOOTING STARS
-  ------------------------- */
+  ========================= */
   const shootingStars = [];
 
   function spawnShootingStar() {
@@ -276,11 +276,12 @@ function initGalaxy() {
 
   setInterval(spawnShootingStar, 2500);
 
-  /* -------------------------
-     ANIMATION LOOP
-  ------------------------- */
+  /* =========================
+     DRAW LOOP
+  ========================= */
   function draw() {
     ctx.clearRect(0, 0, w, h);
+    ctx.globalAlpha = 1;
 
     angle += 0.0008;
 
@@ -288,6 +289,9 @@ function initGalaxy() {
        STAR LAYERS
     ========================= */
     layers.forEach((layer, index) => {
+
+      ctx.globalAlpha = 0.8;
+
       layer.stars.forEach(star => {
 
         star.z -= layer.speed;
@@ -302,7 +306,7 @@ function initGalaxy() {
         let x = (star.x - w / 2) * k + w / 2;
         let y = (star.y - h / 2) * k + h / 2;
 
-        // swirl rotation
+        // swirl
         const dx = x - w / 2;
         const dy = y - h / 2;
 
@@ -312,7 +316,7 @@ function initGalaxy() {
         x = rx + w / 2;
         y = ry + h / 2;
 
-        // cursor gravity (stronger for closer layers)
+        // gravity
         const distX = mouse.x - x;
         const distY = mouse.y - y;
 
@@ -327,7 +331,6 @@ function initGalaxy() {
         ctx.beginPath();
         ctx.arc(x, y, size, 0, Math.PI * 2);
         ctx.fillStyle = "white";
-        ctx.globalAlpha = 0.8;
         ctx.fill();
       });
     });
