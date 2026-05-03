@@ -216,21 +216,6 @@ function initGalaxy() {
     h = canvas.height = window.innerHeight;
   }
 
-   /* =========================
-   SCROLL ZOOM SYSTEM
-========================= */
-function updateGalaxyZoom() {
-  const scrollY = window.scrollY;
-  const maxScroll = document.body.scrollHeight - window.innerHeight;
-
-  const progress = maxScroll > 0 ? scrollY / maxScroll : 0;
-
-  // subtle zoom range (very important for premium feel)
-  const zoom = 1 + progress * 0.18;
-
-  document.body.style.setProperty("--galaxy-zoom", zoom);
-}
-
 window.addEventListener("scroll", updateGalaxyZoom, { passive: true });
 updateGalaxyZoom();
   window.addEventListener("resize", resize);
