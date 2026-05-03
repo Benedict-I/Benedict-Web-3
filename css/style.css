@@ -902,7 +902,7 @@ section {
 
 .hero-text-content {
     background: rgba(0, 0, 0, 0.15);  /* very faint */
-    border-radius: 10px;
+    border-radius: 10px;}
 
     /* REMOVE ANY GHOST BORDER COMPLETELY */
 .hero-text-content,
@@ -928,4 +928,17 @@ section {
 .hero-text-content {
     backdrop-filter: none !important;
     background: transparent !important;
+}
+
+
+.hero-text-content,
+.container {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.hero-text-content {
+    box-shadow: 
+        0 0 40px rgba(0, 0, 0, 0.6),
+        inset 0 0 20px rgba(255, 255, 255, 0.05);
 }
