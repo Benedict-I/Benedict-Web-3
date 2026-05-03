@@ -196,7 +196,7 @@ function initMouseTracker() {
 /* =========================
    7. GALAXY BACKGROUND
 ========================= */
-function initGalaxy()
+function initGalaxy() {
   const canvas = document.getElementById("galaxy");
   const nebula = document.getElementById("nebula");
 
