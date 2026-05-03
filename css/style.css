@@ -151,7 +151,7 @@ section {
 #galaxy {
     position: fixed;
     inset: 0;
-    z-index: 3;
+    z-index: 0;
     pointer-events: none;
 }
 
@@ -204,7 +204,7 @@ body::before {
     position: fixed;
     inset: 0;
     pointer-events: none;
-    z-index: 2;
+    z-index: 3;
 
     background: radial-gradient(
         circle at var(--x, 50%) var(--y, 50%),
@@ -219,4 +219,13 @@ body::before {
     inset: 0;
     z-index: 3;
     pointer-events: none;
+}
+
+.site-header {
+    position: sticky;
+    backdrop-filter: blur(15px);
+    background: rgba(10, 10, 20, 0.75);
+}
+.site-header {
+    z-index: 1000;
 }
