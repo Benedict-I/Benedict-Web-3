@@ -196,109 +196,113 @@ function initMouseTracker() {
 /* =========================
    7. GALAXY BACKGROUND
 ========================= */
-function initGalaxy() {
+function initGalaxy()
   const canvas = document.getElementById("galaxy");
+  const nebula = document.getElementById("nebula");
+
   if (!canvas) return;
 
   const ctx = canvas.getContext("2d");
 
   let w, h;
-
-  const mouse = { x: innerWidth / 2, y: innerHeight / 2 };
-
-  let scrollY = 0;
   let angle = 0;
 
   const layers = [
-    { stars: [], speed: 0.2, count: 80, size: 0.6 },
-    { stars: [], speed: 0.5, count: 120, size: 1.0 },
-    { stars: [], speed: 1.0, count: 160, size: 1.6 }
+    { stars: [], speed: 0.3, size: 0.6, count: 120 },
+    { stars: [], speed: 0.6, size: 1.2, count: 140 },
+    { stars: [], speed: 1.2, size: 1.8, count: 160 }
   ];
 
-  const shootingStars = [];
+  let mouse = { x: innerWidth / 2, y: innerHeight / 2 };
+  let scrollBoost = 0;
 
+  /* -------------------------
+     RESIZE
+  ------------------------- */
   function resize() {
     w = canvas.width = window.innerWidth;
     h = canvas.height = window.innerHeight;
+
+    layers.forEach(layer => {
+      layer.stars = [];
+      for (let i = 0; i < layer.count; i++) {
+        layer.stars.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          z: Math.random() * 1000
+        });
+      }
+    });
   }
 
-  resize();
   window.addEventListener("resize", resize);
+  resize();
 
-  window.addEventListener("mousemove", (e) => {
+  /* -------------------------
+     MOUSE TRACKING
+  ------------------------- */
+  document.addEventListener("mousemove", (e) => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
   });
 
+  /* -------------------------
+     SCROLL NEBULA BOOST
+  ------------------------- */
   window.addEventListener("scroll", () => {
-    scrollY = window.scrollY;
-  }, { passive: true });
+    scrollBoost = Math.min(window.scrollY * 0.002, 1.5);
 
-  // create star layers
-  layers.forEach(layer => {
-    for (let i = 0; i < layer.count; i++) {
-      layer.stars.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        z: Math.random() * 1000
-      });
+    if (nebula) {
+      nebula.style.opacity = 0.4 + scrollBoost * 0.3;
+      nebula.style.transform = `scale(${1.2 + scrollBoost * 0.2})`;
     }
   });
+
+  /* -------------------------
+     SHOOTING STARS
+  ------------------------- */
+  const shootingStars = [];
 
   function spawnShootingStar() {
     shootingStars.push({
       x: Math.random() * w,
-      y: Math.random() * h * 0.3,
-      vx: 6 + Math.random() * 4,
-      vy: 2 + Math.random() * 2,
-      life: 60
+      y: Math.random() * h * 0.5,
+      len: Math.random() * 200 + 100,
+      speed: Math.random() * 6 + 4,
+      angle: Math.PI / 4,
+      life: 1
     });
   }
 
   setInterval(spawnShootingStar, 2500);
 
-  function drawNebula() {
-    const gradient = ctx.createRadialGradient(
-      w / 2,
-      h / 2,
-      0,
-      w / 2,
-      h / 2,
-      Math.max(w, h)
-    );
-
-    const pulse = 0.15 + Math.sin(scrollY * 0.002) * 0.05;
-
-    gradient.addColorStop(0, `rgba(120, 180, 255, ${pulse})`);
-    gradient.addColorStop(0.5, `rgba(180, 80, 255, ${pulse * 0.6})`);
-    gradient.addColorStop(1, "transparent");
-
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, w, h);
-  }
-
+  /* -------------------------
+     ANIMATION LOOP
+  ------------------------- */
   function draw() {
     ctx.clearRect(0, 0, w, h);
 
-    angle += 0.001;
+    angle += 0.0008;
 
-    drawNebula();
-
-    // draw stars
-    layers.forEach(layer => {
+    /* =========================
+       STAR LAYERS
+    ========================= */
+    layers.forEach((layer, index) => {
       layer.stars.forEach(star => {
-        star.z -= layer.speed * 2;
+
+        star.z -= layer.speed;
         if (star.z <= 0) {
           star.x = Math.random() * w;
           star.y = Math.random() * h;
           star.z = 1000;
         }
 
-        const k = 200 / star.z;
+        const k = 120 / star.z;
+
         let x = (star.x - w / 2) * k + w / 2;
         let y = (star.y - h / 2) * k + h / 2;
 
-        // swirl
+        // swirl rotation
         const dx = x - w / 2;
         const dy = y - h / 2;
 
@@ -308,12 +312,12 @@ function initGalaxy() {
         x = rx + w / 2;
         y = ry + h / 2;
 
-        // cursor gravity
+        // cursor gravity (stronger for closer layers)
         const distX = mouse.x - x;
         const distY = mouse.y - y;
-        const dist = Math.sqrt(distX * distX + distY * distY);
 
-        const force = Math.min(120 / dist, 1.5);
+        const dist = Math.sqrt(distX * distX + distY * distY);
+        const force = Math.min(200 / dist, 3) * (index + 1);
 
         x += distX * force * 0.02;
         y += distY * force * 0.02;
@@ -323,24 +327,38 @@ function initGalaxy() {
         ctx.beginPath();
         ctx.arc(x, y, size, 0, Math.PI * 2);
         ctx.fillStyle = "white";
+        ctx.globalAlpha = 0.8;
         ctx.fill();
       });
     });
 
-    // shooting stars
-    shootingStars.forEach((s, i) => {
-      s.x += s.vx;
-      s.y += s.vy;
-      s.life--;
+    ctx.globalAlpha = 1;
+
+    /* =========================
+       SHOOTING STARS
+    ========================= */
+    for (let i = shootingStars.length - 1; i >= 0; i--) {
+      const s = shootingStars[i];
+
+      s.x += Math.cos(s.angle) * s.speed;
+      s.y += Math.sin(s.angle) * s.speed;
+      s.life -= 0.01;
 
       ctx.beginPath();
       ctx.moveTo(s.x, s.y);
-      ctx.lineTo(s.x - 10, s.y - 5);
-      ctx.strokeStyle = "rgba(255,255,255,0.8)";
+      ctx.lineTo(
+        s.x - Math.cos(s.angle) * s.len,
+        s.y - Math.sin(s.angle) * s.len
+      );
+
+      ctx.strokeStyle = `rgba(255,255,255,${s.life})`;
+      ctx.lineWidth = 1.2;
       ctx.stroke();
 
-      if (s.life <= 0) shootingStars.splice(i, 1);
-    });
+      if (s.life <= 0) {
+        shootingStars.splice(i, 1);
+      }
+    }
 
     requestAnimationFrame(draw);
   }
