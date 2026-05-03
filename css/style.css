@@ -821,8 +821,11 @@ section {
 .service-item,
 .portfolio-item,
 .pricing-box {
-    background: rgba(0, 0, 0, 0.25) !important;
+    background: rgba(0, 0, 0, 0.15);
     backdrop-filter: blur(6px);
+
+    border: 1px solid rgba(255, 255, 255, 0.08); /* one clean border */
+    box-shadow: none; /* prevent double edge */
 }
 
 /* Ensure text is above galaxy */
