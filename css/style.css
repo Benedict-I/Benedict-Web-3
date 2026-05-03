@@ -892,3 +892,12 @@ section {
     position: relative;
     z-index: 2;
 }
+
+
+
+
+
+.hero-text-content {
+    background: rgba(0, 0, 0, 0.15);  /* very faint */
+    border-radius: 10px;
+}
