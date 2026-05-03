@@ -177,3 +177,32 @@ section {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+/* ===== TEXT GLOW (SUBTLE, CLEAN) ===== */
+
+/* Main hero title (typing text / h1) */
+.hero-section h1,
+.typing-text {
+    text-shadow:
+        0 0 6px rgba(255,255,255,0.6),
+        0 0 12px rgba(255,255,255,0.4),
+        0 0 20px rgba(14,165,233,0.3);
+}
+
+/* Sub text */
+.hero-section p {
+    text-shadow:
+        0 0 4px rgba(255,255,255,0.5),
+        0 0 10px rgba(0,0,0,0.6);
+}
+
+/* Button glow */
+.cta-button {
+    box-shadow:
+        0 0 10px rgba(230,126,34,0.6),
+        0 0 20px rgba(230,126,34,0.4);
+}
+
+/* Optional: make cursor glow slightly */
+.cursor {
+    text-shadow: 0 0 8px rgba(255,255,255,0.8);
+}
