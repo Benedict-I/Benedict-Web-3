@@ -170,7 +170,43 @@ section {
 .service-item:hover {
     transform: translateY(-10px);
 }
+/* =========================
+   PORTFOLIO GRID (FIX)
+========================= */
 
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+.portfolio-item {
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+    transition: 0.3s ease;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-10px);
+}
+.portfolio-image-wrapper img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+@media (max-width: 900px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+}
 /* =========================
    GALAXY SYSTEM (CLEAN + FIXED STACK)
 ========================= */
