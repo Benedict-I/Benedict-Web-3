@@ -13,9 +13,6 @@
 
 <body>
 
-<div id="progress-bar"></div>
-
-<!-- ================= HEADER ================= -->
 <header class="site-header">
     <div class="container header-container">
 
@@ -33,90 +30,64 @@
 
         <div id="google_translate_element"></div>
 
-        <button class="menu-toggle" aria-label="Toggle navigation">
+        <button class="menu-toggle">
             <span></span><span></span><span></span>
         </button>
 
     </div>
 </header>
 
-<!-- ================= MAIN ================= -->
 <main>
 
 <section class="contact-section">
 <div class="container">
 
     <!-- ================= HERO ================= -->
-    <div class="section-hero">
-        <h2>Ready to Write Your Next Chapter?</h2>
+    <div class="contact-hero">
+        <h2>Let’s Talk About Your Book</h2>
         <p>
-            Have questions or need a personalized strategy? Let’s talk about your book and how to move it forward.
+            Whether you're starting from scratch or ready to promote, I’ll help you move forward with clarity and results.
         </p>
+
+        <!-- PRIMARY CTA -->
+        <div class="primary-cta">
+            <a href="https://wa.me/2348056841236" target="_blank" class="cta-button whatsapp">
+                <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+        </div>
     </div>
 
-    <!-- ================= CONTACT GRID ================= -->
-    <div class="contact-grid">
+    <!-- ================= OPTIONS ================= -->
+    <div class="contact-options">
 
         <!-- FORM -->
-        <div class="contact-form-container">
+        <div class="contact-card">
+            <h3>Send a Message</h3>
 
-            <div id="status-message"></div>
+            <form action="https://formspree.io/f/xwvaaebo" method="POST">
 
-            <form class="contact-form" 
-                  action="https://formspree.io/f/xwvaaebo" 
-                  method="POST" 
-                  id="contact-form">
+                <input type="text" name="name" placeholder="Your Name" required>
 
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
+                <input type="email" name="email" placeholder="Your Email" required>
 
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
+                <textarea name="message" placeholder="Tell me about your book..." rows="5" required></textarea>
 
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                </div>
-
-                <input type="hidden" name="_subject" value="New message from your website">
-
-                <div class="form-submit">
-                    <button type="submit" class="cta-button" id="submit-btn">
-                        <span id="btn-text">Send Message</span>
-                        <span id="spinner" class="spinner"></span>
-                    </button>
-                </div>
+                <button type="submit" class="cta-button">Send Message</button>
 
             </form>
         </div>
 
-        <!-- CONTACT INFO -->
-        <div class="contact-info">
+        <!-- DIRECT CONTACT -->
+        <div class="contact-card">
+            <h3>Direct Contact</h3>
 
-            <h3>Contact Details</h3>
+            <p><i class="fas fa-envelope"></i> ben.i.consultings@gmail.com</p>
+            <p><i class="fas fa-phone"></i> 0805 684 1236</p>
+            <p><i class="fas fa-location-dot"></i> Nigeria</p>
 
-            <p><strong>Email:</strong><br>
-                <a href="mailto:ben.i.consultings@gmail.com">
-                    ben.i.consultings@gmail.com
-                </a>
-            </p>
-
-            <p><strong>Phone:</strong><br> 0805 684 1236</p>
-
-            <p><strong>WhatsApp:</strong><br> 0805 684 1236</p>
-
-            <p><strong>Location:</strong><br> Nigeria</p>
-
-            <p><strong>Fiverr:</strong><br>
-                <a href="https://www.fiverr.com/benedict_ink2" target="_blank">
-                    Message via Fiverr
-                </a>
-            </p>
-
+            <a href="https://www.fiverr.com/benedict_ink2" target="_blank" class="cta-button secondary">
+                Fiverr Message
+            </a>
         </div>
 
     </div>
@@ -126,29 +97,22 @@
 
 </main>
 
-<!-- ================= FOOTER ================= -->
 <footer class="site-footer">
     <div class="container">
         <p>&copy; 2026 Benedict. All rights reserved.</p>
     </div>
 </footer>
 
-<!-- ================= GOOGLE TRANSLATE ================= -->
 <script>
 function googleTranslateElementInit() {
     new google.translate.TranslateElement(
-        {
-            pageLanguage: 'en',
-            autoDisplay: false
-        },
+        { pageLanguage: 'en', autoDisplay: false },
         'google_translate_element'
     );
 }
 </script>
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-<script src="js/script.js"></script>
 
 </body>
 </html>
