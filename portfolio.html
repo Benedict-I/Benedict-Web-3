@@ -3,145 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benedict Web</title>
+    <title>Benedict Web - Portfolio</title>
+
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
+
 <body>
-    <header class="site-header">
-        <div class="container header-container">
-            <div class="logo" data-aos="fade-down" data-aos-duration="1000">
-                My Portfolio  
-            </div>
-            <nav class="main-nav" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-         <div id="google_translate_element"></div>
-<script>
-function googleTranslateElementInit()
-  new google.translate.TranslateElement(
-  {
-    pageLanguage: 'en',
-    autoDisplay: true
-  },
-  'google_translate_element'
-);
-</script>
-            <button class="menu-toggle" aria-label="Toggle navigation menu">
-                <span></span><span></span><span></span>
-            </button>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+    <div class="container header-container">
+
+        <div class="logo" data-aos="fade-down">
+            My Portfolio
         </div>
-    </header>
-    <main>
-        <section class="portfolio-section">
-            <div class="container">
-                <h2 data-aos="fade-up" data-aos-duration="1200">
-                    My Published Works: A Testament to Author Success
-                </h2>
-                <p data-aos="fade-up" data-aos-duration="1200" data-aos-delay="150">
-                    Discover the diverse range of books I've had the honor of helping bring into the world. Each project is a unique journey, and this portfolio highlights the power of collaboration and expert guidance.
-                </p>
-                <div class="portfolio-grid">
-                    <div class="portfolio-item" data-aos="zoom-in-up" data-aos-duration="1200">
-                        <div class="portfolio-image-wrapper">
-                            <img src="images/book_cover_1.jpg" alt="Book Cover: The Silent Echo">
-                            <div class="portfolio-overlay">
-                                <i class="fas fa-search"></i>
-                            </div>
-                        </div>
-                       <div class="portfolio-item"
-     data-title="The Silent Echo"
-     data-meta="Author: Anya Sharma | Genre: Psychological Thriller"
-     data-desc="Anya had a gripping plot and unforgettable characters, but needed a ghostwriter to weave them into a page-turning thriller..."
-     data-img="images/book_cover_1.jpg">
 
-    <div class="portfolio-image-wrapper">
-        <img src="images/book_cover_1.jpg" alt="">
-        <div class="portfolio-overlay">
-            <i class="fas fa-search"></i>
-        </div>
-    </div>
+        <nav class="main-nav" data-aos="fade-down" data-aos-delay="100">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
 
-    <div class="portfolio-item-content">
-        <h4>The Silent Echo</h4>
-        <p>Psychological Thriller</p>
-    </div>
-</div>
-                       <div class="portfolio-item"
-     data-title="Seeds of Tomorrow"
-     data-meta="Author: Dr. Elias Vance | Genre: Non-Fiction / Self-Help"
-     data-desc="Dr. Vance's groundbreaking research on sustainable living deserved a clear, accessible voice. I ghostwrote Seeds of Tomorrow to translate complex ideas into actionable advice, empowering readers to make a difference."
-     data-img="images/book_cover_2.jpg"
-     data-aos="zoom-in-up"
-     data-aos-duration="1200"
-     data-aos-delay="150">
+        <!-- Google Translate -->
+        <div id="google_translate_element"></div>
 
-    <div class="portfolio-image-wrapper">
-        <img src="images/book_cover_2.jpg" alt="Book Cover: Seeds of Tomorrow">
-        <div class="portfolio-overlay">
-            <i class="fas fa-search"></i>
-        </div>
-    </div>
+        <button class="menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
-    <div class="portfolio-item-content">
-        <h4>Seeds of Tomorrow</h4>
-        <p>Non-Fiction / Self-Help</p>
     </div>
-</div>
-                        <div class="portfolio-item"
-     data-title="The Baker's Secret"
-     data-meta="Author: Clara Bell | Genre: Cozy Mystery"
-     data-desc="Clara’s passion for baking and small-town charm were the heart of her story. I helped her craft a delightful cozy mystery, infusing it with warmth and intrigue."
-     data-img="images/book_cover_3.jpg"
-     data-aos="zoom-in-up"
-     data-aos-duration="1200"
-     data-aos-delay="300">
+</header>
 
-    <div class="portfolio-image-wrapper">
-        <img src="images/book_cover_3.jpg" alt="Book Cover: The Baker's Secret">
-        <div class="portfolio-overlay">
-            <i class="fas fa-search"></i>
-        </div>
-    </div>
+<!-- ================= MAIN ================= -->
+<main>
 
-    <div class="portfolio-item-content">
-        <h4>The Baker's Secret</h4>
-        <p>Cozy Mystery</p>
-    </div>
-</div>
+<section class="portfolio-section">
+    <div class="container">
+
+        <h2 data-aos="fade-up">
+            My Published Works: A Testament to Author Success
+        </h2>
+
+        <p data-aos="fade-up" data-aos-delay="100">
+            Discover the books I’ve helped bring to life through ghostwriting and storytelling expertise.
+        </p>
+
+        <!-- ===== PORTFOLIO GRID ===== -->
+        <div class="portfolio-grid">
+
+            <!-- ITEM 1 -->
+            <div class="portfolio-item"
+                data-title="The Silent Echo"
+                data-meta="Author: Anya Sharma | Genre: Psychological Thriller"
+                data-desc="A gripping psychological thriller built from deep character development and suspenseful storytelling."
+                data-img="images/book_cover_1.jpg"
+                data-aos="zoom-in-up">
+
+                <div class="portfolio-image-wrapper">
+                    <img src="images/book_cover_1.jpg" alt="The Silent Echo">
+
+                    <div class="portfolio-overlay">
+                        <i class="fas fa-search"></i>
                     </div>
                 </div>
+
+                <div class="portfolio-item-content">
+                    <h4>The Silent Echo</h4>
+                    <p>Psychological Thriller</p>
+                </div>
             </div>
-        </section>
-    </main>
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; 2026 Benedict. All rights reserved.</p>
+
+            <!-- ITEM 2 -->
+            <div class="portfolio-item"
+                data-title="Seeds of Tomorrow"
+                data-meta="Author: Dr. Elias Vance | Genre: Non-Fiction / Self-Help"
+                data-desc="A simplified and powerful translation of sustainability research into practical advice."
+                data-img="images/book_cover_2.jpg"
+                data-aos="zoom-in-up"
+                data-aos-delay="150">
+
+                <div class="portfolio-image-wrapper">
+                    <img src="images/book_cover_2.jpg" alt="Seeds of Tomorrow">
+
+                    <div class="portfolio-overlay">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+
+                <div class="portfolio-item-content">
+                    <h4>Seeds of Tomorrow</h4>
+                    <p>Non-Fiction / Self-Help</p>
+                </div>
+            </div>
+
+            <!-- ITEM 3 -->
+            <div class="portfolio-item"
+                data-title="The Baker's Secret"
+                data-meta="Author: Clara Bell | Genre: Cozy Mystery"
+                data-desc="A warm cozy mystery filled with baking, secrets, and small-town charm."
+                data-img="images/book_cover_3.jpg"
+                data-aos="zoom-in-up"
+                data-aos-delay="300">
+
+                <div class="portfolio-image-wrapper">
+                    <img src="images/book_cover_3.jpg" alt="The Baker's Secret">
+
+                    <div class="portfolio-overlay">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+
+                <div class="portfolio-item-content">
+                    <h4>The Baker's Secret</h4>
+                    <p>Cozy Mystery</p>
+                </div>
+            </div>
+
         </div>
-    </footer>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            once: true,
-            duration: 1000
-        });
-    </script>
-    <script src="js/script.js"></script>
-    <div id="portfolioModal" class="modal">
+    </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+    <div class="container">
+        <p>&copy; 2026 Benedict. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- ================= MODAL ================= -->
+<div id="portfolioModal" class="modal">
     <div class="modal-content">
         <span class="close-btn">&times;</span>
+
         <img id="modalImage" src="" alt="">
         <h3 id="modalTitle"></h3>
         <p id="modalMeta"></p>
         <p id="modalDesc"></p>
     </div>
 </div>
+
+<!-- ================= SCRIPTS ================= -->
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+AOS.init({
+    once: true,
+    duration: 1000
+});
+</script>
+
+<!-- Google Translate FIX -->
+<script>
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+        {
+            pageLanguage: 'en',
+            autoDisplay: false
+        },
+        'google_translate_element'
+    );
+}
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script src="js/script.js"></script>
+
 </body>
 </html>
