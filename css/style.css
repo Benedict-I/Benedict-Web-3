@@ -12,25 +12,13 @@ body {
     overflow-x: hidden;
     background: #000;
 }
-.main-nav ul {
-    list-style: none;        /* removes bullets */
-    display: flex;           /* makes it horizontal */
-    gap: 25px;
-    margin: 0;
-    padding: 0;
-}
-
 .main-nav ul li a {
     text-decoration: none;
     color: white;
     font-weight: 500;
 }
-.main-nav ul {
-    display: flex;
-}
-
 .main-nav ul.active {
-    display: block;
+    display: flex;
 }
 .header-container {
     display: flex;
@@ -271,19 +259,6 @@ body::before {
     color: #ccc;
 }
 
-
-
-
-
-
-
-.main-nav ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-}
-
 .main-nav a {
     position: relative;
     transition: 0.3s;
@@ -291,4 +266,49 @@ body::before {
 
 .main-nav a:hover {
     color: #00bcd4;
+}
+/* Desktop (default) */
+.main-nav ul {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Mobile fix */
+@media (max-width: 768px) {
+    .main-nav ul {
+        display: none;
+        flex-direction: column;
+        background: rgba(20, 20, 30, 0.95);
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .main-nav ul.active {
+        display: flex;
+    }
+}
+
+/* NAVBAR CLEAN FIX */
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.main-nav a:hover {
+    color: #00bcd4;
+}
+.main-nav ul li {
+    list-style: none;
+}
+
+.main-nav ul li a {
+    padding: 5px 0;
 }
