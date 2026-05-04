@@ -3,107 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benedict</title>
+    <title>Benedict - Services</title>
+
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
+
 <body>
-    <header class="site-header">
-        <div class="container header-container">
-            <div class="logo animate-fade-in-down">Services</div>
-            <nav class="main-nav">
+
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+    <div class="container header-container">
+
+        <div class="logo" data-aos="fade-down">
+            Services
+        </div>
+
+        <nav class="main-nav" data-aos="fade-down" data-aos-delay="100">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Google Translate -->
+        <div id="google_translate_element"></div>
+
+        <button class="menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+    </div>
+</header>
+
+<!-- ================= MAIN ================= -->
+<main>
+
+<section class="services-section">
+    <div class="container">
+
+        <h2 data-aos="fade-up">
+            Crafting Your Bestseller, From Concept to Connection
+        </h2>
+
+        <p data-aos="fade-up" data-aos-delay="100">
+            Whether you're starting with an idea or need help promoting your manuscript, I provide complete publishing support.
+        </p>
+
+        <!-- ================= GHOSTWRITING ================= -->
+        <div class="service-block" data-aos="fade-up" data-aos-delay="200">
+
+            <h3>Ghostwriting: Your Story, Expertly Told</h3>
+
+            <p>
+                I help transform your ideas into a powerful, professionally written manuscript that reflects your voice.
+            </p>
+
+            <div class="service-details">
+                <p><strong>Process:</strong> Interviews, outlining, drafting, and revisions.</p>
+                <p><strong>Outcome:</strong> A publish-ready manuscript written in your voice.</p>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <!-- ================= PROMOTION ================= -->
+        <div class="service-block" data-aos="fade-up" data-aos-delay="300">
+
+            <h3>Book Publishing & Promotion Campaigns</h3>
+
+            <p>
+                A reader-discovery system designed to increase visibility, reviews, and engagement.
+            </p>
+
+            <ul class="service-list">
+                <li>Placement in curated book discovery lists</li>
+                <li>Exposure to reader communities</li>
+                <li>Goodreads review outreach</li>
+                <li>Social media promotion</li>
+                <li>Short book trailer creation</li>
+            </ul>
+
+        </div>
+
+        <!-- ================= PRICING ================= -->
+        <h3 data-aos="fade-up" style="margin-top: 40px;">
+            Choose Your Campaign
+        </h3>
+
+        <div class="pricing-grid">
+
+            <!-- BASIC -->
+            <div class="pricing-card" data-aos="zoom-in">
+
+                <h4>Starter Feature</h4>
+                <h2>$250</h2>
+
+                <p>Perfect for testing visibility and early traction.</p>
+
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li>Basic book audit</li>
+                    <li>10–15 Goodreads reviews</li>
+                    <li>Curated list placement</li>
+                    <li>1 week promotion</li>
+                    <li>Performance report</li>
                 </ul>
-            </nav>
-             <div class="language-selector animate-fade-in-down">
-                <div id="google_translate_element"></div> <br>
+
+            </div>
+
+            <!-- GROWTH -->
+            <div class="pricing-card highlight" data-aos="zoom-in" data-aos-delay="150">
+
+                <h4>Growth Feature</h4>
+                <h2>$500</h2>
+
+                <p>For stronger reach and engagement.</p>
+
+                <ul>
+                    <li>Everything in Starter</li>
+                    <li>2 weeks promotion</li>
+                    <li>Influencer outreach</li>
+                    <li>20–30 Goodreads reviews</li>
+                    <li>Email campaign</li>
+                </ul>
+
+            </div>
+
+            <!-- AUTHORITY -->
+            <div class="pricing-card" data-aos="zoom-in" data-aos-delay="300">
+
+                <h4>Authority Campaign</h4>
+                <h2>$1,500</h2>
+
+                <p>For maximum visibility and authority building.</p>
+
+                <ul>
+                    <li>Everything in Growth</li>
+                    <li>4–6 weeks promotion</li>
+                    <li>70+ Goodreads reviews</li>
+                    <li>Book trailer</li>
+                    <li>Blogger outreach</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <!-- ================= CTA ================= -->
+        <div class="cta-section" data-aos="fade-up">
+
+            <p>
+                Not sure which plan fits your book?
+            </p>
+
+            <a href="contact.html" class="cta-button">
+                Get a Recommendation
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+    <div class="container">
+        <p>&copy; 2026 Benedict. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- ================= SCRIPTS ================= -->
+
+<!-- AOS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({
+    once: true,
+    duration: 1000
+});
+</script>
+
+<!-- Google Translate -->
 <script>
 function googleTranslateElementInit() {
-  new google.translate.TranslateElement(
-    {pageLanguage: 'en',
-      autoDisplay: true},
-    'google_translate_element');}
+    new google.translate.TranslateElement(
+        {
+            pageLanguage: 'en',
+            autoDisplay: false
+        },
+        'google_translate_element'
+    );
+}
 </script>
-            </div>
-            <button class="menu-toggle" aria-label="Toggle navigation menu">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-    </header>
-    <main>
-        <section class="services-details-section">
-            <div class="container">
-                <h2 class="animate-fade-in-down">Crafting Your Bestseller, From Concept to Connection</h2>
-                <p class="animate-fade-in-up delay-1">Whether you're starting with an idea or have a manuscript needing promotion, I offer tailored solutions to bring your book the success it deserves.</p>
-                <h3 class="animate-fade-in-up delay-2">Ghostwriting: Your Story, Expertly Told</h3>
-                <p class="animate-fade-in-up delay-3">Don't have the time or inclination to write? I'll be your voice, capturing your unique perspective and style to create a compelling manuscript that resonates with your target audience.</p>
-                <p class="animate-fade-in-up delay-4"><strong>Process:</strong> In-depth interviews, detailed outlining, chapter drafts, and revisions until you're thrilled with the narrative.</p>
-                <p class="animate-fade-in-up delay-5"><strong>Outcome:</strong> A professionally written manuscript, ready for publishing.</p>
-                <hr class="animated-hr">
-                <h3 class="animate-fade-in-up delay-6">Book Publishing & Promotion Campaigns: Reach Your Readers, Build Your Authority</h3>
-                <p class="animate-fade-in-up delay-7">This is part of a reader-discovery campaign designed to introduce your book to active reader communities and book platforms. The goal is to build visibility and early reader engagement.</p>
-                <p class="animate-fade-in-up delay-8"><strong>Each featured book typically includes:</strong></p>
-                <ul class="animate-fade-in-up delay-9">
-                    <li>Placement in curated book discovery lists.</li>
-                    <li>Exposure in key reader communities and platforms.</li>
-                    <li>Goodreads visibility and review outreach.</li>
-                    <li>Social media introductions to targeted readers.</li>
-                    <li>A short book trailer highlighting your book's message.</li>
-                </ul>
-                <p class="animate-fade-in-up delay-10">This strategy ensures your book finds readers interested in its genre, strengthening its online credibility.</p>
-                <h4 class="animate-fade-in-up delay-11">Choose Your Campaign:</h4>
-                <div class="pricing-options-grid">
-                    <div class="pricing-box animate-fade-in-up delay-12">
-                        <h5>Starter Feature - $$250</h5>
-                        <p><strong>Perfect for:</strong> Testing the waters and gaining initial traction.</p>
-                        <ul>
-                            <li>Basic book audit.</li>
-                            <li>10–15 Goodreads reviews.</li>
-                            <li>Placement in curated Goodreads lists.</li>
-                            <li>1 week of social media promotion.</li>
-                            <li>Campaign performance report.</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-box animate-fade-in-up delay-13">
-                        <h5>Growth Feature - $$500</h5>
-                        <p><strong>Perfect for:</strong> Building stronger momentum and wider reach.</p>
-                        <ul>
-                            <li>Everything in Starter Feature, PLUS:</li>
-                            <li>2 weeks of social media promotion.</li>
-                            <li>Reader and influencer outreach.</li>
-                            <li>20–30 Goodreads reviews.</li>
-                            <li>Email promotion campaign.</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-box animate-fade-in-up delay-14">
-                        <h5>Authority Campaign - $$1,500</h5>
-                        <p><strong>Perfect for:</strong> Establishing significant visibility and a strong author platform.</p>
-                        <ul>
-                            <li>Everything in Growth Feature, PLUS:</li>
-                            <li>4–6 weeks social media visibility.</li>
-                            <li>70+ Goodreads reviews.</li>
-                            <li>Short book trailer.</li>
-                            <li>Targeted reader and blogger outreach.</li>
-                        </ul>
-                    </div>
-                </div>
-                <p class="animate-fade-in-up delay-15" style="text-align: center; margin-top: 30px;"><strong>Which campaign is right for you?</strong> Tell me about your book's goals – visibility, reviews, sales momentum – and I'll recommend the best fit.</p>
-                 <div class="animate-fade-in-up delay-16" style="text-align: center;">
-                    <a href="contact.html" class="cta-button">Get a Recommendation</a>
-                 </div>
-            </div>
-        </section>
-    </main>
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; 2026 Benedict. All rights reserved.</p>
-        </div>
-    </footer>
-    <script src="js/script.js"></script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script src="js/script.js"></script>
+
 </body>
 </html>
