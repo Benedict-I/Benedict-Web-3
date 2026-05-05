@@ -368,3 +368,60 @@ function initGalaxy() {
 
   draw();
 }
+
+
+
+
+/* =========================
+   PORTFOLIO MODAL SYSTEM
+========================= */
+const modal = document.getElementById("portfolioModal");
+
+if (modal) {
+  const modalImg = document.getElementById("modalImage");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalMeta = document.getElementById("modalMeta");
+  const modalDesc = document.getElementById("modalDesc");
+  const closeBtn = document.querySelector(".close-btn");
+
+  document.querySelectorAll(".portfolio-item").forEach(item => {
+    item.addEventListener("click", () => {
+      modal.style.display = "flex";
+
+      modalImg.src = item.dataset.img;
+      modalTitle.textContent = item.dataset.title;
+      modalMeta.textContent = item.dataset.meta;
+      modalDesc.textContent = item.dataset.desc;
+    });
+  });
+
+  closeBtn?.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) modal.style.display = "none";
+  });
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") modal.style.display = "none";
+  });
+}
+
+/* =========================
+   AUTO REVIEW CAROUSEL
+========================= */
+let reviewIndex = 0;
+const reviews = document.querySelectorAll(".review-card");
+
+function rotateReviews() {
+  if (!reviews.length) return;
+
+  reviews.forEach((r, i) => {
+    r.style.transform = `translateX(${(i - reviewIndex) * 100}%)`;
+  });
+
+  reviewIndex = (reviewIndex + 1) % reviews.length;
+}
+
+setInterval(rotateReviews, 5000);
