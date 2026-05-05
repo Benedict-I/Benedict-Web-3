@@ -407,21 +407,3 @@ if (modal) {
     if (e.key === "Escape") modal.style.display = "none";
   });
 }
-
-/* =========================
-   AUTO REVIEW CAROUSEL
-========================= */
-let reviewIndex = 0;
-const reviews = document.querySelectorAll(".review-card");
-
-function rotateReviews() {
-  if (!reviews.length) return;
-
-  reviews.forEach((r, i) => {
-    r.style.transform = `translateX(${(i - reviewIndex) * 100}%)`;
-  });
-
-  reviewIndex = (reviewIndex + 1) % reviews.length;
-}
-
-setInterval(rotateReviews, 5000);
