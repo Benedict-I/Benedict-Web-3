@@ -118,68 +118,78 @@
 
     <div class="container">
 
-        <h2>Client Reviews</h2>
-        <p style="text-align:center; opacity:0.8;">
-            Real feedback from authors who worked with me
-        </p>
-
-        <div class="reviews-grid">
-
-            <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <p>"Very professional ghostwriting. My book finally came alive."</p>
-                <h4>— Anya Sharma</h4>
-            </div>
-
-            <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <p>"Great promotion strategy. My book started getting real attention."</p>
-                <h4>— Dr. Elias Vance</h4>
-            </div>
-
-            <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <p>"Everything was handled smoothly from idea to publishing stage."</p>
-                <h4>— Clara Bell</h4>
-            </div>
-
+        <!-- HEADER -->
+        <div class="section-hero">
+            <h2>Client Reviews</h2>
+            <p>Trusted feedback from authors I've worked with</p>
         </div>
 
-        <!-- SEE MORE BUTTON -->
-        <div style="text-align:center; margin-top:30px;">
-            <button class="cta-button" onclick="toggleReviews()">
-                See More Reviews
-            </button>
-        </div>
+        <!-- MAIN GRID (REVIEWS + FORM) -->
+        <div class="reviews-layout">
 
-        <!-- REVIEW FORM -->
-        <div class="review-form" style="margin-top:50px;">
+            <!-- LEFT: REVIEWS -->
+            <div class="reviews-display">
 
-            <h3 style="text-align:center;">Leave a Review</h3>
-
-            <form action="https://formspree.io/f/xwvaaebo" method="POST">
-
-                <input type="text" name="name" placeholder="Your Name" required>
-                <textarea name="review" placeholder="Your Review" required></textarea>
-
-                <select name="rating" required>
-                    <option value="5">★★★★★ Excellent</option>
-                    <option value="4">★★★★ Good</option>
-                    <option value="3">★★★ Average</option>
-                </select>
-
-                <div style="text-align:center;">
-                    <button type="submit" class="cta-button">Submit Review</button>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Very professional ghostwriting. My book finally came alive."</p>
+                    <h4>— Anya Sharma</h4>
                 </div>
 
-            </form>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Great promotion strategy. My book started getting real attention."</p>
+                    <h4>— Dr. Elias Vance</h4>
+                </div>
+
+                <div class="review-card hidden-review">
+                    <div class="stars">★★★★★</div>
+                    <p>"Everything was handled smoothly from idea to publishing stage."</p>
+                    <h4>— Clara Bell</h4>
+                </div>
+
+                <div class="see-more">
+                    <button class="cta-button" onclick="toggleReviews()">See More Reviews</button>
+                </div>
+
+            </div>
+
+            <!-- RIGHT: REVIEW FORM -->
+            <div class="review-form-box">
+
+                <h3>Leave a Review</h3>
+
+                <form action="https://formspree.io/f/xwvaaebo" method="POST">
+
+                    <input type="text" name="name" placeholder="Your Name" required>
+
+                    <textarea name="review" placeholder="Write your experience..." required></textarea>
+
+                    <!-- STAR RATING (PREMIUM STYLE) -->
+                    <div class="rating-box">
+                        <label>Rating</label>
+                        <div class="stars-input">
+                            <input type="radio" name="rating" value="5" id="r5"><label for="r5">★★★★★</label>
+                            <input type="radio" name="rating" value="4" id="r4"><label for="r4">★★★★</label>
+                            <input type="radio" name="rating" value="3" id="r3"><label for="r3">★★★</label>
+                            <input type="radio" name="rating" value="2" id="r2"><label for="r2">★★</label>
+                            <input type="radio" name="rating" value="1" id="r1"><label for="r1">★</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="cta-button full-btn">
+                        Submit Review
+                    </button>
+
+                </form>
+
+            </div>
 
         </div>
 
     </div>
 
 </section>
-
 </main>
 
 <!-- =========================
