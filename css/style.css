@@ -25,6 +25,35 @@ body {
     align-items: center;
     justify-content: space-between;
 }
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* LOGO IMAGE */
+.logo-img {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* TEXT */
+.logo-text {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 1px;
+}
+@media (max-width: 768px) {
+    .logo-img {
+        height: 35px;
+    }
+
+    .logo-text {
+        font-size: 1.3em;
+    }
+}
 /* =========================
    LAYOUT
 ========================= */
@@ -790,3 +819,5 @@ body::before {
     from { background-position: 100%; }
     to { background-position: 0%; }
 }
+
+
