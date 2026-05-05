@@ -773,24 +773,11 @@ body::before {
     margin-left: 5px;
 }
 
-/* =========================
-   REVIEW CAROUSEL
-========================= */
-
-.review-carousel {
-    position: relative;
-    overflow: hidden;
-}
-
-.review-track {
-    display: flex;
-    transition: transform 0.6s ease;
-}
-
+/* CLEAN STATIC REVIEWS */
 .review-card {
-    min-width: 100%;
+    width: 100%;
+    transform: none !important;
 }
-
 /* STAR ANIMATION */
 .stars {
     background: linear-gradient(90deg, gold 50%, #333 50%);
