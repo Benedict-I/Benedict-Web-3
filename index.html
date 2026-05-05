@@ -1,1 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benedict Website</title>
 
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- =========================
+   BACKGROUND SYSTEM
+========================= -->
+<div id="progress-bar"></div>
+<div id="galaxy-swirl"></div>
+<div id="galaxy-depth-1"></div>
+<div id="galaxy-depth-2"></div>
+<div id="galaxy-depth-3"></div>
+<div id="nebula"></div>
+<div id="shooting-stars"></div>
+<canvas id="galaxy"></canvas>
+
+<!-- =========================
+   HEADER
+========================= -->
+<header class="site-header">
+    <div class="container header-container">
+
+        <div class="logo">Benedict AuthorForge</div>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+            </ul>
+        </nav>
+
+        <div id="google_translate_element"></div>
+
+        <button class="menu-toggle" aria-label="Toggle navigation menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<!-- =========================
+   HERO SECTION
+========================= -->
+<main>
+
+<section class="hero-section">
+    <div class="container hero-content-wrapper">
+        <div class="hero-text-content">
+
+            <h1 class="typing-text">
+                <span id="typed-text">Bring Your Story to Life.</span><span class="cursor">|</span>
+            </h1>
+
+            <h2>Publish with Confidence.</h2>
+
+            <p>
+                Expert ghostwriting, strategic publishing, and powerful book promotion to launch your literary dreams.
+            </p>
+
+            <a href="contact.html" class="cta-button">Let's Discuss Your Book</a>
+
+        </div>
+    </div>
+</section>
+
+<!-- =========================
+   SERVICES SECTION
+========================= -->
+<section class="services-overview-section">
+
+    <div class="container">
+
+        <h2>Your Services at a Glance</h2>
+
+        <div class="service-items-grid">
+
+            <div class="service-item">
+                <i class="fas fa-pen-nib"></i>
+                <h3>Ghostwriting</h3>
+                <p>Your voice, my pen.</p>
+            </div>
+
+            <div class="service-item">
+                <i class="fas fa-book-open"></i>
+                <h3>Publishing</h3>
+                <p>Navigate the path to print.</p>
+            </div>
+
+            <div class="service-item">
+                <i class="fas fa-bullhorn"></i>
+                <h3>Promotion</h3>
+                <p>Connect with your audience.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+   REVIEWS SECTION (NEW + CLEAN)
+========================= -->
+<section id="reviews" class="reviews-section">
+
+    <div class="container">
+
+        <h2>Client Reviews</h2>
+        <p style="text-align:center; opacity:0.8;">
+            Real feedback from authors who worked with me
+        </p>
+
+        <div class="reviews-grid">
+
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"Very professional ghostwriting. My book finally came alive."</p>
+                <h4>— Anya Sharma</h4>
+            </div>
+
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"Great promotion strategy. My book started getting real attention."</p>
+                <h4>— Dr. Elias Vance</h4>
+            </div>
+
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"Everything was handled smoothly from idea to publishing stage."</p>
+                <h4>— Clara Bell</h4>
+            </div>
+
+        </div>
+
+        <!-- SEE MORE BUTTON -->
+        <div style="text-align:center; margin-top:30px;">
+            <button class="cta-button" onclick="toggleReviews()">
+                See More Reviews
+            </button>
+        </div>
+
+        <!-- REVIEW FORM -->
+        <div class="review-form" style="margin-top:50px;">
+
+            <h3 style="text-align:center;">Leave a Review</h3>
+
+            <form action="https://formspree.io/f/xwvaaebo" method="POST">
+
+                <input type="text" name="name" placeholder="Your Name" required>
+                <textarea name="review" placeholder="Your Review" required></textarea>
+
+                <select name="rating" required>
+                    <option value="5">★★★★★ Excellent</option>
+                    <option value="4">★★★★ Good</option>
+                    <option value="3">★★★ Average</option>
+                </select>
+
+                <div style="text-align:center;">
+                    <button type="submit" class="cta-button">Submit Review</button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+<!-- =========================
+   FOOTER
+========================= -->
+<footer class="site-footer">
+    <div class="container">
+        <p>&copy; 2026 Benedict. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- =========================
+   SCRIPTS
+========================= -->
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script>
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+        { pageLanguage: 'en', autoDisplay: true },
+        'google_translate_element'
+    );
+}
+</script>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
