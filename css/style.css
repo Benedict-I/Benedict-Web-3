@@ -635,3 +635,24 @@ body::before {
         display: flex;
     }
 }
+
+
+/* VERIFIED BADGE */
+.verified {
+    color: #00ff9d;
+    font-size: 0.85em;
+    margin-left: 6px;
+    font-weight: 600;
+}
+
+/* PREMIUM STAR LOOK */
+.stars {
+    color: gold;
+    letter-spacing: 2px;
+    animation: glow 1.8s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 5px gold; }
+    to { text-shadow: 0 0 15px gold; }
+}
