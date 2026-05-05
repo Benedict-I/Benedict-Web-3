@@ -656,3 +656,150 @@ body::before {
     from { text-shadow: 0 0 5px gold; }
     to { text-shadow: 0 0 15px gold; }
 }
+/* =========================
+   PREMIUM PORTFOLIO UPGRADE
+========================= */
+
+.portfolio-section {
+    text-align: center;
+}
+
+.portfolio-scroll {
+    display: flex;
+    gap: 25px;
+    overflow-x: auto;
+    padding: 20px 10px;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+}
+
+.portfolio-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.portfolio-item {
+    min-width: 300px;
+    scroll-snap-align: center;
+    cursor: pointer;
+    transition: 0.4s ease;
+}
+
+.portfolio-item:hover {
+    transform: scale(1.05);
+}
+
+.portfolio-image-wrapper {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.portfolio-image-wrapper img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    transition: 0.4s ease;
+}
+
+.portfolio-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: 0.3s;
+    color: white;
+    font-size: 22px;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+    opacity: 1;
+}
+
+
+/* =========================
+   MODAL (FIXED + PREMIUM)
+========================= */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(10px);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    background: #111;
+    padding: 25px;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-content img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.close-btn {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* =========================
+   VERIFIED BADGE
+========================= */
+
+.verified {
+    color: #00ff99;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+/* =========================
+   REVIEW CAROUSEL
+========================= */
+
+.review-carousel {
+    position: relative;
+    overflow: hidden;
+}
+
+.review-track {
+    display: flex;
+    transition: transform 0.6s ease;
+}
+
+.review-card {
+    min-width: 100%;
+}
+
+/* STAR ANIMATION */
+.stars {
+    background: linear-gradient(90deg, gold 50%, #333 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: starFill 1.5s ease forwards;
+}
+
+@keyframes starFill {
+    from { background-position: 100%; }
+    to { background-position: 0%; }
+}
