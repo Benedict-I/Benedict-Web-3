@@ -7,14 +7,11 @@
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- =========================
-   BACKGROUND SYSTEM
-========================= -->
+<!-- BACKGROUND SYSTEM -->
 <div id="progress-bar"></div>
 <div id="galaxy-swirl"></div>
 <div id="galaxy-depth-1"></div>
@@ -24,9 +21,7 @@
 <div id="shooting-stars"></div>
 <canvas id="galaxy"></canvas>
 
-<!-- =========================
-   HEADER
-========================= -->
+<!-- HEADER -->
 <header class="site-header">
     <div class="container header-container">
 
@@ -43,19 +38,16 @@
             </ul>
         </nav>
 
-        <div id="google_translate_element"></div>
-
-        <button class="menu-toggle" aria-label="Toggle navigation menu">
+        <button class="menu-toggle">
             <span></span><span></span><span></span>
         </button>
+
     </div>
 </header>
 
-<!-- =========================
-   HERO SECTION
-========================= -->
 <main>
 
+<!-- HERO -->
 <section class="hero-section">
     <div class="container hero-content-wrapper">
         <div class="hero-text-content">
@@ -76,11 +68,8 @@
     </div>
 </section>
 
-<!-- =========================
-   SERVICES SECTION
-========================= -->
+<!-- SERVICES -->
 <section class="services-overview-section">
-
     <div class="container">
 
         <h2>Your Services at a Glance</h2>
@@ -108,44 +97,41 @@
         </div>
 
     </div>
-
 </section>
 
 <!-- =========================
-   REVIEWS SECTION (NEW + CLEAN)
+   REVIEWS (PREMIUM SYSTEM)
 ========================= -->
 <section id="reviews" class="reviews-section">
 
     <div class="container">
 
-        <!-- HEADER -->
         <div class="section-hero">
             <h2>Client Reviews</h2>
-            <p>Trusted feedback from authors I've worked with</p>
+            <p>Real feedback from verified authors</p>
         </div>
 
-        <!-- MAIN GRID (REVIEWS + FORM) -->
         <div class="reviews-layout">
 
-            <!-- LEFT: REVIEWS -->
+            <!-- REVIEWS -->
             <div class="reviews-display">
 
                 <div class="review-card">
                     <div class="stars">★★★★★</div>
                     <p>"Very professional ghostwriting. My book finally came alive."</p>
-                    <h4>— Anya Sharma</h4>
+                    <h4>— Anya Sharma <span class="verified">✔ Verified Author</span></h4>
                 </div>
 
                 <div class="review-card">
                     <div class="stars">★★★★★</div>
                     <p>"Great promotion strategy. My book started getting real attention."</p>
-                    <h4>— Dr. Elias Vance</h4>
+                    <h4>— Dr. Elias Vance <span class="verified">✔ Verified Author</span></h4>
                 </div>
 
                 <div class="review-card hidden-review">
                     <div class="stars">★★★★★</div>
-                    <p>"Everything was handled smoothly from idea to publishing stage."</p>
-                    <h4>— Clara Bell</h4>
+                    <p>"Everything was handled smoothly from idea to publishing."</p>
+                    <h4>— Clara Bell <span class="verified">✔ Verified Author</span></h4>
                 </div>
 
                 <div class="see-more">
@@ -154,7 +140,7 @@
 
             </div>
 
-            <!-- RIGHT: REVIEW FORM -->
+            <!-- FORM -->
             <div class="review-form-box">
 
                 <h3>Leave a Review</h3>
@@ -165,7 +151,6 @@
 
                     <textarea name="review" placeholder="Write your experience..." required></textarea>
 
-                    <!-- STAR RATING (PREMIUM STYLE) -->
                     <div class="rating-box">
                         <label>Rating</label>
                         <div class="stars-input">
@@ -190,30 +175,15 @@
     </div>
 
 </section>
+
 </main>
 
-<!-- =========================
-   FOOTER
-========================= -->
+<!-- FOOTER -->
 <footer class="site-footer">
     <div class="container">
         <p>&copy; 2026 Benedict. All rights reserved.</p>
     </div>
 </footer>
-
-<!-- =========================
-   SCRIPTS
-========================= -->
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-<script>
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement(
-        { pageLanguage: 'en', autoDisplay: true },
-        'google_translate_element'
-    );
-}
-</script>
 
 <script src="js/script.js"></script>
 
