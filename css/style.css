@@ -797,14 +797,16 @@ body::before {
 }
 
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.logo-icon {
+  height: 45px;      /* controls size */
+  width: auto;       /* keeps aspect ratio */
+  object-fit: contain;
+  display: block;
 }
 
-.logo-icon {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
 }
