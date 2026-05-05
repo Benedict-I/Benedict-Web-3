@@ -30,30 +30,6 @@ body {
     align-items: center;
     gap: 10px;
 }
-
-/* LOGO IMAGE */
-.logo-img {
-    height: 45px;
-    width: auto;
-    object-fit: contain;
-}
-
-/* TEXT */
-.logo-text {
-    font-size: 1.6em;
-    font-weight: bold;
-    color: #fff;
-    letter-spacing: 1px;
-}
-@media (max-width: 768px) {
-    .logo-img {
-        height: 35px;
-    }
-
-    .logo-text {
-        font-size: 1.3em;
-    }
-}
 /* =========================
    LAYOUT
 ========================= */
