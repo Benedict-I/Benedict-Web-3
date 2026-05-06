@@ -798,7 +798,7 @@ body::before {
 
 
 .logo-icon {
-  height: 45px;      /* controls size */
+  height: 60px;      /* controls size */
   width: auto;       /* keeps aspect ratio */
   object-fit: contain;
   display: block;
