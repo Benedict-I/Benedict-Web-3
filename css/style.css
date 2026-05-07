@@ -742,25 +742,6 @@ body::before {
     color: #00bcd4;
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
-    .main-nav ul {
-        display: none;
-        flex-direction: column;
-        background: rgba(20, 20, 30, 0.95);
-        position: absolute;
-        top: 70px;
-        right: 20px;
-        padding: 20px;
-        border-radius: 10px;
-    }
-
-    .main-nav ul.active {
-        display: flex;
-    }
-}
-
-
 /* VERIFIED BADGE */
 .verified {
     color: #00ff9d;
