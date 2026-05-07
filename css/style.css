@@ -40,7 +40,7 @@ body {
     color: white;
 }
 .logo img{
-    width: 70px;   /* change size here */
+    width: 90px;   /* change size here */
     height: auto;
     display: block;
     object-fit: contain;
