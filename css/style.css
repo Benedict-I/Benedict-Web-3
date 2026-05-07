@@ -919,3 +919,158 @@ header {
   justify-content: space-between;
   padding: 10px 20px;
 }
+
+
+
+/* =========================
+   PREMIUM MOBILE FIX
+========================= */
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2000;
+    padding: 10px;
+}
+
+.menu-toggle .bar {
+    width: 28px;
+    height: 3px;
+    background: #fff;
+    border-radius: 30px;
+    transition: 0.4s ease;
+}
+
+/* Animate Hamburger */
+.menu-toggle.active .bar:nth-child(1) {
+    transform: rotate(45deg) translateY(11px);
+}
+
+.menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translateY(-11px);
+}
+
+/* HEADER MOBILE */
+@media (max-width: 768px) {
+
+    .site-header {
+        padding: 12px 0;
+    }
+
+    .header-container {
+        gap: 10px;
+        align-items: center;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+        line-height: 1.2;
+        max-width: 140px;
+    }
+
+    /* SHOW HAMBURGER */
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* MOBILE MENU */
+    .main-nav ul {
+        position: fixed;
+        top: 80px;
+        right: -100%;
+        width: 260px;
+        height: auto;
+        background: rgba(10,10,20,0.96);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 20px;
+        padding: 25px;
+        flex-direction: column;
+        gap: 20px;
+        transition: 0.4s ease;
+        z-index: 1500;
+    }
+
+    .main-nav ul.active {
+        right: 20px;
+    }
+
+    .main-nav ul li a {
+        font-size: 1rem;
+    }
+
+    /* HERO SECTION */
+    .hero-section {
+        min-height: auto;
+        padding: 140px 0 100px;
+    }
+
+    .hero-text-content {
+        text-align: left;
+    }
+
+    .hero-section h1 {
+        font-size: 3rem;
+        line-height: 1.2;
+    }
+
+    .hero-section h2 {
+        font-size: 2rem;
+        text-align: left;
+        padding-top: 0;
+    }
+
+    .hero-text-content p {
+        font-size: 1rem;
+        max-width: 95%;
+    }
+
+    .cta-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* GOOGLE TRANSLATE */
+    #google_translate_element {
+        display: none;
+    }
+
+    /* SERVICES */
+    .service-items-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* PORTFOLIO */
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* REVIEWS */
+    .reviews-layout {
+        grid-template-columns: 1fr;
+    }
+
+    /* ABOUT */
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* CONTACT */
+    .contact-options {
+        grid-template-columns: 1fr;
+    }
+
+    /* GENERAL SPACING */
+    section {
+        padding: 70px 0;
+    }
+}
