@@ -28,7 +28,7 @@ body {
 .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
 }
 /* =========================
    LAYOUT
@@ -105,7 +105,7 @@ a:hover {
 }
 
 .logo {
-    font-size: 2em;
+    font-size: 5em;
     font-weight: bold;
     color: white;
 }
@@ -713,12 +713,14 @@ body::before {
     list-style: none;
     display: flex;
     flex-direction: row;
-    gap: 25px;
+    gap: 40px;
     margin: 0;
     padding: 0;
     align-items: center;
 }
-
+.main-nav a {
+    white-space: nowrap;
+}
 /* LINKS */
 .main-nav ul li a {
     text-decoration: none;
