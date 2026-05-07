@@ -25,6 +25,10 @@ body {
     align-items: center;
     justify-content: space-between;
 }
+#google_translate_element{
+    min-width: 160px;
+    margin-left: 20px;
+}
 .logo {
     display: flex;
     align-items: center;
