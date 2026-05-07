@@ -422,6 +422,12 @@ section {
     position: relative;
     z-index: 2;
 }
+background:
+linear-gradient(
+to bottom,
+rgba(0,0,0,0.95),
+rgba(10,10,15,0.98)
+);
 
 /* CTA CENTER */
 .cta-section {
