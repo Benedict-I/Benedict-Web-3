@@ -17,9 +17,6 @@ body {
     color: white;
     font-weight: 500;
 }
-.main-nav ul.active {
-    display: flex;
-}
 .header-container {
     display: flex;
     align-items: center;
