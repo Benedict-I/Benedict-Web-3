@@ -39,6 +39,12 @@ body {
     font-weight: bold;
     color: white;
 }
+.logo img{
+    width: 70px;   /* change size here */
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
 /* =========================
    LAYOUT
 ========================= */
