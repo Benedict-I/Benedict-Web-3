@@ -1071,3 +1071,142 @@ header {
         padding: 70px 0;
     }
 }
+
+
+
+
+
+
+/* =========================
+   UNIVERSAL RESPONSIVE FIX
+========================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* ALL IMAGES */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* FLEXIBLE CONTAINERS */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 0 auto;
+}
+
+/* PREVENT TEXT OVERFLOW */
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+a,
+span {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* RESPONSIVE SECTIONS */
+section {
+    width: 100%;
+    overflow: hidden;
+}
+
+/* RESPONSIVE GRID FIX */
+.service-items-grid,
+.portfolio-grid,
+.reviews-layout,
+.contact-options,
+.about-grid,
+.service-row {
+    width: 100%;
+}
+
+/* MOBILE GLOBAL FIX */
+@media (max-width: 768px) {
+
+    body {
+        font-size: 15px;
+    }
+
+    h1 {
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+
+    h2 {
+        font-size: clamp(1.6rem, 6vw, 2.2rem);
+    }
+
+    h3 {
+        font-size: clamp(1.2rem, 5vw, 1.6rem);
+    }
+
+    .container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    /* FORCE EVERYTHING INSIDE SCREEN */
+    * {
+        max-width: 100%;
+    }
+
+    /* FIX BUTTONS */
+    .cta-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* STACK ALL GRIDS */
+    .service-items-grid,
+    .portfolio-grid,
+    .reviews-layout,
+    .contact-options,
+    .about-grid,
+    .service-row {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* FIX HEADER */
+    .header-container {
+        width: 100%;
+    }
+
+    /* FIX NAV */
+    .main-nav ul {
+        width: 85%;
+        max-width: 300px;
+    }
+
+    /* FIX PORTFOLIO IMAGES */
+    .portfolio-image-wrapper img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* HERO FIX */
+    .hero-section {
+        padding-top: 120px;
+    }
+
+    .hero-text-content {
+        width: 100%;
+    }
+}
