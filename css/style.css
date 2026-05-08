@@ -728,6 +728,8 @@ body::before {
     margin: 0;
     padding: 0;
     align-items: center;
+   height: auto;
+overflow-y: auto;
 }
 .main-nav a {
     white-space: nowrap;
@@ -980,9 +982,6 @@ header {
     /* =========================
    CLEAN MOBILE NAV FIX
 ========================= */
-
-@media (max-width: 768px) {
-
     .menu-toggle {
         display: flex;
         flex-direction: column;
@@ -1061,8 +1060,6 @@ header {
     #google_translate_element {
         display: none;
     }
-}
-
     .main-nav ul li a {
         font-size: 1rem;
     }
