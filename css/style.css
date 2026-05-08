@@ -977,26 +977,91 @@ header {
     }
 
     /* MOBILE MENU */
-    .main-nav ul {
-        position: fixed;
-        top: 80px;
-        right: -100%;
-        width: 260px;
-        height: auto;
-        background: rgba(10,10,20,0.96);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 20px;
-        padding: 25px;
+    /* =========================
+   CLEAN MOBILE NAV FIX
+========================= */
+
+@media (max-width: 768px) {
+
+    .menu-toggle {
+        display: flex;
         flex-direction: column;
-        gap: 20px;
-        transition: 0.4s ease;
-        z-index: 1500;
+        justify-content: center;
+        gap: 5px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 3000;
     }
 
-    .main-nav ul.active {
-        right: 20px;
+    .menu-toggle .bar {
+        width: 28px;
+        height: 3px;
+        background: #fff;
+        border-radius: 20px;
+        transition: 0.3s ease;
     }
+
+    /* NAV PANEL */
+    .main-nav ul {
+        position: fixed;
+        top: 75px;
+        right: -100%;
+        width: 75%;
+        max-width: 280px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        padding: 25px;
+        gap: 18px;
+
+        background: rgba(10,10,20,0.97);
+        backdrop-filter: blur(15px);
+
+        border-radius: 18px 0 0 18px;
+
+        transition: right 0.35s ease;
+
+        z-index: 2500;
+    }
+
+    /* OPEN MENU */
+    .main-nav ul.active {
+        right: 0;
+    }
+
+    /* LINKS */
+    .main-nav ul li {
+        width: 100%;
+    }
+
+    .main-nav ul li a {
+        display: block;
+        width: 100%;
+        font-size: 16px;
+        padding: 10px 0;
+    }
+
+    /* HAMBURGER ANIMATION */
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: rotate(45deg) translateY(11px);
+    }
+
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: rotate(-45deg) translateY(-11px);
+    }
+
+    /* HIDE GOOGLE TRANSLATE */
+    #google_translate_element {
+        display: none;
+    }
+}
 
     .main-nav ul li a {
         font-size: 1rem;
