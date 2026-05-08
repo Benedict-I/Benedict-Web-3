@@ -450,3 +450,67 @@ body::before {
         grid-template-columns: 1fr;
     }
 }
+
+
+/* =========================
+   GLOBAL CARD + GRID FIX (ALL PAGES)
+========================= */
+
+/* UNIVERSAL GRID CONTAINERS */
+.service-items-grid,
+.portfolio-grid,
+.about-grid,
+.contact-options,
+.reviews-layout {
+    display: grid;
+    gap: 25px;
+    width: 100%;
+}
+
+/* DESKTOP LAYOUTS */
+.service-items-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.portfolio-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.about-grid,
+.contact-options {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.reviews-layout {
+    grid-template-columns: 1.2fr 1fr;
+}
+
+/* UNIVERSAL CARD STYLE (ALL SECTIONS USE THIS LOOK) */
+.service-item,
+.portfolio-item,
+.review-card,
+.contact-card,
+.about-card {
+    background: rgba(20,20,30,0.4);
+    padding: 25px;
+    border-radius: 15px;
+    transition: 0.3s ease;
+}
+
+/* HOVER EFFECT (ONLY FOR INTERACTIVE CARDS) */
+.service-item:hover,
+.portfolio-item:hover {
+    transform: translateY(-8px);
+}
+
+/* RESPONSIVE FIX (ALL PAGES) */
+@media (max-width: 768px) {
+
+    .service-items-grid,
+    .portfolio-grid,
+    .about-grid,
+    .contact-options,
+    .reviews-layout {
+        grid-template-columns: 1fr;
+    }
+}
