@@ -256,6 +256,10 @@ body::before {
     margin-bottom: 20px;
 }
 
+/* =========================
+   FIXED STAR RATING SYSTEM
+========================= */
+
 .stars-input {
     display: flex;
     flex-direction: row-reverse;
@@ -263,10 +267,12 @@ body::before {
     gap: 5px;
 }
 
+/* hide radio buttons */
 .stars-input input {
     display: none;
 }
 
+/* star labels (NO COLOR CHANGED) */
 .stars-input label {
     font-size: 28px;
     color: #555;
@@ -274,6 +280,7 @@ body::before {
     transition: 0.3s;
 }
 
+/* hover + selection logic FIXED */
 .stars-input input:checked ~ label,
 .stars-input label:hover,
 .stars-input label:hover ~ label {
@@ -363,6 +370,29 @@ body::before {
 
     .hero-text-content h1 {
         font-size: 2.2rem;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+}
+@media (max-width: 768px) {
+
+    .main-nav ul {
+        position: absolute;
+        top: 80px;
+        right: 20px;
+        background: rgba(20,20,30,0.95);
+        flex-direction: column;
+        width: 220px;
+        padding: 20px;
+        border-radius: 12px;
+        display: none;
+        z-index: 2000;
+    }
+
+    .main-nav ul.active {
+        display: flex;
     }
 
     .menu-toggle {
