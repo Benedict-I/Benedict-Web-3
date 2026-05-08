@@ -229,7 +229,7 @@ section {
     transform: translateY(-3px);
 }
 .cta-section {
-    width: 100%;
+    width: 60%;
     display: flex;
     justify-content: center;
     margin-top: 60px;
@@ -438,7 +438,7 @@ section {
 
 /* FULL BUTTON */
 .full-btn {
-    width: 100%;
+    width: 60%;
 }
 
 /* =========================
