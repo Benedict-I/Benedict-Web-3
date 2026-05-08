@@ -229,16 +229,28 @@ section {
     transform: translateY(-3px);
 }
 .cta-section {
-    text-align: center;
-    max-width: 700px;
-    margin: 60px auto 0;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
+    justify-content: center;
+    margin-top: 60px;
 }
 .cta-section .cta-button {
     margin: 0 auto;
+}
+.cta-section p {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 15px;
+}
+
+.cta-section a {
+    display: inline-block;
+}
+.cta-section .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 /* =========================
    SERVICES
