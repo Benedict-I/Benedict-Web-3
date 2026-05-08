@@ -9,8 +9,31 @@ document.addEventListener("DOMContentLoaded", () => {
   initContactForm();
   initMouseTracker();
   initGalaxy();
+  initScrollReveal();
 });
+function initScrollReveal() {
+  const elements = document.querySelectorAll("section > .container > div, .service-item, .review-card");
 
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+      }
+    });
+  }, { threshold: 0.15 });
+
+  elements.forEach((el, index) => {
+    el.classList.add("reveal");
+
+    if (index % 2 === 0) {
+      el.classList.add("reveal-left");
+    } else {
+      el.classList.add("reveal-right");
+    }
+
+    observer.observe(el);
+  });
+}
 /* =========================
    1. SCROLL ANIMATIONS
 ========================= */
