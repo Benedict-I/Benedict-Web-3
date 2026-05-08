@@ -229,8 +229,8 @@ section {
     transform: translateY(-3px);
 }
 .cta-section {
-    width: 60%;
-    display: flex;
+    width: 100%;
+    display: inline-block;
     justify-content: center;
     margin-top: 60px;
 }
