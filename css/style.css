@@ -214,7 +214,7 @@ section {
 ========================= */
 
 .cta-button {
-    display: inline-block;
+    display:  flex;
     background: #e67e22;
     color: #fff;
     padding: 12px 25px;
@@ -222,6 +222,7 @@ section {
     font-weight: bold;
     transition: 0.3s;
     text-decoration: none;
+    justify-content: center;
 }
 
 .cta-button:hover {
