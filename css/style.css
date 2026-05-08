@@ -256,12 +256,29 @@ body::before {
     margin-bottom: 20px;
 }
 
-/* STARS */
-.stars {
-    color: gold;
-    letter-spacing: 2px;
+.stars-input {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 5px;
 }
 
+.stars-input input {
+    display: none;
+}
+
+.stars-input label {
+    font-size: 28px;
+    color: #555;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.stars-input input:checked ~ label,
+.stars-input label:hover,
+.stars-input label:hover ~ label {
+    color: gold;
+}
 /* VERIFIED */
 .verified {
     color: #00ff99;
