@@ -222,8 +222,7 @@ section {
     font-weight: bold;
     transition: 0.3s;
     text-decoration: none;
-    justify-content: center;
-}
+    }
 
 .cta-button:hover {
     background: #d35400;
