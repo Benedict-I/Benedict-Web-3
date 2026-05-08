@@ -323,12 +323,6 @@ body::before {
     min-height: 120px;
 }
 
-/* RATING */
-.stars-input {
-    display: flex;
-    gap: 5px;
-}
-
 /* FULL BUTTON */
 .full-btn {
     width: 100%;
@@ -397,5 +391,62 @@ body::before {
 
     .menu-toggle {
         display: flex;
+    }
+}
+
+/* =========================
+   UNIVERSAL GRID + CARD FIX
+========================= */
+
+.service-items-grid,
+.portfolio-grid,
+.about-grid,
+.contact-options {
+    display: grid;
+    gap: 25px;
+}
+
+/* SERVICE + PORTFOLIO (3 COLUMN DEFAULT) */
+.service-items-grid,
+.portfolio-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* ABOUT + CONTACT (2 COLUMN DEFAULT) */
+.about-grid,
+.contact-options {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* =========================
+   CARD UNIFIED STYLE
+========================= */
+
+.service-item,
+.review-card,
+.contact-card,
+.portfolio-item {
+    background: rgba(20,20,30,0.4);
+    padding: 25px;
+    border-radius: 15px;
+    transition: 0.3s ease;
+}
+
+.service-item:hover,
+.portfolio-item:hover {
+    transform: translateY(-8px);
+}
+
+/* =========================
+   MOBILE FIX
+========================= */
+
+@media (max-width: 768px) {
+
+    .service-items-grid,
+    .portfolio-grid,
+    .about-grid,
+    .contact-options {
+        grid-template-columns: 1fr;
     }
 }
