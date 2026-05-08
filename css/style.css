@@ -228,7 +228,18 @@ section {
     background: #d35400;
     transform: translateY(-3px);
 }
-
+.cta-section {
+    text-align: center;
+    max-width: 700px;
+    margin: 60px auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+.cta-section .cta-button {
+    margin: 0 auto;
+}
 /* =========================
    SERVICES
 ========================= */
@@ -561,3 +572,4 @@ section {
         max-width: 100%;
     }
 }
+
