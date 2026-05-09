@@ -580,13 +580,14 @@ section {
 
 .about-grid {
     display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 30px;
+    grid-template-columns: auto auto;
+    gap: 60px;
     align-items: center;
+    justify-content: center; /* THIS centers both */
 }
 .about-text {
     text-align: left;
-    max-width: 500px;
+    max-width: 550px;
 }
 /* image fix */
 .about-image img {
