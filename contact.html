@@ -9,6 +9,7 @@
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
 </head>
 
 <body>
@@ -36,68 +37,132 @@
     <span class="bar"></span>
     <span class="bar"></span>
 </button>
-
     </div>
 </header>
-
 <main>
-
 <section class="contact-section">
+<!-- LIVE BACKGROUND -->
+<div class="contact-bg"></div>
+<div class="contact-overlay"></div>
+
+<!-- FLOATING LIGHTS -->
+<div class="floating-light light-1"></div>
+<div class="floating-light light-2"></div>
+<div class="floating-light light-3"></div>
 <div class="container">
-
-    <!-- ================= HERO ================= -->
-    <div class="contact-hero">
-        <h2>Let’s Talk About Your Book</h2>
-        <p>
-            Whether you're starting from scratch or ready to promote, I’ll help you move forward with clarity and results.
-        </p>
-
-        <!-- PRIMARY CTA -->
-        <div class="primary-cta">
-            <a href="https://wa.me/2348056841236" target="_blank" class="cta-button whatsapp">
-                <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-            </a>
-        </div>
+<!-- ================= HERO ================= -->
+<div class="contact-hero">
+    <span class="contact-tag">
+        CONTACT
+    </span>
+    <h2>
+        Let’s Talk About Your Book
+    </h2>
+    <p>
+        Whether you're starting from scratch or ready to promote,
+        I’ll help you move forward with clarity, strategy and results.
+    </p>
+</div>
+<!-- ================= GRID ================= -->
+<div class="contact-grid">
+    <!-- ================= FORM CARD ================= -->
+    <div class="contact-card form-card">
+        <div class="card-glow"></div>
+        <h3>Send a Message</h3>
+        <form action="https://formspree.io/f/xwvaaebo" method="POST">
+            <!-- INPUT GRID -->
+            <div class="input-grid">
+                <div class="input-box">
+                    <input type="text" name="name" required>
+                    <label>Your Name</label>
+                </div>
+                <div class="input-box">
+                    <input type="email" name="email" required>
+                    <label>Your Email</label>
+                </div>
+            </div>
+            <!-- MESSAGE -->
+            <div class="input-box textarea-box">
+                <textarea
+                    name="message"
+                    rows="10"
+                    required
+                ></textarea>
+                <label>
+                    Tell me about your book...
+                </label>
+            </div>
+            <!-- BUTTON -->
+            <button type="submit" class="premium-btn">
+                <i class="fas fa-paper-plane"></i>
+                Send Message
+            </button>
+        </form>
     </div>
-
-    <!-- ================= OPTIONS ================= -->
-    <div class="contact-options">
-
-        <!-- FORM -->
-        <div class="contact-card">
-            <h3>Send a Message</h3>
-
-            <form action="https://formspree.io/f/xwvaaebo" method="POST">
-
-                <input type="text" name="name" placeholder="Your Name" required>
-
-                <input type="email" name="email" placeholder="Your Email" required>
-
-                <textarea name="message" placeholder="Tell me about your book..." rows="10" required></textarea>
-
-                <button type="submit" class="cta-button">Send Message</button>
-
-            </form>
+    <!-- ================= DIRECT CONTACT ================= -->
+    <div class="contact-card info-card">
+        <div class="card-glow"></div>
+        <h3>Direct Contact</h3>
+        <div class="info-items">
+            <!-- EMAIL -->
+            <div class="info-item">
+                <div class="icon-box">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div>
+                    <span>Email</span>
+                    <p>
+                        ben.i.consultings@gmail.com
+                    </p>
+                </div>
+            </div>
+            <!-- PHONE -->
+            <div class="info-item">
+                <div class="icon-box">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <div>
+                    <span>Phone</span>
+                    <p>
+                        0805 684 1236
+                    </p>
+                </div>
+            </div>
+            <!-- LOCATION -->
+            <div class="info-item">
+                <div class="icon-box">
+                    <i class="fas fa-location-dot"></i>
+                </div>
+                <div>
+                    <span>Location</span>
+                    <p>
+                        Nigeria
+                    </p>
+                </div>
+            </div>
         </div>
-
-        <!-- DIRECT CONTACT -->
-        <div class="contact-card">
-            <h3>Direct Contact</h3>
-
-            <p><i class="fas fa-envelope"></i> ben.i.consultings@gmail.com</p>
-            <p><i class="fas fa-phone"></i> 0805 684 1236</p>
-            <p><i class="fas fa-location-dot"></i> Nigeria</p>
-
-            <a href="https://www.fiverr.com/benedict_ink2" target="_blank" class="cta-button secondary">
+        <!-- BUTTONS -->
+        <div class="contact-buttons">
+            <!-- WHATSAPP -->
+            <a href="https://wa.me/2348056841236"
+                target="_blank"
+                class="premium-btn whatsapp-btn">
+                <i class="fab fa-whatsapp"></i>
+                Chat on WhatsApp
+            </a>
+            <!-- FIVERR -->
+            <a
+                href="https://www.fiverr.com/benedict_ink2"
+                target="_blank"
+                class="premium-btn secondary-btn"
+            >
                 Fiverr Message
             </a>
         </div>
-
     </div>
-
+</div>
 </div>
 </section>
-
 </main>
 
 <footer class="site-footer">
