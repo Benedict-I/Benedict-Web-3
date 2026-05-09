@@ -230,14 +230,17 @@ section {
 }
 .cta-section {
     width: 100%;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     margin-top: 60px;
 }
 .cta-section p {
     text-align: center;
-    max-width: 100px;
+    max-width: 600px;
     margin: 0 auto 15px;
+    line-height: 1.8;
 }
 
 /* =========================
