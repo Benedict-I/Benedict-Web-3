@@ -651,3 +651,289 @@ section {
     }
 }
 
+
+/* =====================================================
+PREMIUM CONTACT SECTION UPGRADE
+PASTE THIS AT THE VERY BOTTOM OF YOUR CSS FILE
+===================================================== */
+
+.contact-section{
+position: relative;
+overflow: hidden;
+background: #000;
+isolation: isolate;
+}
+
+/* LIVE IMAGE BACKGROUND */
+.contact-section::before{
+content: "";
+position: absolute;
+inset: -5%;
+background: url("../images/life-quote-bg.jpg") center center/cover no-repeat;
+filter: brightness(0.33);
+z-index: -3;
+
+```
+animation: premiumBackgroundMove 18s ease-in-out infinite alternate;
+```
+
+}
+
+/* DARK OVERLAY */
+.contact-section::after{
+content: "";
+position: absolute;
+inset: 0;
+background:
+linear-gradient(
+to bottom,
+rgba(0,0,0,0.82),
+rgba(0,0,0,0.72),
+rgba(0,0,0,0.88)
+);
+
+```
+z-index: -2;
+```
+
+}
+
+/* CINEMATIC MOVEMENT */
+@keyframes premiumBackgroundMove{
+
+```
+0%{
+    transform: scale(1) translate(0px,0px);
+}
+
+50%{
+    transform: scale(1.08) translate(-20px,-10px);
+}
+
+100%{
+    transform: scale(1.12) translate(18px,10px);
+}
+```
+
+}
+
+/* FLOATING LIGHT ORBS */
+.contact-section .container::before,
+.contact-section .container::after{
+content: "";
+position: absolute;
+border-radius: 50%;
+background: rgba(255,255,255,0.05);
+backdrop-filter: blur(12px);
+z-index: -1;
+
+```
+animation: floatOrb 10s ease-in-out infinite;
+```
+
+}
+
+.contact-section .container::before{
+width: 240px;
+height: 240px;
+top: 8%;
+left: -80px;
+}
+
+.contact-section .container::after{
+width: 180px;
+height: 180px;
+bottom: 10%;
+right: -40px;
+
+```
+animation-delay: 4s;
+```
+
+}
+
+@keyframes floatOrb{
+
+```
+0%{
+    transform: translateY(0px);
+}
+
+50%{
+    transform: translateY(-28px);
+}
+
+100%{
+    transform: translateY(0px);
+}
+```
+
+}
+
+/* HERO */
+.contact-hero{
+position: relative;
+z-index: 2;
+text-align: center;
+margin-bottom: 70px;
+}
+
+.contact-hero h2{
+font-size: 3rem;
+color: #fff;
+margin-bottom: 20px;
+line-height: 1.2;
+}
+
+.contact-hero p{
+color: rgba(255,255,255,0.78);
+max-width: 700px;
+margin: auto;
+line-height: 1.9;
+}
+
+/* GRID */
+.contact-options{
+position: relative;
+z-index: 2;
+
+```
+display: grid !important;
+grid-template-columns: repeat(2, minmax(320px,1fr));
+gap: 40px;
+
+align-items: stretch;
+```
+
+}
+
+/* GLASS CARDS */
+.contact-card{
+background: rgba(255,255,255,0.06);
+border: 1px solid rgba(255,255,255,0.08);
+
+```
+backdrop-filter: blur(18px);
+-webkit-backdrop-filter: blur(18px);
+
+border-radius: 28px;
+
+padding: 40px;
+
+box-shadow: 0 15px 60px rgba(0,0,0,0.45);
+
+transition: 0.4s ease;
+```
+
+}
+
+.contact-card:hover{
+transform: translateY(-8px);
+border-color: rgba(255,140,0,0.35);
+}
+
+.contact-card h3{
+font-size: 1.7rem;
+margin-bottom: 30px;
+color: #fff;
+}
+
+/* FORM */
+.contact-card form{
+display: grid;
+gap: 18px;
+}
+
+.contact-card input,
+.contact-card textarea{
+width: 100%;
+background: rgba(255,255,255,0.08);
+
+```
+border: 1px solid rgba(255,255,255,0.08);
+
+border-radius: 16px;
+
+padding: 16px 18px;
+
+color: #fff;
+
+outline: none;
+
+transition: 0.3s ease;
+```
+
+}
+
+.contact-card input:focus,
+.contact-card textarea:focus{
+border-color: #ff9800;
+
+```
+box-shadow: 0 0 0 4px rgba(255,152,0,0.12);
+```
+
+}
+
+.contact-card textarea{
+resize: none;
+min-height: 220px;
+}
+
+.contact-card input::placeholder,
+.contact-card textarea::placeholder{
+color: rgba(255,255,255,0.55);
+}
+
+/* CONTACT INFO */
+.contact-card p{
+display: flex;
+align-items: center;
+gap: 14px;
+
+```
+color: #fff;
+
+margin-bottom: 25px;
+```
+
+}
+
+.contact-card p i{
+color: #ff9800;
+}
+
+/* BUTTON UPGRADE */
+.contact-section .cta-button{
+background: linear-gradient(135deg,#ff9800,#ff6a00);
+
+```
+box-shadow: 0 10px 35px rgba(255,140,0,0.35);
+
+transition: 0.4s ease;
+```
+
+}
+
+.contact-section .cta-button:hover{
+transform: translateY(-5px) scale(1.03);
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+```
+.contact-options{
+    grid-template-columns: 1fr !important;
+}
+
+.contact-hero h2{
+    font-size: 2rem;
+}
+
+.contact-card{
+    padding: 28px;
+}
+```
+
+}
