@@ -580,18 +580,17 @@ section {
 
 .about-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
+    grid-template-columns: auto 1fr;
+    gap: 30px;
     align-items: center;
 }
-
 .about-text {
     text-align: left;
+    max-width: 500px;
 }
-
 /* image fix */
 .about-image img {
-    width: 60%;
+    width: 260px;
     border-radius: 12px;
     object-fit: cover;
     display: block;
