@@ -1298,7 +1298,7 @@ MOBILE
         0 0 90px rgba(37, 211, 102, 0.35);
 }
 .whatsapp-btn {
-    animation: whatsappGlow 1.8s infinite ease-in-out;
+    animation: whatsappGlow 2.8s infinite ease-in-out;
 }
 
 @keyframes whatsappGlow {
