@@ -162,8 +162,49 @@ section {
 }
 
 /* GOOGLE TRANSLATE */
-#google_translate_element {
-    min-width: auto;
+#google_translate_element{
+    display: flex;
+    align-items: center;
+}
+
+/* desktop */
+#google_translate_element select{
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 12px;
+    max-width: 120px;
+    cursor: pointer;
+}
+
+/* remove ugly google text */
+.goog-logo-link,
+.goog-te-gadget span{
+    display: none !important;
+}
+
+.goog-te-gadget{
+    color: transparent !important;
+    font-size: 0;
+}
+
+/* MOBILE FIX */
+@media(max-width:768px){
+
+    #google_translate_element{
+        position: absolute;
+        top: 78px;
+        left: 20px;
+        z-index: 3000;
+    }
+
+    #google_translate_element select{
+        max-width: 110px;
+        font-size: 11px;
+        padding: 3px 6px;
+    }
 }
 
 /* HAMBURGER */
@@ -178,7 +219,7 @@ section {
 
 .menu-toggle .bar {
     width: 28px;
-    height: 3px;
+    height: 4px;
     background: #fff;
 }
 
