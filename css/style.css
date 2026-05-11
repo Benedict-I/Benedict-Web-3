@@ -519,25 +519,21 @@ section {
 
 @media (max-width: 768px) {
 
-    .header-container {
-    align-items: center;
-}
-
     .main-nav ul {
+        position: absolute;
+        top: 80px;
+        right: 20px;
+        background: rgba(20,20,30,0.95);
         flex-direction: column;
-        gap: 15px;
+        width: 220px;
+        padding: 20px;
+        border-radius: 12px;
+        display: none;
+        z-index: 2000;
     }
 
-    .service-items-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .reviews-layout {
-        grid-template-columns: 1fr;
-    }
-
-    .hero-text-content h1 {
-        font-size: 2.2rem;
+    .main-nav ul.active {
+        display: flex;
     }
 
     .menu-toggle {
@@ -550,8 +546,8 @@ section {
         position: absolute;
 
         top: 60px;
-        right: 0;
-        left: auto !important;
+        right: auto;
+        left:  0 !important;
 
         width: 220px;
 
