@@ -195,19 +195,33 @@ section {
 @media(max-width:768px){
 
     #google_translate_element{
-        position: absolute;
-        top: 78px;
-        left: 20px;
-        z-index: 3000;
+        position: fixed;
+        top: 75px;
+        left: 15px;
+        z-index: 9999;
     }
 
     #google_translate_element select{
-        max-width: 110px;
+        width: 115px;
+        height: 28px;
+
+        background: #111;
+        color: #fff;
+
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 6px;
+
         font-size: 11px;
-        padding: 3px 6px;
+        padding: 2px 6px;
+
+        outline: none;
     }
 }
-
+/* GOOGLE DROPDOWN FIX */
+.goog-te-combo{
+    background: #111 !important;
+    color: #fff !important;
+}
 /* HAMBURGER */
 .menu-toggle {
     display: none;
