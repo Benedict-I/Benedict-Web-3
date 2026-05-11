@@ -1254,3 +1254,30 @@ MOBILE
         transform: translate(-50%, -50%) scale(1);
     }
 }
+
+
+
+
+
+
+
+
+.whatsapp-btn {
+    background: linear-gradient(
+        135deg,
+        #25D366,
+        #128C7E
+    );
+    
+    box-shadow:
+        0 15px 40px rgba(37, 211, 102, 0.25);
+}
+
+.whatsapp-btn:hover {
+    transform:
+        translateY(-5px)
+        scale(1.02);
+
+    box-shadow:
+        0 18px 55px rgba(37, 211, 102, 0.4);
+}
