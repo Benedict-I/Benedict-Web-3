@@ -1325,3 +1325,37 @@ MOBILE
             0 0 40px rgba(37, 211, 102, 0.2);
     }
 }
+
+
+
+
+
+
+
+
+
+.secondary-btn {
+    background: linear-gradient(
+    135deg,
+    #00c6ff,
+    #0072ff
+);
+
+    color: #fff;
+
+    box-shadow:
+        0 0 12px rgba(33,150,243,0.45),
+        0 0 30px rgba(33,150,243,0.3);
+
+    transition: 0.4s ease;
+}
+
+.secondary-btn:hover {
+    transform:
+        translateY(-5px)
+        scale(1.03);
+
+    box-shadow:
+        0 0 18px rgba(33,150,243,0.7),
+        0 0 45px rgba(33,150,243,0.45);
+}
