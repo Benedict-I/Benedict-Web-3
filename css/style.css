@@ -1082,3 +1082,68 @@ MOBILE
     grid-template-columns: 1fr;
 }
 }
+
+
+
+
+
+.about-text {
+    animation-delay: 0.4s;
+}
+
+.about-image img {
+    animation-delay: 0.2s;
+}
+.about-text {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeInUp 1.2s ease forwards;
+}
+
+.about-image img {
+    opacity: 0;
+    transform: scale(0.9);
+    animation: zoomIn 1.2s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes zoomIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+.about-orbs {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,140,0,0.25), transparent 70%);
+    filter: blur(20px);
+    animation: floatOrb 10s infinite ease-in-out;
+    opacity: 0.6;
+}
+
+.orb1 { width: 120px; height: 120px; top: 10%; left: 5%; }
+.orb2 { width: 180px; height: 180px; top: 40%; right: 10%; animation-delay: 2s; }
+.orb3 { width: 90px; height: 90px; bottom: 15%; left: 20%; animation-delay: 4s; }
+.orb4 { width: 150px; height: 150px; top: 20%; left: 60%; animation-delay: 6s; }
+.orb5 { width: 100px; height: 100px; bottom: 10%; right: 25%; animation-delay: 1s; }
+
+@keyframes floatOrb {
+    0%   { transform: translateY(0px) scale(1); }
+    50%  { transform: translateY(-25px) scale(1.1); }
+    100% { transform: translateY(0px) scale(1); }
+}
