@@ -116,6 +116,7 @@ section {
     z-index: 1000;
     background: rgba(20, 20, 30, 0.6);
     backdrop-filter: blur(12px);
+    position: relative;
 }
 
 .header-container {
@@ -503,8 +504,8 @@ section {
 @media (max-width: 768px) {
 
     .header-container {
-        flex-wrap: wrap;
-    }
+    align-items: center;
+}
 
     .main-nav ul {
         flex-direction: column;
@@ -529,25 +530,34 @@ section {
 }
 @media (max-width: 768px) {
 
-    .main-nav ul {
+    .main-nav ul{
         position: absolute;
-        top: 80px;
+        top: 70px;
         right: 20px;
-        background: rgba(20,20,30,0.95);
-        flex-direction: column;
         width: 220px;
-        padding: 20px;
-        border-radius: 12px;
+
         display: none;
-        z-index: 2000;
+        flex-direction: column;
+        gap: 18px;
+
+        padding: 22px;
+
+        background: rgba(10,10,20,0.96);
+        backdrop-filter: blur(14px);
+
+        border-radius: 16px;
+        border: 1px solid rgba(255,255,255,0.08);
+
+        z-index: 5000;
     }
 
-    .main-nav ul.active {
+    .main-nav ul.active{
         display: flex;
     }
 
-    .menu-toggle {
+    .menu-toggle{
         display: flex;
+        z-index: 6000;
     }
 }
 
