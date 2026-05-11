@@ -1297,3 +1297,31 @@ MOBILE
         0 0 60px rgba(37, 211, 102, 0.5),
         0 0 90px rgba(37, 211, 102, 0.35);
 }
+.whatsapp-btn {
+    animation: whatsappGlow 1.8s infinite ease-in-out;
+}
+
+@keyframes whatsappGlow {
+
+    0% {
+        box-shadow:
+            0 0 10px rgba(37, 211, 102, 0.45),
+            0 0 20px rgba(37, 211, 102, 0.35),
+            0 0 40px rgba(37, 211, 102, 0.2);
+    }
+
+    50% {
+        box-shadow:
+            0 0 18px rgba(37, 211, 102, 0.9),
+            0 0 40px rgba(37, 211, 102, 0.75),
+            0 0 80px rgba(37, 211, 102, 0.55),
+            0 0 120px rgba(37, 211, 102, 0.35);
+    }
+
+    100% {
+        box-shadow:
+            0 0 10px rgba(37, 211, 102, 0.45),
+            0 0 20px rgba(37, 211, 102, 0.35),
+            0 0 40px rgba(37, 211, 102, 0.2);
+    }
+}
