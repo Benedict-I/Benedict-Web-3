@@ -1234,6 +1234,22 @@ section {
     position: relative;
 }
 
-
+section {
+    position: relative;
+    overflow: hidden;
+}
+.services-section::before,
+.contact-section::before {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+.services-section .container,
+.contact-section .container,
+.portfolio-section .container {
+    position: relative;
+    z-index: 2;
+}
 
 
