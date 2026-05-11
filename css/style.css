@@ -116,16 +116,18 @@ section {
     z-index: 1000;
     background: rgba(20, 20, 30, 0.6);
     backdrop-filter: blur(12px);
-    position: relative;
 }
 
 .header-container {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
 }
-
+.main-nav{
+    position: relative;
+}
 /* LOGO */
 .logo {
     display: flex;
@@ -546,8 +548,11 @@ section {
 
     .main-nav ul{
         position: absolute;
-        top: 70px;
-        right: 20px;
+
+        top: 60px;
+        right: 0;
+        left: auto !important;
+
         width: 220px;
 
         display: none;
@@ -562,7 +567,7 @@ section {
         border-radius: 16px;
         border: 1px solid rgba(255,255,255,0.08);
 
-        z-index: 5000;
+        z-index: 99999;
     }
 
     .main-nav ul.active{
