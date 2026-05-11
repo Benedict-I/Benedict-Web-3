@@ -1252,4 +1252,28 @@ section {
     z-index: 2;
 }
 
-
+.services-overview-section,
+.services-section,
+.contact-section {
+    position: relative !important;
+    overflow: hidden;
+}
+.services-overview-section .container {
+    position: relative;
+    z-index: 2;
+}
+.services-overview-section {
+    background: transparent !important;
+}
+@keyframes nebulaMove {
+    0% {
+        transform: scale(1) translate(0, 0);
+    }
+    100% {
+        transform: scale(1.2) translate(-30px, 20px);
+    }
+}
+.services-overview-section::before {
+    background: red !important;
+    opacity: 0.5 !important;
+}
