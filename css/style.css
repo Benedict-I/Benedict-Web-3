@@ -1123,8 +1123,13 @@ MOBILE
     position: absolute;
     inset: 0;
     overflow: hidden;
-    z-index: 0;
+    z-index: 1;
     pointer-events: none;
+}
+
+.about-section .container {
+    position: relative;
+    z-index: 2;
 }
 
 .orb {
@@ -1133,7 +1138,8 @@ MOBILE
     background: radial-gradient(circle, rgba(255,140,0,0.25), transparent 70%);
     filter: blur(20px);
     animation: floatOrb 10s infinite ease-in-out;
-    opacity: 0.6;
+    opacity: 0.75;
+    mix-blend-mode: screen;
 }
 
 .orb1 { width: 120px; height: 120px; top: 10%; left: 5%; }
@@ -1146,4 +1152,16 @@ MOBILE
     0%   { transform: translateY(0px) scale(1); }
     50%  { transform: translateY(-25px) scale(1.1); }
     100% { transform: translateY(0px) scale(1); }
+}
+.about-section {
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+
+
+.orb {
+    background: red !important;
 }
