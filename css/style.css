@@ -163,7 +163,7 @@ section {
 
 /* GOOGLE TRANSLATE */
 #google_translate_element {
-    min-width: 140px;
+    min-width: auto;
 }
 
 /* HAMBURGER */
