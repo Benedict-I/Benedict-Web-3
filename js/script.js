@@ -585,6 +585,14 @@ scene.background = null;
     }
 
     animate();
+   
+   function resizetorus() {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+}
+
+window.addEventListener("resize", resizetorus);
 }
 
 
@@ -666,6 +674,14 @@ if (galaxyCanvas) {
 
         camera.updateProjectionMatrix();
     });
+   
+   function resizegalaxy() {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+}
+
+window.addEventListener("resize", resizegalaxy);
       }
 
 
@@ -734,6 +750,13 @@ if(sphereCanvas){
     }
 
     animate();
+   function resizesphere() {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+}
+
+window.addEventListener("resize", resizesphere);
 }
 
 
