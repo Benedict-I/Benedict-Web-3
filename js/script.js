@@ -467,6 +467,10 @@ if (modal) {
 
 
 
+/* =========================
+space particles
+========================= */
+
 const spaceCanvas = document.getElementById("space");
 
 if (spaceCanvas) {
@@ -479,6 +483,7 @@ if (spaceCanvas) {
     let particles = [];
 
     for (let i = 0; i < 150; i++) {
+
         particles.push({
             x: Math.random() * spaceCanvas.width,
             y: Math.random() * spaceCanvas.height,
@@ -507,6 +512,7 @@ if (spaceCanvas) {
 
             if (p.x < 0) p.x = spaceCanvas.width;
             if (p.x > spaceCanvas.width) p.x = 0;
+
             if (p.y < 0) p.y = spaceCanvas.height;
             if (p.y > spaceCanvas.height) p.y = 0;
         }
@@ -519,6 +525,7 @@ if (spaceCanvas) {
     window.addEventListener("resize", () => {
 
         spaceCanvas.width = window.innerWidth;
+
         spaceCanvas.height = window.innerHeight;
     });
 }
@@ -574,12 +581,13 @@ if(torusCanvas){
     const scene = new THREE.Scene();
 
     const camera = new THREE.PerspectiveCamera(
-        75,
-        window.innerWidth/window.innerHeight,
-        0.1,
-        1000
-    );
+    75,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000
+);
 
+scene.background = null;
     const renderer = new THREE.WebGLRenderer({
         canvas: torusCanvas,
         alpha:true
@@ -714,13 +722,17 @@ window.addEventListener("resize", resizegalaxy);
 
 
 
+
 /* =========================
 portfolio
 ========================= */
 
 const sphereCanvas = document.getElementById("sphere-canvas");
+
 if (sphereCanvas) {
+
     const scene = new THREE.Scene();
+
     const camera = new THREE.PerspectiveCamera(
         75,
         window.innerWidth / window.innerHeight,
@@ -731,15 +743,10 @@ if (sphereCanvas) {
     const renderer = new THREE.WebGLRenderer({
         canvas: sphereCanvas,
         alpha: true
-    function animateSphere() {
-        requestAnimationFrame(animateSphere);
-        group.rotation.y += 0.002;
-        renderer.render(scene, camera);
-    }
-    animateSphere();
     });
 
     renderer.setSize(window.innerWidth, window.innerHeight);
+
     const group = new THREE.Group();
 
     for (let i = 0; i < 8; i++) {
@@ -771,7 +778,16 @@ if (sphereCanvas) {
 
     camera.position.z = 5;
 
+    function animateSphere() {
 
+        requestAnimationFrame(animateSphere);
+
+        group.rotation.y += 0.002;
+
+        renderer.render(scene, camera);
+    }
+
+    animateSphere();
 
     function resizeSphere() {
 
@@ -784,6 +800,3 @@ if (sphereCanvas) {
 
     window.addEventListener("resize", resizeSphere);
 }
-
-
-
