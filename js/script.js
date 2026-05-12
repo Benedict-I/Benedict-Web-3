@@ -541,7 +541,7 @@ if(torusCanvas){
         0.1,
         1000
     );
-
+scene.background = null;
     const renderer = new THREE.WebGLRenderer({
         canvas: torusCanvas,
         alpha:true
