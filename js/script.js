@@ -667,3 +667,67 @@ if (galaxyCanvas) {
 /* =========================
 portfolio
 ========================= */
+const sphereCanvas = document.getElementById("sphere-canvas");
+
+if(sphereCanvas){
+
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth/window.innerHeight,
+        0.1,
+        1000
+    );
+
+    const renderer = new THREE.WebGLRenderer({
+        canvas:sphereCanvas,
+        alpha:true
+    });
+
+    renderer.setSize(window.innerWidth,window.innerHeight);
+
+    const group = new THREE.Group();
+
+    for(let i=0;i<8;i++){
+
+        const geometry = new THREE.SphereGeometry(
+            Math.random()*0.5+0.2,
+            16,
+            16
+        );
+
+        const material = new THREE.MeshBasicMaterial({
+            color:0xffffff,
+            wireframe:true
+        });
+
+        const sphere = new THREE.Mesh(
+            geometry,
+            material
+        );
+
+        sphere.position.x = (Math.random()-0.5)*8;
+
+        sphere.position.y = (Math.random()-0.5)*5;
+
+        sphere.position.z = (Math.random()-0.5)*5;
+
+        group.add(sphere);
+    }
+
+    scene.add(group);
+
+    camera.position.z = 5;
+
+    function animate(){
+
+        requestAnimationFrame(animate);
+
+        group.rotation.y += 0.002;
+
+        renderer.render(scene,camera);
+    }
+
+    animate();
+}
