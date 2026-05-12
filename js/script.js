@@ -467,21 +467,59 @@ if (modal) {
 
 
 
-const canvas = document.getElementById("space");
-const ctx = canvas.getContext("2d");
+const spaceCanvas = document.getElementById("space");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+if (spaceCanvas) {
 
-let particles = [];
+    const ctx = spaceCanvas.getContext("2d");
 
-for (let i = 0; i < 150; i++) {
-    particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: Math.random() * 2,
-        speedX: (Math.random() - 0.5) * 0.5,
-        speedY: (Math.random() - 0.5) * 0.5
+    spaceCanvas.width = window.innerWidth;
+    spaceCanvas.height = window.innerHeight;
+
+    let particles = [];
+
+    for (let i = 0; i < 150; i++) {
+        particles.push({
+            x: Math.random() * spaceCanvas.width,
+            y: Math.random() * spaceCanvas.height,
+            size: Math.random() * 2,
+            speedX: (Math.random() - 0.5) * 0.5,
+            speedY: (Math.random() - 0.5) * 0.5
+        });
+    }
+
+    function animateSpace() {
+
+        ctx.clearRect(0, 0, spaceCanvas.width, spaceCanvas.height);
+
+        for (let p of particles) {
+
+            ctx.fillStyle = "rgba(255,255,255,0.6)";
+
+            ctx.beginPath();
+
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+
+            ctx.fill();
+
+            p.x += p.speedX;
+            p.y += p.speedY;
+
+            if (p.x < 0) p.x = spaceCanvas.width;
+            if (p.x > spaceCanvas.width) p.x = 0;
+            if (p.y < 0) p.y = spaceCanvas.height;
+            if (p.y > spaceCanvas.height) p.y = 0;
+        }
+
+        requestAnimationFrame(animateSpace);
+    }
+
+    animateSpace();
+
+    window.addEventListener("resize", () => {
+
+        spaceCanvas.width = window.innerWidth;
+        spaceCanvas.height = window.innerHeight;
     });
 }
 
@@ -573,13 +611,9 @@ if(torusCanvas){
     camera.position.z = 4;
 
     function animate(){
-
         requestAnimationFrame(animate);
-
         torus.rotation.x += 0.003;
-
         torus.rotation.y += 0.004;
-
         renderer.render(scene,camera);
     }
 
@@ -652,15 +686,10 @@ if (galaxyCanvas) {
     camera.position.z = 5;
 
     function animate(){
-
         requestAnimationFrame(animate);
-
         particlesMesh.rotation.y += 0.0008;
-
         particlesMesh.rotation.x += 0.0003;
-
         renderer.render(scene, camera);
-       
     }
 
     animate();
@@ -690,11 +719,8 @@ portfolio
 ========================= */
 
 const sphereCanvas = document.getElementById("sphere-canvas");
-
 if (sphereCanvas) {
-
     const scene = new THREE.Scene();
-
     const camera = new THREE.PerspectiveCamera(
         75,
         window.innerWidth / window.innerHeight,
@@ -705,10 +731,15 @@ if (sphereCanvas) {
     const renderer = new THREE.WebGLRenderer({
         canvas: sphereCanvas,
         alpha: true
+    function animateSphere() {
+        requestAnimationFrame(animateSphere);
+        group.rotation.y += 0.002;
+        renderer.render(scene, camera);
+    }
+    animateSphere();
     });
 
     renderer.setSize(window.innerWidth, window.innerHeight);
-
     const group = new THREE.Group();
 
     for (let i = 0; i < 8; i++) {
@@ -740,16 +771,7 @@ if (sphereCanvas) {
 
     camera.position.z = 5;
 
-    function animateSphere() {
 
-        requestAnimationFrame(animateSphere);
-
-        group.rotation.y += 0.002;
-
-        renderer.render(scene, camera);
-    }
-
-    animateSphere();
 
     function resizeSphere() {
 
