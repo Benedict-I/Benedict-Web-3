@@ -1448,3 +1448,91 @@ section {
     position: relative;
     z-index: 1;
 }
+
+
+
+
+
+
+
+
+
+/* =========================================================
+3D SECTION FIXES
+========================================================= */
+
+.contact-section,
+.services-section,
+.portfolio-section,
+.about-section {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* canvases */
+
+#space,
+#torus-canvas,
+#galaxy-canvas,
+#sphere-canvas {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    z-index: 0;
+
+    pointer-events: none;
+}
+
+/* actual content above */
+
+.contact-section .container,
+.services-section .container,
+.portfolio-section .container,
+.about-section .container {
+    position: relative;
+    z-index: 5;
+}
+
+/* cinematic blending */
+
+#galaxy-canvas {
+    opacity: 0.95;
+    filter: blur(0.2px);
+}
+
+#torus-canvas {
+    opacity: 0.28;
+}
+
+#sphere-canvas {
+    opacity: 0.65;
+}
+
+/* premium glow depth */
+
+.portfolio-section::before,
+.services-section::before,
+.contact-section::before {
+
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,0.03),
+            transparent 70%
+        );
+
+    z-index: 1;
+
+    pointer-events: none;
+}
