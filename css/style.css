@@ -1366,7 +1366,9 @@ MOBILE
 
 
 
-
+/* =========================
+service
+========================= */
 #torus-canvas{
     position:absolute;
     inset:0;
@@ -1374,3 +1376,16 @@ MOBILE
     height:100%;
     z-index:0;
 }
+/* =========================
+contact
+========================= */
+#galaxy-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+/* =========================
+portfolio
+========================= */
