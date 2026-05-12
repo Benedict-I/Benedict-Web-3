@@ -526,7 +526,9 @@ window.addEventListener("resize", () => {
 
 
 
-
+/* =========================
+services
+========================= */
 const torusCanvas = document.getElementById("torus-canvas");
 
 if(torusCanvas){
@@ -555,9 +557,11 @@ if(torusCanvas){
     );
 
     const material = new THREE.MeshBasicMaterial({
-        color:0x2196f3,
-        wireframe:true
-    });
+    color: 0x4aa3ff,
+    wireframe: true,
+    opacity: 0.6,
+    transparent: true
+});
 
     const torus = new THREE.Mesh(
         geometry,
@@ -581,7 +585,7 @@ if(torusCanvas){
 
     animate();
 }
-
+scene.background = null;
 
 
 
