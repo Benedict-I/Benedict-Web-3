@@ -585,13 +585,6 @@ scene.background = null;
     }
 
     animate();
-   function resizeTorus() {
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-}
-
-window.addEventListener("resize", resizeTorus);
 }
 
 
@@ -673,14 +666,7 @@ if (galaxyCanvas) {
 
         camera.updateProjectionMatrix();
     });
-       function resizegalaxyCanvas() {
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-}
-
-window.addEventListener("resize", resizegalaxyCanvas);
-}
+      }
 
 
 /* =========================
@@ -750,13 +736,5 @@ if(sphereCanvas){
     animate();
 }
 
-function resizesphereCanvas() {
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-}
-
-window.addEventListener("resize", resizesphereCanvas);
-}
 
 
