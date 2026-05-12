@@ -757,5 +757,6 @@ function resizesphereCanvas() {
 }
 
 window.addEventListener("resize", resizesphereCanvas);
+}
 
 
