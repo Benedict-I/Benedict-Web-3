@@ -540,6 +540,7 @@ if(torusCanvas){
         window.innerWidth/window.innerHeight,
         0.1,
         1000
+scene.background = null;
     );
 
     const renderer = new THREE.WebGLRenderer({
@@ -584,8 +585,14 @@ if(torusCanvas){
     }
 
     animate();
+   function resizeTorus() {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
 }
-scene.background = null;
+
+window.addEventListener("resize", resizeTorus);
+}
 
 
 
@@ -653,6 +660,7 @@ if (galaxyCanvas) {
         particlesMesh.rotation.x += 0.0003;
 
         renderer.render(scene, camera);
+       
     }
 
     animate();
@@ -665,6 +673,13 @@ if (galaxyCanvas) {
 
         camera.updateProjectionMatrix();
     });
+       function resizegalaxyCanvas() {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+}
+
+window.addEventListener("resize", resizegalaxyCanvas);
 }
 
 
@@ -688,7 +703,6 @@ if(sphereCanvas){
         canvas:sphereCanvas,
         alpha:true
     });
-
     renderer.setSize(window.innerWidth,window.innerHeight);
 
     const group = new THREE.Group();
@@ -736,16 +750,12 @@ if(sphereCanvas){
     animate();
 }
 
-
-
-function resizeCanvas(renderer, camera) {
-
+function resizesphereCanvas() {
     renderer.setSize(window.innerWidth, window.innerHeight);
-
     camera.aspect = window.innerWidth / window.innerHeight;
-
     camera.updateProjectionMatrix();
 }
-window.addEventListener("resize", () => {
-    resizeCanvas(renderer, camera);
-});
+
+window.addEventListener("resize", resizesphereCanvas);
+
+
