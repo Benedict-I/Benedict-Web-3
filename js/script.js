@@ -467,9 +467,23 @@ if (modal) {
 
 
 
-/* =========================
-space particles
-========================= */
+/* =========================================================
+GLOBAL MOUSE PARALLAX
+========================================================= */
+
+let mouseX = 0;
+let mouseY = 0;
+
+document.addEventListener("mousemove", (e) => {
+
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+});
+
+
+/* =========================================================
+ABOUT — SPACE PARTICLES
+========================================================= */
 
 const spaceCanvas = document.getElementById("space");
 
@@ -477,17 +491,25 @@ if (spaceCanvas) {
 
     const ctx = spaceCanvas.getContext("2d");
 
-    spaceCanvas.width = window.innerWidth;
-    spaceCanvas.height = window.innerHeight;
-
     let particles = [];
+
+    function resizeSpace() {
+
+        spaceCanvas.width = window.innerWidth;
+        spaceCanvas.height = window.innerHeight;
+    }
+
+    resizeSpace();
 
     for (let i = 0; i < 150; i++) {
 
         particles.push({
+
             x: Math.random() * spaceCanvas.width,
             y: Math.random() * spaceCanvas.height,
+
             size: Math.random() * 2,
+
             speedX: (Math.random() - 0.5) * 0.5,
             speedY: (Math.random() - 0.5) * 0.5
         });
@@ -495,15 +517,26 @@ if (spaceCanvas) {
 
     function animateSpace() {
 
-        ctx.clearRect(0, 0, spaceCanvas.width, spaceCanvas.height);
+        ctx.clearRect(
+            0,
+            0,
+            spaceCanvas.width,
+            spaceCanvas.height
+        );
 
         for (let p of particles) {
 
-            ctx.fillStyle = "rgba(255,255,255,0.6)";
+            ctx.fillStyle = "rgba(255,255,255,0.7)";
 
             ctx.beginPath();
 
-            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.arc(
+                p.x,
+                p.y,
+                p.size,
+                0,
+                Math.PI * 2
+            );
 
             ctx.fill();
 
@@ -522,92 +555,52 @@ if (spaceCanvas) {
 
     animateSpace();
 
-    window.addEventListener("resize", () => {
-
-        spaceCanvas.width = window.innerWidth;
-
-        spaceCanvas.height = window.innerHeight;
-    });
+    window.addEventListener("resize", resizeSpace);
 }
 
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    for (let p of particles) {
-        ctx.fillStyle = "rgba(255,255,255,0.6)";
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
+/* =========================================================
+SERVICES — BLUE TORUS KNOT
+========================================================= */
 
-        p.x += p.speedX;
-        p.y += p.speedY;
-
-        // wrap around screen (infinite flow effect)
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
-    }
-
-    requestAnimationFrame(animate);
-}
-
-animate();
-
-window.addEventListener("resize", () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* =========================
-services
-========================= */
 const torusCanvas = document.getElementById("torus-canvas");
 
-if(torusCanvas){
+if (torusCanvas) {
 
     const scene = new THREE.Scene();
 
     const camera = new THREE.PerspectiveCamera(
-    75,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    1000
-);
+        75,
+        1,
+        0.1,
+        1000
+    );
 
-scene.background = null;
     const renderer = new THREE.WebGLRenderer({
         canvas: torusCanvas,
-        alpha:true
+        alpha: true,
+        antialias: true
     });
 
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(
+        Math.min(window.devicePixelRatio, 2)
+    );
 
     const geometry = new THREE.TorusKnotGeometry(
         1,
         0.3,
-        300,
+        220,
         32
     );
 
     const material = new THREE.MeshBasicMaterial({
-    color: 0x4aa3ff,
-    wireframe: true,
-    opacity: 0.6,
-    transparent: true
-});
+
+        color: 0x4aa3ff,
+        wireframe: true,
+
+        transparent: true,
+        opacity: 0.55
+    });
 
     const torus = new THREE.Mesh(
         geometry,
@@ -618,31 +611,53 @@ scene.background = null;
 
     camera.position.z = 4;
 
-    function animate(){
-        requestAnimationFrame(animate);
-        torus.rotation.x += 0.003;
-        torus.rotation.y += 0.004;
-        renderer.render(scene,camera);
+    function resizeTorus() {
+
+        const parent = torusCanvas.parentElement;
+
+        renderer.setSize(
+            parent.offsetWidth,
+            parent.offsetHeight
+        );
+
+        camera.aspect =
+            parent.offsetWidth /
+            parent.offsetHeight;
+
+        camera.updateProjectionMatrix();
     }
 
-    animate();
-   
-   function resizetorus() {
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
+    resizeTorus();
+
+    function animateTorus() {
+
+        requestAnimationFrame(animateTorus);
+
+        torus.rotation.x += 0.0025;
+        torus.rotation.y += 0.0035;
+
+        camera.position.x +=
+            (mouseX * 1.2 - camera.position.x) * 0.03;
+
+        camera.position.y +=
+            (-mouseY * 1.2 - camera.position.y) * 0.03;
+
+        renderer.render(scene, camera);
+    }
+
+    animateTorus();
+
+    window.addEventListener(
+        "resize",
+        resizeTorus
+    );
 }
 
-window.addEventListener("resize", resizetorus);
-}
 
+/* =========================================================
+CONTACT — GALAXY SPIRAL
+========================================================= */
 
-
-
-
-/* =========================
-contact
-========================= */
 const galaxyCanvas = document.getElementById("galaxy-canvas");
 
 if (galaxyCanvas) {
@@ -651,152 +666,263 @@ if (galaxyCanvas) {
 
     const camera = new THREE.PerspectiveCamera(
         75,
-        window.innerWidth / window.innerHeight,
+        1,
         0.1,
         1000
     );
 
     const renderer = new THREE.WebGLRenderer({
+
         canvas: galaxyCanvas,
-        alpha: true
+
+        alpha: true,
+        antialias: true
     });
 
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(
+        Math.min(window.devicePixelRatio, 2)
+    );
 
-    const particlesGeometry = new THREE.BufferGeometry();
+    const particlesGeometry =
+        new THREE.BufferGeometry();
 
-    const particlesCount = 5000;
+    const particlesCount =
+        window.innerWidth < 768
+            ? 1200
+            : 3000;
 
-    const posArray = new Float32Array(particlesCount * 3);
+    const posArray =
+        new Float32Array(
+            particlesCount * 3
+        );
 
-    for(let i = 0; i < particlesCount * 3; i++){
+    for (let i = 0; i < particlesCount * 3; i++) {
 
-        posArray[i] = (Math.random() - 0.5) * 25;
+        posArray[i] =
+            (Math.random() - 0.5) * 24;
     }
 
     particlesGeometry.setAttribute(
-        'position',
-        new THREE.BufferAttribute(posArray, 3)
+
+        "position",
+
+        new THREE.BufferAttribute(
+            posArray,
+            3
+        )
     );
 
-    const particlesMaterial = new THREE.PointsMaterial({
-        size: 0.02,
-        color: 0xff8800
-    });
+    const particlesMaterial =
+        new THREE.PointsMaterial({
 
-    const particlesMesh = new THREE.Points(
-        particlesGeometry,
-        particlesMaterial
-    );
+            size: 0.025,
+
+            color: 0xffffff,
+
+            transparent: true,
+
+            opacity: 0.8
+        });
+
+    const particlesMesh =
+        new THREE.Points(
+            particlesGeometry,
+            particlesMaterial
+        );
 
     scene.add(particlesMesh);
 
     camera.position.z = 5;
 
-    function animate(){
-        requestAnimationFrame(animate);
-        particlesMesh.rotation.y += 0.0008;
-        particlesMesh.rotation.x += 0.0003;
+    function resizeGalaxy() {
+
+        const parent =
+            galaxyCanvas.parentElement;
+
+        renderer.setSize(
+            parent.offsetWidth,
+            parent.offsetHeight
+        );
+
+        camera.aspect =
+            parent.offsetWidth /
+            parent.offsetHeight;
+
+        camera.updateProjectionMatrix();
+    }
+
+    resizeGalaxy();
+
+    function animateGalaxy() {
+
+        requestAnimationFrame(
+            animateGalaxy
+        );
+
+        particlesMesh.rotation.y += 0.0007;
+
+        particlesMesh.rotation.x += 0.0002;
+
+        camera.position.x +=
+            (mouseX * 0.7 - camera.position.x)
+            * 0.02;
+
+        camera.position.y +=
+            (-mouseY * 0.7 - camera.position.y)
+            * 0.02;
+
         renderer.render(scene, camera);
     }
 
-    animate();
+    animateGalaxy();
 
-    window.addEventListener('resize', () => {
-
-        renderer.setSize(window.innerWidth, window.innerHeight);
-
-        camera.aspect = window.innerWidth / window.innerHeight;
-
-        camera.updateProjectionMatrix();
-    });
-   
-   function resizegalaxy() {
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
+    window.addEventListener(
+        "resize",
+        resizeGalaxy
+    );
 }
 
-window.addEventListener("resize", resizegalaxy);
-      }
 
+/* =========================================================
+PORTFOLIO — FLOATING WIREFRAME SPHERES
+========================================================= */
 
-
-
-/* =========================
-portfolio
-========================= */
-
-const sphereCanvas = document.getElementById("sphere-canvas");
+const sphereCanvas =
+    document.getElementById(
+        "sphere-canvas"
+    );
 
 if (sphereCanvas) {
 
     const scene = new THREE.Scene();
 
-    const camera = new THREE.PerspectiveCamera(
-        75,
-        window.innerWidth / window.innerHeight,
-        0.1,
-        1000
+    const camera =
+        new THREE.PerspectiveCamera(
+            75,
+            1,
+            0.1,
+            1000
+        );
+
+    const renderer =
+        new THREE.WebGLRenderer({
+
+            canvas: sphereCanvas,
+
+            alpha: true,
+
+            antialias: true
+        });
+
+    renderer.setPixelRatio(
+        Math.min(window.devicePixelRatio, 2)
     );
-
-    const renderer = new THREE.WebGLRenderer({
-        canvas: sphereCanvas,
-        alpha: true
-    });
-
-    renderer.setSize(window.innerWidth, window.innerHeight);
 
     const group = new THREE.Group();
 
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 12; i++) {
 
-        const geometry = new THREE.SphereGeometry(
-            Math.random() * 0.5 + 0.2,
-            16,
-            16
-        );
+        const geometry =
+            new THREE.SphereGeometry(
 
-        const material = new THREE.MeshBasicMaterial({
-            color: 0xffffff,
-            wireframe: true
-        });
+                Math.random() * 0.6 + 0.25,
 
-        const sphere = new THREE.Mesh(
-            geometry,
-            material
-        );
+                18,
 
-        sphere.position.x = (Math.random() - 0.5) * 8;
-        sphere.position.y = (Math.random() - 0.5) * 5;
-        sphere.position.z = (Math.random() - 0.5) * 5;
+                18
+            );
+
+        const material =
+            new THREE.MeshBasicMaterial({
+
+                color: 0xffffff,
+
+                wireframe: true,
+
+                transparent: true,
+
+                opacity: 0.35
+            });
+
+        const sphere =
+            new THREE.Mesh(
+                geometry,
+                material
+            );
+
+        sphere.position.x =
+            (Math.random() - 0.5) * 10;
+
+        sphere.position.y =
+            (Math.random() - 0.5) * 6;
+
+        sphere.position.z =
+            (Math.random() - 0.5) * 5;
+
+        sphere.userData = {
+
+            speed:
+                Math.random() * 0.003 + 0.001
+        };
 
         group.add(sphere);
     }
 
     scene.add(group);
 
-    camera.position.z = 5;
+    camera.position.z = 6;
+
+    function resizeSphere() {
+
+        const parent =
+            sphereCanvas.parentElement;
+
+        renderer.setSize(
+            parent.offsetWidth,
+            parent.offsetHeight
+        );
+
+        camera.aspect =
+            parent.offsetWidth /
+            parent.offsetHeight;
+
+        camera.updateProjectionMatrix();
+    }
+
+    resizeSphere();
 
     function animateSphere() {
 
-        requestAnimationFrame(animateSphere);
+        requestAnimationFrame(
+            animateSphere
+        );
 
-        group.rotation.y += 0.002;
+        group.rotation.y += 0.0015;
+
+        group.children.forEach((sphere) => {
+
+            sphere.rotation.x +=
+                sphere.userData.speed;
+
+            sphere.rotation.y +=
+                sphere.userData.speed;
+        });
+
+        camera.position.x +=
+            (mouseX * 1.5 - camera.position.x)
+            * 0.03;
+
+        camera.position.y +=
+            (-mouseY * 1.5 - camera.position.y)
+            * 0.03;
 
         renderer.render(scene, camera);
     }
 
     animateSphere();
 
-    function resizeSphere() {
-
-        renderer.setSize(window.innerWidth, window.innerHeight);
-
-        camera.aspect = window.innerWidth / window.innerHeight;
-
-        camera.updateProjectionMatrix();
-    }
-
-    window.addEventListener("resize", resizeSphere);
+    window.addEventListener(
+        "resize",
+        resizeSphere
+    );
 }
