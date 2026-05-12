@@ -1411,6 +1411,9 @@ portfolio
     position: relative;
     overflow: hidden;
     min-height: 100vh;
+.portfolio-section .container {
+    position: relative;
+    z-index: 2;
 }
 
 
