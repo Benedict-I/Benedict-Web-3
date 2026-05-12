@@ -540,7 +540,6 @@ if(torusCanvas){
         window.innerWidth/window.innerHeight,
         0.1,
         1000
-scene.background = null;
     );
 
     const renderer = new THREE.WebGLRenderer({
