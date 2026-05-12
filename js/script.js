@@ -687,55 +687,56 @@ window.addEventListener("resize", resizegalaxy);
 /* =========================
 portfolio
 ========================= */
-const spaceCanvas = document.getElementById("space");
+const canvas = document.getElementById("space");
+const ctx = canvas.getContext("2d");
+if(sphereCanvas){
 
-if (spaceCanvas) {
+    const scene = new THREE.Scene();
 
-    const ctx = spaceCanvas.getContext("2d");
+    const camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth/window.innerHeight,
+        0.1,
+        1000
+    );
+       const renderer = new THREE.WebGLRenderer({
+        canvas:sphereCanvas,
+        alpha:true
+    });
+    renderer.setSize(window.innerWidth,window.innerHeight);
 
-    spaceCanvas.width = window.innerWidth;
-    spaceCanvas.height = window.innerHeight;
+    const group = new THREE.Group();
 
-    let particles = [];
+    for(let i=0;i<8;i++){
 
-    for (let i = 0; i < 150; i++) {
-        particles.push({
-            x: Math.random() * spaceCanvas.width,
-            y: Math.random() * spaceCanvas.height,
-            size: Math.random() * 2,
-            speedX: (Math.random() - 0.5) * 0.5,
-            speedY: (Math.random() - 0.5) * 0.5
+        const geometry = new THREE.SphereGeometry(
+            Math.random()*0.5+0.2,
+            16,
+            16
+        );
+
+        const material = new THREE.MeshBasicMaterial({
+            color:0xffffff,
+            wireframe:true
         });
+
+        const sphere = new THREE.Mesh(
+            geometry,
+            material
+        );
+
+        sphere.position.x = (Math.random()-0.5)*8;
+
+        sphere.position.y = (Math.random()-0.5)*5;
+
+        sphere.position.z = (Math.random()-0.5)*5;
+
+        group.add(sphere);
     }
 
-    function animateSpace() {
+    scene.add(group);
 
-        ctx.clearRect(0, 0, spaceCanvas.width, spaceCanvas.height);
-
-        for (let p of particles) {
-
-            ctx.fillStyle = "rgba(255,255,255,0.6)";
-
-            ctx.beginPath();
-
-            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-
-            ctx.fill();
-
-            p.x += p.speedX;
-            p.y += p.speedY;
-
-            if (p.x < 0) p.x = spaceCanvas.width;
-            if (p.x > spaceCanvas.width) p.x = 0;
-
-            if (p.y < 0) p.y = spaceCanvas.height;
-            if (p.y > spaceCanvas.height) p.y = 0;
-        }
-
-        requestAnimationFrame(animateSpace);
-    }
-
-    animateSpace();
+    camera.position.z = 5;
 
     window.addEventListener("resize", () => {
 
