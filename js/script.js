@@ -688,12 +688,7 @@ window.addEventListener("resize", resizegalaxy);
 portfolio
 ========================= */
 const canvas = document.getElementById("space");
-
-if (canvas) {
-    const ctx = canvas.getContext("2d");
-
-    // rest of your animation
-}
+const ctx = canvas.getContext("2d");
 if(sphereCanvas){
 
     const scene = new THREE.Scene();
@@ -704,6 +699,9 @@ if(sphereCanvas){
         0.1,
         1000
     );
+   
+   scene.background = null;
+
     const renderer = new THREE.WebGLRenderer({
         canvas:sphereCanvas,
         alpha:true
