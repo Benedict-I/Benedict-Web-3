@@ -704,7 +704,6 @@ if(sphereCanvas){
         0.1,
         1000
     );
-scene.background = null;
     const renderer = new THREE.WebGLRenderer({
         canvas:sphereCanvas,
         alpha:true
