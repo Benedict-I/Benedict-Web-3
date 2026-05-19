@@ -246,7 +246,7 @@ function initContactForm() {
     if (btnText) btnText.style.display = "inline";
     if (spinner) spinner.style.display = "none";
   });
-}
+
 
 
 
@@ -272,7 +272,6 @@ function initContactForm() {
   ;
 
   container.prepend(card);
-}
 
 /* =========================
    6. MOUSE TRACKER
