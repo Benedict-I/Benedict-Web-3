@@ -216,13 +216,13 @@ function googleTranslateElementInit() {
 </script>
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 const supabaseUrl = "https://wxgutjlvewerafxsmjyy.supabase.co";
 const supabaseKey = "sb_publishable_3_ZQFu5aUGz9bzOZ1kWaRQ_Zi0TpT1N";
 
-const client = supabase.createClient(supabaseUrl, supabaseKey);
+const client = window.supabase.createClient(supabaseUrl, supabaseKey);
 </script>
 <script src="js/script.js"></script>
 
