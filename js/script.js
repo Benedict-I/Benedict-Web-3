@@ -1,3 +1,4 @@
+const client = window.client;
 /* =========================
    DOM READY ENTRY POINT
 ========================= */
@@ -224,19 +225,46 @@ function initContactForm() {
     try {
 
       /* =========================
-         SEND TO FORMSPREE
+         SEND TO FORMSPREE/SB
       ========================= */
 
-      const res = await fetch(form.action, {
-        method: form.method,
-        body: new FormData(form),
-        headers: {
-          Accept: "application/json"
-        }
-      });
+    form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-      if (res.ok) {
+  const name =
+    form.querySelector('input[name="name"]').value;
 
+  const message =
+    form.querySelector('textarea[name="review"]').value;
+
+  try {
+    const { error } = await client
+      .from("reviews")
+      .insert([{ name, message }]);
+
+    if (error) throw error;
+
+    addReviewToPage({
+      name,
+      message,
+      date: new Date().toLocaleDateString()
+    });
+
+    status.textContent = "Review saved successfully!";
+    form.reset();
+
+  } catch (err) {
+    console.error(err);
+    status.textContent = "Failed to save review";
+  }
+
+  btn.disabled = false;
+  if (btnText) btnText.style.display = "inline";
+  if (spinner) spinner.style.display = "none";
+});
+
+
+       
         /* =========================
            GET FORM VALUES
         ========================= */
@@ -268,39 +296,42 @@ function initContactForm() {
   }
 ]);
 
+       
         /* =========================
            SHOW REVIEW IMMEDIATELY
         ========================= */
+function addReviewToPage(review) {
+  const container = document.querySelector(".reviews-display");
+  if (!container) return;
 
-        addReviewToPage(review);
+  const card = document.createElement("div");
+  card.className = "review-card";
 
-        status.className = "success";
-        status.textContent =
-          "Message & review sent successfully!";
+  const initials = getInitials(review.name);
+  const bg = generateAvatarGradient(review.name);
 
-        form.reset();
+  card.innerHTML = `
+    <div class="review-top">
+      <div class="review-avatar" style="background:${bg}">
+        <span>${initials}</span>
+      </div>
 
-      } else {
+      <div>
+        <h4>${review.name}</h4>
+        <small>${review.date || ""}</small>
+      </div>
+    </div>
 
-        status.className = "error";
-        status.textContent =
-          "Something went wrong.";
-      }
+    <div class="review-stars">★★★★★</div>
 
-    } catch {
+    <p class="review-text">${review.message}</p>
+  `;
 
-      status.className = "error";
-      status.textContent =
-        "Network error.";
-    }
-
-    btn.disabled = false;
-
-    if (btnText) btnText.style.display = "inline";
-    if (spinner) spinner.style.display = "none";
-  });
+  container.prepend(card);
 }
 
+
+       
 /* =========================
    LOAD REVIEWS
 ========================= */
@@ -1084,4 +1115,31 @@ if (sphereCanvas) {
         "resize",
         resizeSphere
     );
+}
+
+
+
+
+     function getInitials(name) {
+  return name
+    ?.split(" ")
+    .map(n => n[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase() || "?";
+}
+
+function generateAvatarGradient(name) {
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  const hue1 = hash % 360;
+  const hue2 = (hash * 3) % 360;
+
+  return `radial-gradient(circle at top left,
+    hsl(${hue1}, 90%, 60%),
+    hsl(${hue2}, 80%, 45%)
+  )`;
 }
