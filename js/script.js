@@ -191,9 +191,10 @@ function initProgressBar() {
 }
 
 /* =========================
-   5. CONTACT FORM
+   5. CONTACT FORM + LIVE REVIEWS
 ========================= */
 function initContactForm() {
+
   const form = document.getElementById("contact-form");
   if (!form) return;
 
@@ -202,46 +203,164 @@ function initContactForm() {
   const btnText = document.getElementById("btn-text");
   const spinner = document.getElementById("spinner");
 
+  /* =========================
+     LOAD SAVED REVIEWS
+  ========================= */
+
+  loadReviews();
+
   form.addEventListener("submit", async (e) => {
+
     e.preventDefault();
 
     status.textContent = "";
     status.className = "";
 
     btn.disabled = true;
+
     if (btnText) btnText.style.display = "none";
     if (spinner) spinner.style.display = "inline-block";
-     
 
-   try {
+    try {
 
-    await fetch(
-        "https://hooks.zapier.com/hooks/catch/27656458/4ohx437/",
-        {
-            method: "POST",
-            body: JSON.stringify({
-                name,
-                message,
-                rating,
-                date: new Date().toLocaleDateString()
-            })
+      /* =========================
+         SEND TO FORMSPREE
+      ========================= */
+
+      const res = await fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: {
+          Accept: "application/json"
         }
-    );
+      });
 
-    alert("Review submitted successfully!");
+      if (res.ok) {
 
-    reviewForm.reset();
+        /* =========================
+           GET FORM VALUES
+        ========================= */
 
-} catch (err) {
+        const name =
+          form.querySelector('input[name="name"]')?.value || "Anonymous";
 
-    alert("Failed to send review.");
-}
+        const message =
+          form.querySelector('textarea[name="message"]')?.value || "";
 
-     
+        /* =========================
+           CREATE REVIEW OBJECT
+        ========================= */
+
+        const review = {
+          name,
+          message,
+          date: new Date().toLocaleDateString()
+        };
+
+        /* =========================
+           SAVE TO LOCAL STORAGE
+        ========================= */
+
+        let reviews =
+          JSON.parse(localStorage.getItem("reviews")) || [];
+
+        reviews.unshift(review);
+
+        localStorage.setItem(
+          "reviews",
+          JSON.stringify(reviews)
+        );
+
+        /* =========================
+           SHOW REVIEW IMMEDIATELY
+        ========================= */
+
+        addReviewToPage(review);
+
+        status.className = "success";
+        status.textContent =
+          "Message & review sent successfully!";
+
+        form.reset();
+
+      } else {
+
+        status.className = "error";
+        status.textContent =
+          "Something went wrong.";
+      }
+
+    } catch {
+
+      status.className = "error";
+      status.textContent =
+        "Network error.";
+    }
+
     btn.disabled = false;
+
     if (btnText) btnText.style.display = "inline";
     if (spinner) spinner.style.display = "none";
   });
+}
+
+/* =========================
+   LOAD REVIEWS
+========================= */
+
+function loadReviews() {
+
+  const reviews =
+    JSON.parse(localStorage.getItem("reviews")) || [];
+
+  reviews.forEach(review => {
+    addReviewToPage(review);
+  });
+}
+
+/* =========================
+   ADD REVIEW TO PAGE
+========================= */
+
+function addReviewToPage(review) {
+
+  const container =
+    document.querySelector(".reviews-container");
+
+  if (!container) return;
+
+  const card = document.createElement("div");
+
+  card.className = "review-card";
+
+  card.innerHTML = `
+  
+    <div class="review-top">
+
+      <div class="review-avatar">
+        ${review.name.charAt(0).toUpperCase()}
+      </div>
+
+      <div>
+
+        <h4>${review.name}</h4>
+
+        <small>${review.date}</small>
+
+      </div>
+
+    </div>
+
+    <div class="review-stars">
+      ★★★★★
+    </div>
+
+    <p class="review-text">
+      ${review.message}
+    </p>
+  `;
+
+  container.prepend(card);
 }
 
 /* =========================
