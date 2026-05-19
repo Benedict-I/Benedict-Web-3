@@ -149,7 +149,7 @@
 
                 <h3>Leave a Review</h3>
 
-                <form id="contact-form" action="https://formspree.io/f/xwvaaebo" method="POST">
+               <form id="contact-form">
 
                     <input type="text" name="name" placeholder="Your Name" required>
 
@@ -219,11 +219,13 @@ function googleTranslateElementInit() {
    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-const supabaseUrl = "https://wxgutjlvewerafxsmjyy.supabase.co";
-const supabaseKey = "sb_publishable_3_ZQFu5aUGz9bzOZ1kWaRQ_Zi0TpT1N";
+  const supabaseUrl = "https://wxgutjlvewerafxsmjyy.supabase.co";
+  const supabaseKey = "sb_publishable_3_ZQFu5aUGz9bzOZ1kWaRQ_Zi0TpT1N";
 
-const client = window.supabase.createClient(supabaseUrl, supabaseKey);
+  window.client = supabase.createClient(supabaseUrl, supabaseKey);
 </script>
+
+<script src="js/script.js"></script>
 <script src="js/script.js"></script>
 
 </body>
