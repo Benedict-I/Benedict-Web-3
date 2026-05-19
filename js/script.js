@@ -261,15 +261,12 @@ function initContactForm() {
            SAVE TO LOCAL STORAGE
         ========================= */
 
-        let reviews =
-          JSON.parse(localStorage.getItem("reviews")) || [];
-
-        reviews.unshift(review);
-
-        localStorage.setItem(
-          "reviews",
-          JSON.stringify(reviews)
-        );
+   await client.from("reviews").insert([
+  {
+    name: review.name,
+    message: review.message
+  }
+]);
 
         /* =========================
            SHOW REVIEW IMMEDIATELY
@@ -308,12 +305,14 @@ function initContactForm() {
    LOAD REVIEWS
 ========================= */
 
-function loadReviews() {
+async function loadReviews() {
 
-  const reviews =
-    JSON.parse(localStorage.getItem("reviews")) || [];
+  const { data } = await client
+    .from("reviews")
+    .select("*")
+    .order("id", { ascending: false });
 
-  reviews.forEach(review => {
+  data.forEach(review => {
     addReviewToPage(review);
   });
 }
