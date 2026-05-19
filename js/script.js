@@ -211,27 +211,33 @@ function initContactForm() {
     btn.disabled = true;
     if (btnText) btnText.style.display = "none";
     if (spinner) spinner.style.display = "inline-block";
+     
 
-    try {
-      const res = await fetch(form.action, {
-        method: form.method,
-        body: new FormData(form),
-        headers: { Accept: "application/json" }
-      });
+   try {
 
-      if (res.ok) {
-        status.className = "success";
-        status.textContent = "Message sent successfully!";
-        form.reset();
-      } else {
-        status.className = "error";
-        status.textContent = "Something went wrong.";
-      }
-    } catch {
-      status.className = "error";
-      status.textContent = "Network error.";
-    }
+    await fetch(
+        "https://hooks.zapier.com/hooks/catch/27656458/4ohx437/",
+        {
+            method: "POST",
+            body: JSON.stringify({
+                name,
+                message,
+                rating,
+                date: new Date().toLocaleDateString()
+            })
+        }
+    );
 
+    alert("Review submitted successfully!");
+
+    reviewForm.reset();
+
+} catch (err) {
+
+    alert("Failed to send review.");
+}
+
+     
     btn.disabled = false;
     if (btnText) btnText.style.display = "inline";
     if (spinner) spinner.style.display = "none";
