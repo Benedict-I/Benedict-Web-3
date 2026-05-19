@@ -1116,7 +1116,7 @@ if (sphereCanvas) {
 
 
 
-     function getInitials(name) {
+   function getInitials(name) {
   return name
     ?.split(" ")
     .map(n => n[0])
@@ -1127,6 +1127,7 @@ if (sphereCanvas) {
 
 function generateAvatarGradient(name) {
   let hash = 0;
+
   for (let i = 0; i < name.length; i++) {
     hash = name.charCodeAt(i) + ((hash << 5) - hash);
   }
