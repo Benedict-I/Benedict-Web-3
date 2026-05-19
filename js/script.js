@@ -269,7 +269,7 @@ function initContactForm() {
     <p class="review-text">
       ${review.message}
     </p>
-  `;
+  ;
 
   container.prepend(card);
 }
