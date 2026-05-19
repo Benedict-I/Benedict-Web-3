@@ -1,7 +1,7 @@
 window.client
 /* =========================
    DOM READY ENTRY POINT
-========================= */
+========================= */ 
 document.addEventListener("DOMContentLoaded", () => {
   initAnimations();
   initMobileNav();
