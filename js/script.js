@@ -245,7 +245,7 @@ function initContactForm() {
           form.querySelector('input[name="name"]')?.value || "Anonymous";
 
         const message =
-          form.querySelector('textarea[name="message"]')?.value || "";
+  form.querySelector('textarea[name="review"]')?.value || "";
 
         /* =========================
            CREATE REVIEW OBJECT
@@ -324,8 +324,8 @@ function loadReviews() {
 
 function addReviewToPage(review) {
 
-  const container =
-    document.querySelector(".reviews-container");
+ const container =
+    document.querySelector(".reviews-display");
 
   if (!container) return;
 
