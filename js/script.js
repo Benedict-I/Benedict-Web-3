@@ -301,19 +301,17 @@ function initContactForm() {
            SHOW REVIEW IMMEDIATELY
         ========================= */
 function addReviewToPage(review) {
+
   const container = document.querySelector(".reviews-display");
   if (!container) return;
 
   const card = document.createElement("div");
   card.className = "review-card";
 
-  const initials = getInitials(review.name);
-  const bg = generateAvatarGradient(review.name);
-
   card.innerHTML = `
     <div class="review-top">
-      <div class="review-avatar" style="background:${bg}">
-        <span>${initials}</span>
+      <div class="review-avatar" style="background:${generateAvatarGradient(review.name)}">
+        <span>${getInitials(review.name)}</span>
       </div>
 
       <div>
@@ -329,8 +327,6 @@ function addReviewToPage(review) {
 
   container.prepend(card);
 }
-
-
        
 /* =========================
    LOAD REVIEWS
