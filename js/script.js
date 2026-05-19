@@ -1,4 +1,3 @@
-const client = window.client;
 /* =========================
    DOM READY ENTRY POINT
 ========================= */
@@ -204,25 +203,6 @@ function initContactForm() {
   const btnText = document.getElementById("btn-text");
   const spinner = document.getElementById("spinner");
 
-  /* =========================
-     LOAD SAVED REVIEWS
-  ========================= */
-
-  loadReviews();
-
-  form.addEventListener("submit", async (e) => {
-
-    e.preventDefault();
-
-    status.textContent = "";
-    status.className = "";
-
-    btn.disabled = true;
-
-    if (btnText) btnText.style.display = "none";
-    if (spinner) spinner.style.display = "inline-block";
-
-    try {
 
       /* =========================
          SEND TO FORMSPREE/SB
@@ -326,41 +306,7 @@ function addReviewToPage(review) {
   `;
 
   container.prepend(card);
-}
-       
-/* =========================
-   LOAD REVIEWS
-========================= */
-
-async function loadReviews() {
-
-  const { data } = await client
-    .from("reviews")
-    .select("*")
-    .order("id", { ascending: false });
-
-  data.forEach(review => {
-    addReviewToPage(review);
-  });
-}
-
-/* =========================
-   ADD REVIEW TO PAGE
-========================= */
-
-function addReviewToPage(review) {
-
- const container =
-    document.querySelector(".reviews-display");
-
-  if (!container) return;
-
-  const card = document.createElement("div");
-
-  card.className = "review-card";
-
-  card.innerHTML = `
-  
+}  
     <div class="review-top">
 
       <div class="review-avatar" style="
