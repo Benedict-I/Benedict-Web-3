@@ -204,145 +204,48 @@ function initContactForm() {
   const btnText = document.getElementById("btn-text");
   const spinner = document.getElementById("spinner");
 
+  loadReviews();
 
-      /* =========================
-         SEND TO FORMSPREE/SB
-      ========================= */
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-    form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+    status.textContent = "";
+    btn.disabled = true;
 
-  const name =
-    form.querySelector('input[name="name"]').value;
+    if (btnText) btnText.style.display = "none";
+    if (spinner) spinner.style.display = "inline-block";
 
-  const message =
-    form.querySelector('textarea[name="review"]').value;
+    const name =
+      form.querySelector('input[name="name"]')?.value || "Anonymous";
 
-  try {
-    const { error } = await client
-      .from("reviews")
-      .insert([{ name, message }]);
+    const message =
+      form.querySelector('textarea[name="review"]')?.value || "";
 
-    if (error) throw error;
+    try {
+      const { error } = await client
+        .from("reviews")
+        .insert([{ name, message }]);
 
-    addReviewToPage({
-      name,
-      message,
-      date: new Date().toLocaleDateString()
-    });
+      if (error) throw error;
 
-    status.textContent = "Review saved successfully!";
-    form.reset();
+      addReviewToPage({
+        name,
+        message,
+        date: new Date().toLocaleDateString()
+      });
 
-  } catch (err) {
-    console.error(err);
-    status.textContent = "Failed to save review";
-  }
+      status.textContent = "Review saved successfully!";
+      form.reset();
 
-  btn.disabled = false;
-  if (btnText) btnText.style.display = "inline";
-  if (spinner) spinner.style.display = "none";
-});
+    } catch (err) {
+      console.error(err);
+      status.textContent = "Failed to save review";
+    }
 
-
-       
-        /* =========================
-           GET FORM VALUES
-        ========================= */
-
-        const name =
-          form.querySelector('input[name="name"]')?.value || "Anonymous";
-
-        const message =
-  form.querySelector('textarea[name="review"]')?.value || "";
-
-        /* =========================
-           CREATE REVIEW OBJECT
-        ========================= */
-
-        const review = {
-          name,
-          message,
-          date: new Date().toLocaleDateString()
-        };
-
-        /* =========================
-           SAVE TO LOCAL STORAGE
-        ========================= */
-
-   await client.from("reviews").insert([
-  {
-    name: review.name,
-    message: review.message
-  }
-]);
-
-       
-        /* =========================
-           SHOW REVIEW IMMEDIATELY
-        ========================= */
-function addReviewToPage(review) {
-
-  const container = document.querySelector(".reviews-display");
-  if (!container) return;
-
-  const card = document.createElement("div");
-  card.className = "review-card";
-
-  card.innerHTML = `
-    <div class="review-top">
-      <div class="review-avatar" style="background:${generateAvatarGradient(review.name)}">
-        <span>${getInitials(review.name)}</span>
-      </div>
-
-      <div>
-        <h4>${review.name}</h4>
-        <small>${review.date || ""}</small>
-      </div>
-    </div>
-
-    <div class="review-stars">★★★★★</div>
-
-    <p class="review-text">${review.message}</p>
-  `;
-
-  container.prepend(card);
-}  
-    <div class="review-top">
-
-      <div class="review-avatar" style="
-  background: ${generateAvatarGradient(review.name)};
-">
-  <span>${getInitials(review.name)}</span>
-</div>
-
-
-
-
-function getInitials(name) {
-  return name
-    ?.split(" ")
-    .map(n => n[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase() || "?";
-}
-
-function generateAvatarGradient(name) {
-  let hash = 0;
-  for (let i = 0; i < name.length; i++) {
-    hash = name.charCodeAt(i) + ((hash << 5) - hash);
-  }
-
-  const hue1 = hash % 360;
-  const hue2 = (hash * 3) % 360;
-
-  return `
-    radial-gradient(circle at top left, 
-      hsl(${hue1}, 90%, 60%), 
-      hsl(${hue2}, 80%, 45%)
-    )
-  `;
+    btn.disabled = false;
+    if (btnText) btnText.style.display = "inline";
+    if (spinner) spinner.style.display = "none";
+  });
 }
 
 
