@@ -1,3 +1,4 @@
+window.client
 /* =========================
    DOM READY ENTRY POINT
 ========================= */
