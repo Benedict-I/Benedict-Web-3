@@ -336,9 +336,44 @@ function addReviewToPage(review) {
   
     <div class="review-top">
 
-      <div class="review-avatar">
-        ${review.name.charAt(0).toUpperCase()}
-      </div>
+      <div class="review-avatar" style="
+  background: ${generateAvatarGradient(review.name)};
+">
+  <span>${getInitials(review.name)}</span>
+</div>
+
+
+
+
+function getInitials(name) {
+  return name
+    ?.split(" ")
+    .map(n => n[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase() || "?";
+}
+
+function generateAvatarGradient(name) {
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  const hue1 = hash % 360;
+  const hue2 = (hash * 3) % 360;
+
+  return `
+    radial-gradient(circle at top left, 
+      hsl(${hue1}, 90%, 60%), 
+      hsl(${hue2}, 80%, 45%)
+    )
+  `;
+}
+
+
+
+
 
       <div>
 
