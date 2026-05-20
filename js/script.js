@@ -1,4 +1,4 @@
-window.client
+const client = window.client;
 /* =========================
    DOM READY ENTRY POINT
 ========================= */ 
