@@ -1,4 +1,4 @@
-const client = window.client;
+const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 /* =========================
    DOM READY ENTRY POINT
 ========================= */ 
@@ -203,44 +203,39 @@ function initContactForm() {
   const btnText = document.getElementById("btn-text");
   const spinner = document.getElementById("spinner");
 
+if (typeof loadReviews === "function") {
   loadReviews();
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const name =
-      form.querySelector('input[name="name"]').value || "Anonymous";
-
-    const message =
-      form.querySelector('textarea[name="review"]').value || "";
-
-    try {
-      const { error } = await client
-        .from("reviews")
-        .insert([{ name, message }]);
-
-      if (error) throw error;
-
-      addReviewToPage({
-        name,
-        message,
-        date: new Date().toLocaleDateString()
-      });
-
-      status.textContent = "Review saved successfully!";
-      form.reset();
-
-    } catch (err) {
-      console.error(err);
-      status.textContent = "Failed to save review";
-    }
-
-    btn.disabled = false;
-    if (btnText) btnText.style.display = "inline";
-    if (spinner) spinner.style.display = "none";
-  });
 }
+ form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
+  const name =
+    form.querySelector('input[name="name"]').value || "Anonymous";
+
+  const message =
+    form.querySelector('textarea[name="review"]').value || "";
+
+  try {
+    const { error } = await client
+      .from("reviews")
+      .insert([{ name, message, date: new Date().toLocaleDateString() }]);
+
+    if (error) throw error;
+
+    addReviewToPage({
+      name,
+      message,
+      date: new Date().toLocaleDateString()
+    });
+
+    status.textContent = "Saved!";
+    form.reset();
+
+  } catch (err) {
+    console.error(err);
+    status.textContent = "Failed";
+  }
+});
 
 
 /* =========================
@@ -1002,3 +997,9 @@ function addReviewToPage(review) {
 
   container.prepend(card);
 }
+
+
+
+
+
+
