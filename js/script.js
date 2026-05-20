@@ -236,7 +236,7 @@ if (typeof loadReviews === "function") {
     status.textContent = "Failed";
   }
 });
-
+}
 
 /* =========================
    6. MOUSE TRACKER
