@@ -195,7 +195,6 @@ function initProgressBar() {
    5. CONTACT FORM + LIVE REVIEWS
 ========================= */
 function initContactForm() {
-
   const form = document.getElementById("contact-form");
   if (!form) return;
 
@@ -209,17 +208,11 @@ function initContactForm() {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    status.textContent = "";
-    btn.disabled = true;
-
-    if (btnText) btnText.style.display = "none";
-    if (spinner) spinner.style.display = "inline-block";
-
     const name =
-      form.querySelector('input[name="name"]')?.value || "Anonymous";
+      form.querySelector('input[name="name"]').value || "Anonymous";
 
     const message =
-      form.querySelector('textarea[name="review"]')?.value || "";
+      form.querySelector('textarea[name="review"]').value || "";
 
     try {
       const { error } = await client
@@ -246,32 +239,9 @@ function initContactForm() {
     if (btnText) btnText.style.display = "inline";
     if (spinner) spinner.style.display = "none";
   });
+}
 
 
-
-
-
-
-      <div>
-
-        <h4>${review.name}</h4>
-
-        <small>${review.date}</small>
-
-      </div>
-
-    </div>
-
-    <div class="review-stars">
-      ★★★★★
-    </div>
-
-    <p class="review-text">
-      ${review.message}
-    </p>
-  ;
-
-  container.prepend(card);
 
 /* =========================
    6. MOUSE TRACKER
@@ -988,4 +958,47 @@ function generateAvatarGradient(name) {
     hsl(${hue1}, 90%, 60%),
     hsl(${hue2}, 80%, 45%)
   )`;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function addReviewToPage(review) {
+  const container = document.querySelector(".reviews-display");
+  if (!container) return;
+
+  const card = document.createElement("div");
+  card.className = "review-card";
+
+  card.innerHTML = `
+    <div class="review-top">
+      <div class="review-avatar" style="background:${generateAvatarGradient(review.name)}">
+        <span>${getInitials(review.name)}</span>
+      </div>
+
+      <div>
+        <h4>${review.name}</h4>
+        <small>${review.date}</small>
+      </div>
+    </div>
+
+    <div class="review-stars">★★★★★</div>
+
+    <p class="review-text">${review.message}</p>
+  `;
+
+  container.prepend(card);
 }
