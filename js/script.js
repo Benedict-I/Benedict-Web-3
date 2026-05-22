@@ -2,6 +2,7 @@
    DOM READY ENTRY POINT
 ========================= */ 
 document.addEventListener("DOMContentLoaded", () => {
+   const client = window.client;
   initAnimations();
   initMobileNav();
   initTypedText();
@@ -237,6 +238,26 @@ if (typeof loadReviews === "function") {
 });
 }
 
+async function loadReviews() {
+
+  const container = document.querySelector(".reviews-display");
+
+  if (!container) return;
+
+  const { data, error } = await client
+    .from("reviews")
+    .select("*")
+    .order("id", { ascending: false });
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  data.forEach(review => {
+    addReviewToPage(review);
+  });
+}
 /* =========================
    6. MOUSE TRACKER
 ========================= */
@@ -930,12 +951,17 @@ if (sphereCanvas) {
 
 
    function getInitials(name) {
-  return name
-    ?.split(" ")
-    .map(n => n[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase() || "?";
+
+  const words = name.trim().split(" ");
+
+  if (words.length === 1) {
+    return words[0].slice(0, 2).toUpperCase();
+  }
+
+  return (
+    words[0][0] +
+    words[words.length - 1][0]
+  ).toUpperCase();
 }
 
 function generateAvatarGradient(name) {
