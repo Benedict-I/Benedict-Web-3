@@ -430,6 +430,114 @@ section {
     margin-bottom: 20px;
 }
 
+
+
+/* =========================
+   EMPTY REVIEW STATE
+========================= */
+
+.empty-review-state {
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(15,15,25,0.88),
+        rgba(5,5,15,0.95)
+    );
+
+    border:
+    1px solid rgba(255,255,255,0.06);
+
+    border-radius: 28px;
+
+    padding: 70px 40px;
+
+    text-align: center;
+
+    backdrop-filter: blur(18px);
+
+    min-height: 320px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.empty-stars {
+
+    font-size: 2rem;
+
+    letter-spacing: 6px;
+
+    margin-bottom: 25px;
+
+    color: rgba(255,255,255,0.9);
+}
+
+.empty-review-state h3 {
+
+    font-size: 2rem;
+
+    margin-bottom: 18px;
+
+    color: #fff;
+}
+
+.empty-review-state p {
+
+    color: rgba(255,255,255,0.65);
+
+    max-width: 420px;
+
+    line-height: 1.8;
+}
+
+.review-glow {
+
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(0,180,255,0.16),
+        transparent 70%
+    );
+
+    filter: blur(40px);
+
+    animation: reviewPulse 6s ease-in-out infinite;
+}
+
+@keyframes reviewPulse {
+
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: scale(1.18);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+}
+
+
+
 /* =========================
    FIXED STAR RATING SYSTEM
 ========================= */
