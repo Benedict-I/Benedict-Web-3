@@ -1,4 +1,3 @@
-const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 /* =========================
    DOM READY ENTRY POINT
 ========================= */ 
