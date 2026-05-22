@@ -605,6 +605,98 @@ section {
     min-height: 120px;
 }
 
+
+
+/* =========================
+   LIVE REVIEW UPGRADE
+========================= */
+
+#live-reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.review-top {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.review-avatar {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+    font-size: 18px;
+    color: #fff;
+
+    flex-shrink: 0;
+
+    box-shadow:
+        0 0 15px rgba(255,255,255,0.12);
+}
+
+.review-user-info h4 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.review-user-info small {
+    color: rgba(255,255,255,0.6);
+}
+
+.review-stars {
+    color: gold;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+}
+
+.review-text {
+    color: rgba(255,255,255,0.88);
+    line-height: 1.8;
+}
+
+/* premium glass */
+#live-reviews .review-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.08),
+            rgba(255,255,255,0.03)
+        );
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(10px);
+
+    transition: 0.4s ease;
+}
+
+#live-reviews .review-card:hover {
+
+    transform:
+        translateY(-5px);
+
+    border-color:
+        rgba(255,140,0,0.35);
+
+    box-shadow:
+        0 10px 35px rgba(255,140,0,0.12);
+}
+
+
+
+
+
 /* FULL BUTTON */
 .full-btn {
     width: 60%;
