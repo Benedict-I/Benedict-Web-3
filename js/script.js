@@ -997,27 +997,39 @@ function generateAvatarGradient(name) {
 
 
 function addReviewToPage(review) {
-  const container = document.querySelector(".reviews-display");
+
+  const container = document.getElementById("live-reviews");
+
   if (!container) return;
 
   const card = document.createElement("div");
-  card.className = "review-card";
+
+  card.className = "review-card reveal reveal-up";
 
   card.innerHTML = `
     <div class="review-top">
-      <div class="review-avatar" style="background:${generateAvatarGradient(review.name)}">
+
+      <div class="review-avatar"
+           style="background:${generateAvatarGradient(review.name)}">
+
         <span>${getInitials(review.name)}</span>
+
       </div>
 
-      <div>
+      <div class="review-user-info">
         <h4>${review.name}</h4>
-        <small>${review.date}</small>
+        <small>${review.date || "Recently"}</small>
       </div>
+
     </div>
 
-    <div class="review-stars">★★★★★</div>
+    <div class="review-stars">
+      ★★★★★
+    </div>
 
-    <p class="review-text">${review.message}</p>
+    <p class="review-text">
+      ${review.message}
+    </p>
   `;
 
   container.prepend(card);
