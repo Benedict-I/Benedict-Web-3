@@ -217,7 +217,8 @@ if (typeof loadReviews === "function") {
 
 
 
- try {
+try {
+
   const currentDate = new Date().toISOString();
 
   const { error } = await client
@@ -238,19 +239,15 @@ if (typeof loadReviews === "function") {
     date: currentDate
   });
 
-} catch (error) {
-  console.error(error);
+  status.textContent = "Saved!";
+  form.reset();
+
+} catch (err) {
+
+  console.error(err);
+  status.textContent = "Failed";
 }
-
     
-
-    status.textContent = "Saved!";
-    form.reset();
-
-  } catch (err) {
-    console.error(err);
-    status.textContent = "Failed";
-  }
 });
 }
 
