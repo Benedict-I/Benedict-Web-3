@@ -1034,7 +1034,9 @@ function addReviewToPage(review) {
 
       <div class="review-user-info">
         <h4>${review.name}</h4>
-        <small>${review.date || "Recently"}</small>
+       <small>${review.date
+      ? new Date(review.date).toLocaleDateString()
+      : "Recently"}</small>
       </div>
 
     </div>
