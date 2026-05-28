@@ -215,18 +215,34 @@ if (typeof loadReviews === "function") {
   const message =
     form.querySelector('textarea[name="review"]').value || "";
 
-  try {
-    const { error } = await client
-      .from("reviews")
-      .insert([{ name, message, date: new Date().toLocaleDateString() }]);
 
-    if (error) throw error;
 
-    addReviewToPage({
-      name,
-      message,
-      date: new Date().toLocaleDateString()
-    });
+ try {
+  const currentDate = new Date().toISOString();
+
+  const { error } = await client
+    .from("reviews")
+    .insert([
+      {
+        name,
+        message,
+        date: currentDate
+      }
+    ]);
+
+  if (error) throw error;
+
+  addReviewToPage({
+    name,
+    message,
+    date: currentDate
+  });
+
+} catch (error) {
+  console.error(error);
+}
+
+    
 
     status.textContent = "Saved!";
     form.reset();
