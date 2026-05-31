@@ -268,9 +268,15 @@ async function loadReviews() {
   }
 
   data.forEach(review => {
-    addReviewToPage(review);
-  });
+  addReviewToPage(review);
+});
+
+toggleEmptyReviewCard();
 }
+
+
+
+
 /* =========================
    6. MOUSE TRACKER
 ========================= */
@@ -997,7 +1003,27 @@ function generateAvatarGradient(name) {
 
 
 
+function toggleEmptyReviewCard() {
 
+  const emptyCard = document.querySelector(".empty-review-card");
+
+  const reviewContainer =
+    document.getElementById("live-reviews");
+
+  if (!emptyCard || !reviewContainer) return;
+
+  const totalReviews =
+    reviewContainer.querySelectorAll(".review-card").length;
+
+  if (totalReviews > 0) {
+
+    emptyCard.style.display = "none";
+
+  } else {
+
+    emptyCard.style.display = "flex";
+  }
+}
 
 
 
@@ -1048,6 +1074,8 @@ function addReviewToPage(review) {
   `;
 
   container.prepend(card);
+
+toggleEmptyReviewCard();
 }
 
 
