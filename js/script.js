@@ -1005,7 +1005,7 @@ function generateAvatarGradient(name) {
 
 function toggleEmptyReviewCard() {
 
-  const emptyCard = document.querySelector(".empty-review-card");
+   const emptyCard = document.querySelector(".empty-review-state");
 
   const reviewContainer =
     document.getElementById("live-reviews");
