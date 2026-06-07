@@ -1082,4 +1082,22 @@ toggleEmptyReviewCard();
 
 
 
+function updateSeeMoreButton() {
 
+    const reviews =
+        document.querySelectorAll("#live-reviews .review-card");
+
+    const button =
+        document.getElementById("see-more-wrapper");
+
+    if (!button) return;
+
+    if (reviews.length > 6) {
+
+        button.style.display = "block";
+
+    } else {
+
+        button.style.display = "none";
+    }
+}
