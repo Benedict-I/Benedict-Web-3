@@ -1472,9 +1472,9 @@ MOBILE
     position: relative;
 
     background: linear-gradient(
-        135deg,
-        #25D366,
-        #128C7E
+         135deg,
+         #20b85a,
+         #0f6f63
     );
 
     color: #fff;
@@ -1499,8 +1499,8 @@ MOBILE
         scale(1.01);
 
     box-shadow:
-        0 0 8px rgba(37, 211, 102, 0.22),
-        0 0 14px rgba(37, 211, 102, 0.12);
+    0 0 4px rgba(37, 211, 102, 0.12),
+    0 0 8px rgba(37, 211, 102, 0.06);
 }
 
 /* ANIMATION */
