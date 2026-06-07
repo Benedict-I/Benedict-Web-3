@@ -419,9 +419,8 @@ section {
 
     .reviews-layout {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;}
+    display: block;
+}
 
 
 /* REVIEW CARD */
@@ -429,8 +428,8 @@ section {
     background: rgba(20,20,30,0.4);
     padding: 20px;
     border-radius: 15px;
-    margin-bottom: 20px;
     width: 100%;
+    height: 100%;
 }
 
 
@@ -611,16 +610,17 @@ section {
 
 
 /* =========================
-   LIVE REVIEW UPGRADE
+   LIVE REVIEW GRID
 ========================= */
 
 #live-reviews {
     width: 100%;
-    max-width: 700px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    max-width: 1200px;
+    margin: 40px auto 0;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
 }
 
 .review-top {
@@ -1738,4 +1738,26 @@ section {
     z-index: 1;
 
     pointer-events: none;
+}
+
+
+
+/* =========================
+   REVIEW RESPONSIVE GRID
+========================= */
+
+@media (max-width: 900px) {
+
+    #live-reviews {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    #live-reviews {
+        grid-template-columns: 1fr;
+    }
+
 }
