@@ -272,6 +272,7 @@ async function loadReviews() {
 });
 
 toggleEmptyReviewCard();
+limitReviews();
 updateSeeMoreButton();
 
 
@@ -1082,6 +1083,30 @@ updateSeeMoreButton();
 
 
 
+   function limitReviews() {
+
+    const reviews =
+        document.querySelectorAll("#live-reviews .review-card");
+
+    reviews.forEach((card, index) => {
+
+        if (index >= 6) {
+            card.style.display = "none";
+        }
+
+    });
+
+    const button =
+        document.getElementById("see-more-wrapper");
+
+    if (button && reviews.length > 6) {
+        button.style.display = "block";
+    }
+}
+
+
+
+
 function updateSeeMoreButton() {
 
     const reviews =
@@ -1100,4 +1125,22 @@ function updateSeeMoreButton() {
 
         button.style.display = "none";
     }
+}
+
+
+
+
+
+
+
+   function showAllReviews() {
+
+    document
+        .querySelectorAll("#live-reviews .review-card")
+        .forEach(card => {
+            card.style.display = "block";
+        });
+
+    document.getElementById("see-more-wrapper")
+        .style.display = "none";
 }
