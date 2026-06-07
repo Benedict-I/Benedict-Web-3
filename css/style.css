@@ -1481,28 +1481,29 @@ MOBILE
 
     border: 2px solid rgba(255,255,255,0.08);
 
+    /* SOFTER GLOW */
     box-shadow:
-        .whatsapp-btn {
-    box-shadow:
-        0 0 6px rgba(37, 211, 102, 0.25),
-        0 0 14px rgba(37, 211, 102, 0.18);
-}
-    overflow: visible;
+        0 0 4px rgba(37, 211, 102, 0.18),
+        0 0 8px rgba(37, 211, 102, 0.10);
+
+    overflow: hidden;
 
     transition: 0.4s ease;
 }
 
+/* HOVER */
 .whatsapp-btn:hover {
+
     transform:
         translateY(-5px)
-        scale(1.03);
+        scale(1.01);
 
     box-shadow:
-        0 0 15px rgba(37, 211, 102, 0.75),
-        0 0 35px rgba(37, 211, 102, 0.65),
-        0 0 60px rgba(37, 211, 102, 0.5),
-        0 0 90px rgba(37, 211, 102, 0.35);
+        0 0 8px rgba(37, 211, 102, 0.22),
+        0 0 14px rgba(37, 211, 102, 0.12);
 }
+
+/* ANIMATION */
 .whatsapp-btn {
     animation: whatsappGlow 6.8s infinite ease-in-out;
 }
@@ -1511,25 +1512,22 @@ MOBILE
 
     0% {
         box-shadow:
-            0 0 10px rgba(37, 211, 102, 0.45),
-            0 0 20px rgba(37, 211, 102, 0.35),
-            0 0 40px rgba(37, 211, 102, 0.2);
+            0 0 4px rgba(37, 211, 102, 0.16),
+            0 0 8px rgba(37, 211, 102, 0.08);
     }
 
     50% {
         box-shadow:
-            box-shadow:
-        0 0 10px rgba(37, 211, 102, 0.28),
-        0 0 20px rgba(37, 211, 102, 0.18);
-}
+            0 0 6px rgba(37, 211, 102, 0.20),
+            0 0 12px rgba(37, 211, 102, 0.12);
+    }
+
     100% {
         box-shadow:
-            0 0 10px rgba(37, 211, 102, 0.45),
-            0 0 20px rgba(37, 211, 102, 0.35),
-            0 0 40px rgba(37, 211, 102, 0.2);
+            0 0 4px rgba(37, 211, 102, 0.16),
+            0 0 8px rgba(37, 211, 102, 0.08);
     }
 }
-
 
 
 
@@ -1539,31 +1537,32 @@ MOBILE
 
 
 .secondary-btn {
+
     background: linear-gradient(
-    135deg,
-    #00c6ff,
-    #0072ff
-);
+        135deg,
+        #00c6ff,
+        #0072ff
+    );
 
     color: #fff;
 
     box-shadow:
-        0 0 12px rgba(33,150,243,0.45),
-        0 0 30px rgba(33,150,243,0.3);
+        0 0 5px rgba(33,150,243,0.18),
+        0 0 10px rgba(33,150,243,0.10);
 
     transition: 0.4s ease;
 }
 
 .secondary-btn:hover {
+
     transform:
         translateY(-5px)
-        scale(1.03);
+        scale(1.01);
 
     box-shadow:
-        0 0 18px rgba(33,150,243,0.7),
-        0 0 45px rgba(33,150,243,0.45);
+        0 0 10px rgba(33,150,243,0.22),
+        0 0 18px rgba(33,150,243,0.14);
 }
-
 
 
 
