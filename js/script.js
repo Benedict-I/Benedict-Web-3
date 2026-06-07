@@ -272,7 +272,7 @@ async function loadReviews() {
 });
 
 toggleEmptyReviewCard();
-}
+updateSeeMoreButton();
 
 
 
@@ -1076,7 +1076,7 @@ function addReviewToPage(review) {
   container.prepend(card);
 
 toggleEmptyReviewCard();
-}
+updateSeeMoreButton();
 
 
 
