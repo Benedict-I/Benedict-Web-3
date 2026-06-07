@@ -577,9 +577,10 @@ section {
 }
 
 /* SEE MORE */
-.see-more {
-    text-align: center;
-    margin-top: 10px;
+.see-more{
+    display:none;
+    text-align:center;
+    margin-top:20px;
 }
 
 /* =========================
