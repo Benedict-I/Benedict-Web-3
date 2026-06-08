@@ -270,11 +270,11 @@ async function loadReviews() {
   data.forEach(review => {
   addReviewToPage(review);
 });
+}
 
 toggleEmptyReviewCard();
 limitReviews();
 updateSeeMoreButton();
-
 
 
 
@@ -1078,7 +1078,7 @@ function addReviewToPage(review) {
 
 toggleEmptyReviewCard();
 updateSeeMoreButton();
-
+}
 
 
 
