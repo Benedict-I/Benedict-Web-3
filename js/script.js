@@ -1077,6 +1077,7 @@ function addReviewToPage(review) {
   container.prepend(card);
 
 toggleEmptyReviewCard();
+limitReviews();
 updateSeeMoreButton();
 }
 
